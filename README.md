@@ -86,8 +86,8 @@ This project consists of creating an agent that will help write grants.
       * Include infor about number of people on full-time, part-time, and volunteer basis
 
 
-## Gameplan
-This section outlines the gameplan to create the MAS.
+## Agents overview
+This section outlines the agents involved in the MAS.
 
 There will be a total of 15 agents created:
 * 1 RAG agent
@@ -114,3 +114,65 @@ The agent state will contain the following attributes:
 * funder_requirements: str
 * first_half_draft: str
 * second_half_draft: str
+
+## Thought bubble: Web search vs Web scraper
+The RAG agent above will need to search a folder of directories.
+
+This search can be done in 2 ways:
+  1. Using an online search tool, such as Tavily
+      * Pros:
+        - Tavily will be in charge of searching an retrieving the information from the web search
+      * Cons:
+        - ALL info will be fed into the LLM context, which can be token-consuming
+        - The search MUST be done on every new startup of the program, which will take some time in the long run
+        - The info won't be stored locally, which means it won't be able to benefit from the embeddings
+  2. Using a web scraper, to bring the information into the local machine
+      * Pros:
+        - Since info will be local, it won't need to run the web search on every run
+        - The info can be stored in embedded vector store
+        - RAG can easily search the embedding vectore store, which means NOT ALL info will be fed into the LLM
+      * Cons:
+        - Information will be static, which means new updated info won't be reflected in the RAG agent
+        - The info MUST be formatted from HTML into readible text
+
+Thus, the second option will be used in this project, especially since any new documents the organization will provide can easily be infcorporated into the RAG agent.
+
+New documents can be integrated using the same method that was used in the Jopara RAG (~/Documents/Comeplexify/LAngGraph/Course1_6/JoparaRAG).
+
+
+## Web scraper gameplan
+
+General steps:
+  1. Setup a search fcn to retrieve relevant URLs
+      * Can be done with any search f'cn, ex: `duckduckgo_search`
+      * If the website of the organization is known, then this step can be replaced with HARD coded URLs
+  2. Set up scraping fcn to get URL contents
+      * This can be done with `bs4.BeautifulSoup`
+      * Note, this will return HTML syntax, which is NOT human readible
+  3. Cleanup HTML to make it more human readible
+      * This will make use of many methods from `BeautifulSoup`
+  4. Save the human readible info into a separate folder
+      * This will contain all the info needed to do a RAG search of the organization's info
+      * After this step, the same steps of `JoparaRAG` can be followed
+
+Note, this web scraper will be SEPARATE from the `main.py` file
+ * Since it's function will be a ONE-TIME run, where the info will be stored into the folder
+    - Once the info is scraped, the web search WON'T need to be run again
+  * Thus the web scraper will be in a pythin file of it's own: `scraper.py`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
