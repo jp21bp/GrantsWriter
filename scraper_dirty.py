@@ -52,7 +52,7 @@ soup = BeautifulSoup(response.text, 'html.parser')
 
 #### Analyzing beautiful soup
 
-print(type(soup))   #bs4.BeautifulSoup
+# print(type(soup))   #bs4.BeautifulSoup
 # print(soup.prettify)    #structured print of HTML
 
 # print(soup.find(class_="collapse navbar-collapse"))
@@ -61,7 +61,7 @@ links = soup.find(id="menu-menu-1")
 # print(type(links))  #bs4.element.Tag
 # print(links.get_text)   #gets HTML of that "id" section
 # print(links.contents)   #returns list
-print(len(links.contents))  #Returns 14, in this case
+# print(len(links.contents))  #Returns 14, in this case
 
 # for link in links.contents:
 #     print(link)
@@ -69,16 +69,53 @@ print(len(links.contents))  #Returns 14, in this case
 ### Analyzing "a" tags
 anchors = links.find_all('a')  
 
-print(type(anchors))    #bs4.element.ResultSet, also a list
-print(len(anchors))     # 40, in this case
+# print(type(anchors))    #bs4.element.ResultSet, also a list
+# print(len(anchors))     # 40, in this case
 
-for i, anchor in enumerate(anchors):
-    print(f"iterations {i}")
-    print(anchor)
-    print('\n')
-    print(anchor.contents)
+# for i, anchor in enumerate(anchors):
+#     print(f"iterations {i}")
+#     print(anchor)
+#     print('\n')
+#     print(anchor.contents)
+#     print('\n')
+#     # href = anchor.find('href')
+#     href = anchor.get('href')
+#     print(href)
+#     print('\n\n')
+#     if i == 10: break
+
+##### Step 2.1: getting anchor links from web navbar
+    #I.e., creating a dict for "links"
+
+links = {}
+for anchor in anchors:
+    contents = anchor.contents
+        # Returns anything (including other tags) inside "a" tag
+    link_name = contents[0]
+        # Usually string, non-tag content is first item
+    href = anchor.get('href')
+    if link_name in links:
+        if href in links[link_name]: continue
+        links[link_name].append(href)
+    else:
+        links[link_name] = [href]
+
+for k,v in links.items():
+    print(f"Key: {k}")
+    print(f"Links: {v}")
     print('\n\n')
-    if i == 3: break
+
+
+
+
+
+
+
+
+
+
+
+##### Step 3
 
 
 
