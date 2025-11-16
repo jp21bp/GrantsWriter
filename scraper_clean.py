@@ -4,9 +4,9 @@
 ##### Genereal steps
     # 1. Hardcode the URL main webpage
     # 2. Get a list of URLS associated with main webpage
-    # 3. Setup scraping fcn to get URL contents
+    # 3. Setup scraping fcn to get URL contents and put into one big text file
     # 4. Cleanup HTML to make it more human readible
-    # 5. Save human readible info into separate folder
+    # 5. Save human readible info into separate text file
 
 ##### Step 1
 URLS = [
@@ -31,7 +31,7 @@ links = {}
     # Creating dictionary to store all links found on navbar
 menu = soup.find(id="menu-menu-1")
     # Getting navbar tag
-anchors = links.find_all('a')
+anchors = menu.find_all('a')
     # Gets all anchors in navbar
         # Will be used to create values of "links" dict
 
@@ -50,8 +50,45 @@ for anchor in anchors:  # Loops through all found anchors
     else:
         links[link_name] = [href]
 
+# for k,v in links.items():
+#     print(f"Link Name: {k}")
+#     print(f"Links: {v}")
+#     print('\n\n')
 
-##### Step 3
+##### Step 3 - 5
+    # 3. Will go through ALL links and extract the content
+    # 4. Will make extracted content human readible
+    # 5. Content will be placed on one big text file
+    
+visited = []
+    # Will be used to store the links that've already been visited
+
+try:
+    file = open("LAFF_webpage_contents.txt", "x")
+        # Create file
+except:
+    file = open("LAFF_webpage_contents.txt", "a")
+        # Open file for appending
+
+for name, link_list in links.items():
+    for link in link_list:
+        response = requests.get(link, headers=headers)
+            # Get raw webpage contents
+        if link not in visited:
+            visited.append(link)
+                # Assume link gets visited
+            soup = BeautifulSoup(response.text, 'html.parser')
+                # Turn raw webpage into HTML format
+            body = soup.find(id="main")
+                # Get the body of the webpage
+            page_contents = body.get_text(separator="\t",strip=True)
+            
+            file.write(name + "\n")
+            file.write(page_contents + "\n")
+            file.write("=" * 30 + "\n")
+
+
+
 
 
 

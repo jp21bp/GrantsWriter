@@ -2,17 +2,21 @@
     # This file will be used for the web scraper tool
 
 ##### Genereal steps
-    # 1. Hardcode the URLS
-    # 2. Setup scraping fcn to get URL contents
-    # 3. Cleanup HTML to make it more human readible
-    # 4. Save human readible info into separate folder
+    # 1. Hardcode the URL main webpage
+    # 2. Get a list of URLS associated with main webpage
+    # 3. Setup scraping fcn to get URL contents
+    # 4. Cleanup HTML to make it more human readible
+    # 5. Save human readible info into separate text file
 
 ##### Step 1
 URLS = [
     "https://www.laffcharity.org.uk/",
+    "https://www.laffcharity.org.uk/resources/volunteer-resources/",
+    'https://www.laffcharity.org.uk/events/',
     "https://en.wikipedia.org/wiki/%22Hello,_World!%22_program",
     "https://google.com"
 ]
+
 headers = {'User-Agent': "Mozilla/5.0"}
 
 
@@ -20,7 +24,7 @@ headers = {'User-Agent': "Mozilla/5.0"}
 import requests
 from bs4 import BeautifulSoup
 
-response = requests.get(URLS[0], headers=headers)
+response = requests.get(URLS[2], headers=headers)
 
 #### Analyzing response
 # print(response) #<Response[200]>
@@ -100,10 +104,10 @@ for anchor in anchors:
     else:
         links[link_name] = [href]
 
-for k,v in links.items():
-    print(f"Key: {k}")
-    print(f"Links: {v}")
-    print('\n\n')
+# for k,v in links.items():
+#     print(f"Key: {k}")
+#     print(f"Links: {v}")
+#     print('\n\n')
 
 
 
@@ -116,7 +120,12 @@ for k,v in links.items():
 
 
 ##### Step 3
-
+print("STEP 3")
+# print(soup.prettify())
+body = soup.find(id="main")
+# print(body.prettify())
+# print(body.get_text(strip=True))
+print(body.get_text(separator="\t", strip=True))
 
 
 
