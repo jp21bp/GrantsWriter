@@ -346,6 +346,12 @@ for url in main_urls:
     org_links[org_name] = scrape_links(url)
 
 
+#### Fixing sacred valley issue\
+for name, link in org_links['sacredvalleyproject'].items():
+    link = 'https://www.sacredvalleyproject.org' + link
+    org_links['sacredvalleyproject'][name] = link\
+
+
 #### Step 5: Place the results in a text file using 'json' module
 with open('all_links.json', 'w') as file:
     json.dump(org_links, file, indent=4)
