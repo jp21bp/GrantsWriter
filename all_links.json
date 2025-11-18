@@ -95,12 +95,12 @@
         "SHOP TEXTILES": "https://www.etsy.com/es/shop/MosqoyTextiles"
     },
     "sacredvalleyproject": {
-        "\n        Mission & Impact\n      ": "/mission-impact",
-        "\n\n        Get Involved\n      \n": "/get-involved",
-        "\n\n                  Donate\n                \n": "/donate",
-        "\n\n                  Volunteer\n                \n": "/volunteer",
-        "\n\n                  Start A Club\n                \n": "/start-a-club",
-        "\n        Our Team\n      ": "/team",
-        "\n        Media\n      ": "/media"
+        "\n        Mission & Impact\n      ": "https://www.sacredvalleyproject.org/mission-impact",
+        "\n\n        Get Involved\n      \n": "https://www.sacredvalleyproject.org/get-involved",
+        "\n\n                  Donate\n                \n": "https://www.sacredvalleyproject.org/donate",
+        "\n\n                  Volunteer\n                \n": "https://www.sacredvalleyproject.org/volunteer",
+        "\n\n                  Start A Club\n                \n": "https://www.sacredvalleyproject.org/start-a-club",
+        "\n        Our Team\n      ": "https://www.sacredvalleyproject.org/team",
+        "\n        Media\n      ": "https://www.sacredvalleyproject.org/media"
     }
 }
