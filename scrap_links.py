@@ -83,6 +83,8 @@ for name, link_list in links.items():
             file.write(name + "\n")
             file.write(page_contents + "\n")
             file.write("=" * 30 + "\n")
+            
+file.close()
 
 
 #### Issue with Gameplan 1

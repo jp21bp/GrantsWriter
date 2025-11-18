@@ -385,91 +385,219 @@
     # SacredValley doesn't have domain name in links
         # It's probably a single page application (SPA)
 
-import requests
+# import requests
+# from bs4 import BeautifulSoup
+
+# main_urls =[
+#     "https://www.laffcharity.org.uk/",
+#     "https://www.mantay.org/",
+#     "https://www.mosqoy.org/",
+#     "https://www.sacredvalleyproject.org/"
+# ]
+
+
+
+
+# org_links = {}
+#     #USed to store links with each organization
+
+
+
+
+# def find_unique_links(anchors_list: list[str]) -> dict:
+#     unique_links = []
+#     unique_dict = {}
+#     for anchor in anchors_list:
+#         link = anchor.get('href')
+#         if link in unique_links: continue
+#         unique_links.append(link)
+#         page_name = anchor.get_text()
+#         unique_dict[page_name] = link
+#     return unique_dict
+
+
+# def scrape_links(url: str) -> list:
+#     headers = {'User-Agent': "Mozilla/5.0"}
+#     response = requests.get(url, headers=headers)
+#     soup = BeautifulSoup(response.text, 'html.parser')
+#     # unique_links = []
+#     navbar = soup.find('nav')
+#     if url == "https://www.mantay.org/":
+#         navbar = soup.find(id='menu-main-menu')
+#         # print('changed navbar')
+#     anchors = navbar.find_all('a')
+#     # print(type(anchors))
+#     # print(anchors[0:2])
+#     # print(anchors[0].get('href'))
+
+#     # print(anchors[0].get_text())
+#     # anch = anchors[0]
+#     # content = anch.contents
+#     # print(content[0])
+#     # print(type(anch.contents()))
+#     return find_unique_links(anchors)
+
+#     # print(navbar.prettify())
+#     # print(soup.prettify())
+
+# ## hard to do a fcn
+#     # can't assume all sites structured same way
+#     # After research I can see that all use <nav> tag
+#         # except mantay orgnization
+
+# for url in main_urls:
+#     org_name = url.split(".")[1]
+#     # print(org_name)
+#     org_links[org_name] = scrape_links(url)
+#     # print(f"Organization: {url}" + '\n')
+#     # scrape_links(url)
+#     # print('\n' * 20)
+
+
+# #### Fixing sacred valley issue
+
+# # svp_links = []
+# # for link in org_links['sacredvalleyproject']:
+# #     link = 'https://www.sacredvalleyproject.org' + link
+# #     svp_links.append(link)
+# # # print(svp_links)
+# # org_links['sacredvalleyproject'] = svp_links
+
+
+# for k,v in org_links.items():
+#     print(f"Org: {k}")
+#     print("Links:")
+#     for name, link in v.items():
+#         print(f"Name: {name}\tLink: {link}")
+#     print('\n'*3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+###### Scraping the link contents
+
+import json, requests
 from bs4 import BeautifulSoup
 
-main_urls =[
-    "https://www.laffcharity.org.uk/",
-    "https://www.mantay.org/",
-    "https://www.mosqoy.org/",
-    "https://www.sacredvalleyproject.org/"
-]
+with open('all_links.json', 'r') as file:
+    org_dict = json.load(file)
+
+# for k,v in org_dict.items():
+#     print(f"org: {k}")
+#     for name, link in v.items():
+#         print(f"name: {name}\tlink: {link}")
+
+# print(org_dict.keys())
+
+
+### Recall, each page is structured diff.
+    # So we need to find the "body" of each page
+    # SVP has <main> tag
+    # moswoy has <main> tag
+    # mantay has id='main'
+        # body = soup.find(id='main')   
+        # if not body:
+        #     body = soup.find('body')
+    # Laff has id='main'
+
+
+### Extract 1 link
+orgs_names = []
+for org in org_dict.keys():
+    orgs_names.append(org)
+
+# org_name = org_dict[orgs_names[1]]
+headers = {'User-Agent': "Mozilla/5.0"}
+
+for org_name, link_dict in org_dict.items():
+    if org_name != "sacredvalleyproject": continue
+    with open(f'{org_name}_contents.txt', 'w') as file:
+        for name, link in link_dict.items():
+            # print(org_name)
+            response = requests.get(link, headers=headers)
+            soup = BeautifulSoup(response.text, 'html.parser')
+            if org_name == "mosqoy" or org_name == "sacredvalleyproject":
+                # print('there')
+                body = soup.find('main')
+            else:
+                # print('here')
+                body = soup.find(id='main')   
+                if not body:
+                    body = soup.find('body')
+            # body = soup
+            try:
+                page_contents = body.get_text(separator='\t', strip=True)
+            except:
+                continue
+            # break
+            file.write(name + '\n')
+            file.write(page_contents + '\n')
+            file.write('=' * 30 + '\n')
+            # break
+        # break
 
 
 
 
-org_links = {}
-    #USed to store links with each organization
 
 
 
 
-def find_unique_links(anchors_list: list[str]) -> dict:
-    unique_links = []
-    unique_dict = {}
-    for anchor in anchors_list:
-        link = anchor.get('href')
-        if link in unique_links: continue
-        unique_links.append(link)
-        page_name = anchor.get_text()
-        unique_dict[page_name] = link
-    return unique_dict
 
 
-def scrape_links(url: str) -> list:
-    headers = {'User-Agent': "Mozilla/5.0"}
-    response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.text, 'html.parser')
-    # unique_links = []
-    navbar = soup.find('nav')
-    if url == "https://www.mantay.org/":
-        navbar = soup.find(id='menu-main-menu')
-        # print('changed navbar')
-    anchors = navbar.find_all('a')
-    # print(type(anchors))
-    # print(anchors[0:2])
-    # print(anchors[0].get('href'))
-
-    # print(anchors[0].get_text())
-    # anch = anchors[0]
-    # content = anch.contents
-    # print(content[0])
-    # print(type(anch.contents()))
-    return find_unique_links(anchors)
-
-    # print(navbar.prettify())
-    # print(soup.prettify())
-
-## hard to do a fcn
-    # can't assume all sites structured same way
-    # After research I can see that all use <nav> tag
-        # except mantay orgnization
-
-for url in main_urls:
-    org_name = url.split(".")[1]
-    # print(org_name)
-    org_links[org_name] = scrape_links(url)
-    # print(f"Organization: {url}" + '\n')
-    # scrape_links(url)
-    # print('\n' * 20)
 
 
-#### Fixing sacred valley issue
-
-# svp_links = []
-# for link in org_links['sacredvalleyproject']:
-#     link = 'https://www.sacredvalleyproject.org' + link
-#     svp_links.append(link)
-# # print(svp_links)
-# org_links['sacredvalleyproject'] = svp_links
-
-
-for k,v in org_links.items():
-    print(f"Org: {k}")
-    print("Links:")
-    for name, link in v.items():
-        print(f"Name: {name}\tLink: {link}")
-    print('\n'*3)
 
 
 
