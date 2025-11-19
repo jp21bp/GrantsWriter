@@ -12,3 +12,4 @@ wheels/
 # Unnecessary files
 *.jpg
 output.txt
+.env
