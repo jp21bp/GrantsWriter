@@ -530,67 +530,78 @@
 import json, requests
 from bs4 import BeautifulSoup
 
-with open('all_links.json', 'r') as file:
-    org_dict = json.load(file)
+# with open('./links_and_documents/all_links.json', 'r') as file:
+#     org_dict = json.load(file)
 
-# for k,v in org_dict.items():
-#     print(f"org: {k}")
-#     for name, link in v.items():
-#         print(f"name: {name}\tlink: {link}")
+# # for k,v in org_dict.items():
+# #     print(f"org: {k}")
+# #     for name, link in v.items():
+# #         print(f"name: {name}\tlink: {link}")
 
-# print(org_dict.keys())
-
-
-### Recall, each page is structured diff.
-    # So we need to find the "body" of each page
-    # SVP has <main> tag
-    # moswoy has <main> tag
-    # mantay has id='main'
-        # body = soup.find(id='main')   
-        # if not body:
-        #     body = soup.find('body')
-    # Laff has id='main'
+# # print(org_dict.keys())
 
 
-### Extract 1 link
-orgs_names = []
-for org in org_dict.keys():
-    orgs_names.append(org)
+# ### Recall, each page is structured diff.
+#     # So we need to find the "body" of each page
+#     # SVP has <main> tag
+#     # moswoy has <main> tag
+#     # mantay has id='main'
+#         # body = soup.find(id='main')   
+#         # if not body:
+#         #     body = soup.find('body')
+#     # Laff has id='main'
 
-# org_name = org_dict[orgs_names[1]]
+
+# ### Extract 1 link
+# orgs_names = []
+# for org in org_dict.keys():
+#     orgs_names.append(org)
+
+# # org_name = org_dict[orgs_names[1]]
+# headers = {'User-Agent': "Mozilla/5.0"}
+
+# for org_name, link_dict in org_dict.items():
+#     if org_name != "sacredvalleyproject": continue
+#     with open(f'{org_name}_contents.txt', 'w') as file:
+#         for name, link in link_dict.items():
+#             # print(org_name)
+#             response = requests.get(link, headers=headers)
+#             soup = BeautifulSoup(response.text, 'html.parser')
+#             if org_name == "mosqoy" or org_name == "sacredvalleyproject":
+#                 # print('there')
+#                 body = soup.find('main')
+#             else:
+#                 # print('here')
+#                 body = soup.find(id='main')   
+#                 if not body:
+#                     body = soup.find('body')
+#             # body = soup
+#             try:
+#                 page_contents = body.get_text(separator='\t', strip=True)
+#             except:
+#                 continue
+#             # break
+#             file.write(name + '\n')
+#             file.write(page_contents + '\n')
+#             file.write('=' * 30 + '\n')
+#             # break
+#         # break
+
+
+
+url = 'https://www.mosqoy.org/faq-1'
 headers = {'User-Agent': "Mozilla/5.0"}
 
-for org_name, link_dict in org_dict.items():
-    if org_name != "sacredvalleyproject": continue
-    with open(f'{org_name}_contents.txt', 'w') as file:
-        for name, link in link_dict.items():
-            # print(org_name)
-            response = requests.get(link, headers=headers)
-            soup = BeautifulSoup(response.text, 'html.parser')
-            if org_name == "mosqoy" or org_name == "sacredvalleyproject":
-                # print('there')
-                body = soup.find('main')
-            else:
-                # print('here')
-                body = soup.find(id='main')   
-                if not body:
-                    body = soup.find('body')
-            # body = soup
-            try:
-                page_contents = body.get_text(separator='\t', strip=True)
-            except:
-                continue
-            # break
-            file.write(name + '\n')
-            file.write(page_contents + '\n')
-            file.write('=' * 30 + '\n')
-            # break
-        # break
-
-
-
-
-
+response = requests.get(url, headers=headers)
+soup = BeautifulSoup(response.text, 'html.parser')
+# print(soup)
+# print('\n'*20)
+body = soup.find_all('body')
+# page_contents = body.get_text(separator='\t', strip=True)
+for found in body:
+    page_contents = found.get_text(separator='\t', strip=True)
+    print(page_contents)
+    print('\n' * 20)
 
 
 
