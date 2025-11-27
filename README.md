@@ -46,7 +46,7 @@ This project consists of creating an agent that will help write grants.
         - Outline what you're looking for and how to get there
         - Detail the logic, in a holistic way
       * DON'T make promises you CAN'T KEEP
-      * Keep goals short and sweet
+      * Keep goals short and holistic
       * Stay concise with how much money you're asking for
       * Include collabs with other entities/institutions
   5. Methods and strategies

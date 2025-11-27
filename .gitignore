@@ -13,3 +13,4 @@ wheels/
 *.jpg
 output.txt
 .env
+output.pkl
