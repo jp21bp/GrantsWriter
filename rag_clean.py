@@ -284,31 +284,33 @@ cadena_espanol = inputs | extract | mini_cadena.map()
 
 ##### Main pipeline
 #### Putting it all together
-def rag(user_input: str) -> str:
-    ### Running the first chain
-    translation_results = translation_chain.invoke({
-        "query": user_input
-    })
-    original = translation_results.original
-    translation = translation_results.translation
+class RAG():
+    def invoke(self, user_input: str) -> str:
+        ### Running the first chain
+        translation_results = translation_chain.invoke({
+            "query": user_input
+        })
+        original = translation_results.original
+        translation = translation_results.translation
 
-    ### Running the second chain
-    context_spanish = cadena_espanol.invoke({
-        "entrada": translation
-    })
-        #Returns list of strings
-            # These strings are translated versions of the original doc
+        ### Running the second chain
+        context_spanish = cadena_espanol.invoke({
+            "entrada": translation
+        })
+            #Returns list of strings
+                # These strings are translated versions of the original doc
 
-    ### Running similarity search on original query
-    context_english = retriever.invoke(original)
-    context_english = [x.page_content for x in context_english]
+        ### Running similarity search on original query
+        context_english = retriever.invoke(original)
+        context_english = [x.page_content for x in context_english]
 
-    ### Combining all info together
-    final_context = "\n\n\n".join(context_english + context_spanish)
-    return final_context
+        ### Combining all info together
+        final_context = "\n\n\n".join(context_english + context_spanish)
+        return final_context
 
 
-# print(rag("What are current educational projects?"))
+rag = RAG()
+print(rag.invoke("What are current educational projects?"))
 
 
 
