@@ -37,7 +37,7 @@ from typing import TypedDict, Annotated, List
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain_core.messages import AnyMessage,\
-    HumanMessage, AIMessage, ToolMessage, SystemMessage
+    HumanMessage, AIMessage, ToolMessage, SystemMessage, BaseMessage
 from pydantic import BaseModel
 from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
@@ -46,6 +46,35 @@ from IPython.display import Image
 ##### Setting up environment
 load_dotenv()
 mistral_api_key = os.getenv("MISTRAL_API_KEY")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##### Setting up pickle and sqlite helper
 #### Saving data
@@ -93,7 +122,25 @@ DB_NAME = 'output.db'
 
 fake_llm = None
 
-##### PLaying with llm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### PLaying with llm Cohere API
 #### Simple invocation
 # result = llm.invoke('hi')
 # print(result)
@@ -109,12 +156,31 @@ fake_llm = None
 # id_counter = save_data(DB_NAME, result, id_counter)
 # print(id_counter)
 
-# ### REtrieving saved data 
+### REtrieving saved data 
 # data = retrieve_data(DB_NAME, 1)
+# print(type(data))
 # print(data)
 # print(data.content)
 # print(data.response_metadata)
 # print(data.response_metadata['model_name'])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -178,6 +244,94 @@ the current grant draft based on provided techniques.
 # your task.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Testing out diff. langchain "Messages"
+#### Investigating "SystemMessage" object
+# for attr in dir(SystemMessage):
+#     if attr.startswith("_"): continue
+#     print(attr)
+#     try: print(SystemMessage.__getattribute__(attr))
+#     except: continue
+#     print('\n'*2)
+
+#### PLaying with "ChatPromptTemplate"
+### Replacing placeholders
+# prompt = ChatPromptTemplate.from_messages([
+#     ("system", PLAN_PROMPT),
+#     ("user", "Write the section outline for the following theme: {theme}.")
+# ])
+# print(prompt.invoke({'theme': 'UNO', 'requirements': 'DOS'}))
+
+### Checking out missing placeholder replacements
+# prompts = ChatPromptTemplate.from_messages([
+#     ('system', PLAN_PROMPT),
+#     ("user", "Write all section outlines for the following theme: {theme}.")
+# ])
+
+### Working with different ordering of the placeholders
+# msgs = prompts.invoke({
+#     "requirements": 'UNO',
+#     "theme": 'DOS',
+# })
+# print(msgs)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Creating pydantic model
 #### For Planning node
 class SectionOutlines(BaseModel):
@@ -193,11 +347,47 @@ class SectionOutlines(BaseModel):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Create Agent state
 class AgentState(TypedDict):
+    # Note: ALL "Annotated" attrs WILL show up in results
+        # Even if they're empty, the will be initialized and shown
     # General fields
-    msgs = Annotated[List[AnyMessage], operator.add]
+    msgs: Annotated[List[AnyMessage], operator.add]
         # Needed to store the LC "Messages" from agents
+        # REQUIRES inputs to be in [] bc of "List"
     theme: str
     doner_requirements: str
     num_revisions: int
@@ -209,40 +399,135 @@ class AgentState(TypedDict):
     draft: str
     critique: str
     rag_context: Annotated[List[str], operator.add]
+        # REQUIRES inputs to be in [] bc of "List"
+    # random: Annotated[List[int], operator.add]
 
 
-##### Testing out diff. langchain "Messages"
-# for attr in dir(SystemMessage):
-#     if attr.startswith("_"): continue
-#     print(attr)
-#     try: print(SystemMessage.__getattribute__(attr))
-#     except: continue
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Sampling and playing with Agent graph and db integrations
+    #NOte: both "####" sections work
+#### Create Sample Agent graph for testing invocation and saving to DB
+### Create class
+# class Agent:
+#     def __init__(self, llm):
+#         graph = StateGraph(AgentState)
+#         graph.add_node('sample', self.sample_node)
+
+#         graph.add_edge('sample', END)
+#         graph.set_entry_point('sample')
+#         self.graph = graph.compile(
+#             # checkpointer= memory,   #FOr short-term memory
+#             # store= store,   # For long-term memory
+#         )
+#         self.llm = llm
+
+#     def sample_node(self, state: AgentState):
+#         prompt = 'hola!'
+#         response = self.llm.invoke(prompt)
+#         id_counter = state['id_counter']
+#         print(response)
+#         print(f'index for sample response is {id_counter}')
+#         id_counter = save_data(DB_NAME, response, id_counter)
+#         print(f'new counter: {id_counter}')
+#         return {'msgs': [response], 'id_counter': id_counter}
+        
+### Create visual of graph
+# abot = Agent(base_llm)
+# print(abot.graph.get_graph().draw_mermaid()).
+# print(abot.graph.get_graph().draw_ascii())
+
+### Execute the graph
+# result = abot.graph.invoke({'id_counter': 2})
+# print('psot execution')
+# print(type(result))
+# print(result)
+# for k,v in result.items():
+#     print(f"Key: {k}")
+#     print(f"value: {v}")
+#     print('\n'*2)
+
+
+
+#### Create sample class to test interactions from db data retrieved
+### Create class
+# class Agent:
+#     def __init__(self, llm):
+#         graph = StateGraph(AgentState)
+#         graph.add_node('sample', self.sample_node)
+
+#         graph.add_edge('sample', END)
+#         graph.set_entry_point('sample')
+#         self.graph = graph.compile(
+#             # checkpointer= memory,   #FOr short-term memory
+#             # store= store,   # For long-term memory
+#         )
+#         self.llm = llm
+
+#     def sample_node(self, state: AgentState):
+#         data = retrieve_data(DB_NAME, 2)
+#         print(type(data))
+#         return {'msgs': [data]}
+
+### Execute the graph
+# abot = Agent(fake_llm)
+# result = abot.graph.invoke({})
+# print('psot execution')
+# # print(type(result))
+# # print(result)
+# for k,v in result.items():
+#     print(f"Key: {k}")
+#     print(f"value: {v}")
 #     print('\n'*2)
 
 
 
 
 
-# prompt = ChatPromptTemplate.from_messages([
-#     ("system", PLAN_PROMPT),
-#     ("user", "Write the section outline for the following theme: {theme}.")
-# ])
-
-# print(prompt.invoke({'theme': 'UNO', 'requirements': 'DOS'}))
 
 
 
-# prompts = ChatPromptTemplate.from_messages([
-#     ('system', PLAN_PROMPT),
-#     ("user", "Write all section outlines for the following theme: {theme}.")
-# ])
 
-# msgs = prompts.invoke({
-#     "requirements": 'UNO',
-#     "theme": 'DOS',
-# })
 
-# print(msgs)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##### Create node functionalities
@@ -279,36 +564,17 @@ def plan_node(state: AgentState, llm):
     return {"plan" : plan, 'id_counter' : id_counter}
 
 
-##### Create Sample Agent graph for testing
-#### Create class
-class Agent:
-    def __init__(self, llm):
-        graph = StateGraph(AgentState)
-        graph.add_node('sample', self.sample_node)
 
-        graph.add_edge('sample', END)
-        graph.set_entry_point('sample')
-        self.graph = graph.compile(
-            # checkpointer= memory,   #FOr short-term memory
-            # store= store,   # For long-term memory
-        )
-        self.llm = llm
 
-    def sample_node(self, state: AgentState):
-        prompt = 'hola!'
-        response = self.llm.invoke(prompt)
-        id_counter = state['id_counter']
-        print(response)
-        print(f'index for sample response is {id_counter}')
-        id_counter = save_data(DB_NAME, response, id_counter)
-        print(f'new counter: {id_counter}')
-        return {'msgs': response, 'id_counter': id_counter}
-        
-#### Create visual of graph
-abot = Agent(fake_llm)
-# print(abot.graph.get_graph().draw_mermaid())
-# Image(abot.graph.get_graph().draw_png())
-print(abot.graph.get_graph().draw_ascii())
+
+
+
+
+
+
+
+
+
 
 
 
