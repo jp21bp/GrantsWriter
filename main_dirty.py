@@ -32,6 +32,7 @@ from dotenv import load_dotenv
 import os
 import operator
 import pickle
+import sqlite3
 from typing import TypedDict, Annotated, List
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import InMemorySaver
@@ -40,26 +41,80 @@ from langchain_core.messages import AnyMessage,\
 from pydantic import BaseModel
 from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
+from IPython.display import Image
 
 ##### Setting up environment
 load_dotenv()
 mistral_api_key = os.getenv("MISTRAL_API_KEY")
 
+##### Setting up pickle and sqlite helper
+#### Saving data
+def save_data(db_name, data, id_counter: int):
+    pickled_data = pickle.dumps(data)
+    with sqlite3.connect(db_name) as conn:
+        conn.execute(
+            'CREATE TABLE IF NOT EXISTS data (id INTEGER, content BLOB)'
+        )
+        conn.execute(
+            'INSERT INTO data (id, content) VALUES (?,?)',
+            (id_counter, sqlite3.Binary(pickled_data))
+        )
+        conn.commit()
+        return id_counter + 1
+
+#### Retrieving data from sqlite
+def retrieve_data(db_name, index):
+    with sqlite3.connect(db_name) as conn:
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute(
+            'SELECT content FROM data WHERE id = ?',
+            (index,)
+        )
+        row = cursor.fetchone()
+        if row:
+            unpickled_data = pickle.loads(row['content'])
+            return unpickled_data
+        else:
+            print('Error: content not found')
+            return
+
+#### Setting global DB name
+DB_NAME = 'output.db'
+
+
 
 
 ##### Creating models
-# llm = ChatMistralAI(
+# base_llm = ChatMistralAI(
 #     api_key= mistral_api_key,
 #     model_name= 'mistral-small'
 # )
 
+fake_llm = None
+
+##### PLaying with llm
+#### Simple invocation
 # result = llm.invoke('hi')
 # print(result)
 # with open('output.pkl', 'wb') as file:
 #     pickle.dump(result, file)
 # print('success')
 
+#### Trying out db helper fcns
+### Ssaving data
+# result = llm.invoke('hi!')
+# print(result)
+# id_counter = 1
+# id_counter = save_data(DB_NAME, result, id_counter)
+# print(id_counter)
 
+# ### REtrieving saved data 
+# data = retrieve_data(DB_NAME, 1)
+# print(data)
+# print(data.content)
+# print(data.response_metadata)
+# print(data.response_metadata['model_name'])
 
 
 
@@ -141,10 +196,14 @@ class SectionOutlines(BaseModel):
 ##### Create Agent state
 class AgentState(TypedDict):
     # General fields
+    msgs = Annotated[List[AnyMessage], operator.add]
+        # Needed to store the LC "Messages" from agents
     theme: str
     doner_requirements: str
     num_revisions: int
     max_revisions: int
+    id_counter: int 
+        #DB Index field
     # Node related fields
     plan: SectionOutlines
     draft: str
@@ -187,11 +246,25 @@ class AgentState(TypedDict):
 
 
 ##### Create node functionalities
-def plan_node(state: AgentState):
+    # Note: these nodes are placed here for ease of access
+    # BUT, they will end up being integrated DIRECTLY into the graph
+        #Since this will make it easier to pass a single, base LLM to all nodes
+#### Temp sample node - to test graph and proper usage
+def sample_node_outside(state: AgentState, llm):
+    prompt = 'hola!'
+    response = llm.invoke(prompt)
+    id_counter = state['id_counter']
+    print(response)
+    print(f'index for sample response is {id_counter}')
+    id_counter = save_data(DB_NAME, response, id_counter)
+    print(f'new counter: {id_counter}')
+    return {'msgs': response, 'id_counter': id_counter}
+#### Planner node
+def plan_node(state: AgentState, llm):
     prompts = ChatPromptTemplate.from_messages([
         ('system', PLAN_PROMPT),
         ("user", "Write all section outlines for the following theme: {theme}.")
-    ])
+    ]) 
 
     msgs = prompts.invoke({
         "requirements": state['doner_requirements'],
@@ -200,14 +273,42 @@ def plan_node(state: AgentState):
 
     model = llm.with_structured_output(SectionOutlines)
     plan = model.invoke(msgs)
+    print(f"'Plan' DB data is with index: {state['id_counter']}")
     print(plan)
-    return {"plan" : plan}
+    id_counter = save_data(DB_NAME, plan, state['id_counter'])
+    return {"plan" : plan, 'id_counter' : id_counter}
 
 
-##### Create Agent graph
+##### Create Sample Agent graph for testing
+#### Create class
+class Agent:
+    def __init__(self, llm):
+        graph = StateGraph(AgentState)
+        graph.add_node('sample', self.sample_node)
 
+        graph.add_edge('sample', END)
+        graph.set_entry_point('sample')
+        self.graph = graph.compile(
+            # checkpointer= memory,   #FOr short-term memory
+            # store= store,   # For long-term memory
+        )
+        self.llm = llm
 
-
+    def sample_node(self, state: AgentState):
+        prompt = 'hola!'
+        response = self.llm.invoke(prompt)
+        id_counter = state['id_counter']
+        print(response)
+        print(f'index for sample response is {id_counter}')
+        id_counter = save_data(DB_NAME, response, id_counter)
+        print(f'new counter: {id_counter}')
+        return {'msgs': response, 'id_counter': id_counter}
+        
+#### Create visual of graph
+abot = Agent(fake_llm)
+# print(abot.graph.get_graph().draw_mermaid())
+# Image(abot.graph.get_graph().draw_png())
+print(abot.graph.get_graph().draw_ascii())
 
 
 
