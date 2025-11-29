@@ -161,18 +161,18 @@ retriever = vstore.as_retriever(
 
 ##### Creating first chain - translating language
 #### Setup prompt
-SYST_PROMPT = """
-    You are an experienced Senior translator between English and Spanish.
-    Your role is to translate the input, English query into a Spanish verison.
-    Your associated pydantic model will have the following attributes:
-    * original: stores the original English query
-    * translation: stored the translated Spanish query
+SYST_PROMPT = """\
+You are an experienced Senior translator between English and Spanish. \
+Your role is to translate the input, English query into a Spanish verison. \
+Your associated pydantic model will have the following attributes:
+* original: stores the original English query
+* translation: stored the translated Spanish query
 
-    Below are a few examples of the task:
-    <Examples>
-    Original: "What are the organizaton's documents associated with education projects?"
-    Translation: "Cuales son los documentos de la organization que estan associados con proyectos educacionales?"
-    </Examples>
+Below are a few examples of the task:
+<Examples>
+Original: "What are the organizaton's documents associated with education projects?"
+Translation: "Cuales son los documentos de la organization que estan associados con proyectos educacionales?"
+</Examples>
 """
 prompt = ChatPromptTemplate.from_messages([
     ("system", SYST_PROMPT),
@@ -238,11 +238,11 @@ extract = RunnableLambda(
 )
 
 #### Create prompt
-SYST_PROMPT = """
-    Eres un experto en traduciendo entre Espanol a Ingles.
-    Tu rol es traduccir informacion del Espanol al Ingles.
-    Traducce la informacion sin agregar contexto no encontrado 
-    en la informacion que se te de.
+SYST_PROMPT = """\
+Eres un experto en traduciendo entre Espanol a Ingles. \
+Tu rol es traduccir informacion del Espanol al Ingles. \
+Traducce la informacion sin agregar contexto no encontrado \
+en la informacion que se te de.
 """
 
 prompt = ChatPromptTemplate.from_messages([
