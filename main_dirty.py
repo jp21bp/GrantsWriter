@@ -43,6 +43,8 @@ from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
 from IPython.display import Image
 from langchain_google_genai import ChatGoogleGenerativeAI
+# from rag_clean import RAG
+from mini_agents_dirty import MiniAgent, SystemPrompts
 
 ##### Setting up environment
 load_dotenv()
@@ -123,16 +125,15 @@ DB_NAME = 'output.db'
 #     model_name= 'mistral-small'
 # )
 
-llm = ChatGoogleGenerativeAI(
-    api_key=google_api_key,
-    model="gemini-2.0-flash-lite",
-    # max_tokens=128
-)
+# llm = ChatGoogleGenerativeAI(
+#     api_key=google_api_key,
+#     model="gemini-2.0-flash-lite",
+#     # max_tokens=128
+# )
 
-base_llm = llm
+# base_llm = llm
 fake_llm = None
 #### RAG
-# from rag_clean import RAG
 # base_rag = RAG()
 fake_rag = None
 
@@ -523,6 +524,8 @@ class AgentState(TypedDict):
         #DB Index field
     # Node related fields
     plan: SectionOutlines
+    first_half: str     #?
+    second_half: str    #?
     draft: str
     critique: str
     rag_context: Annotated[List[str], operator.add]
@@ -531,23 +534,31 @@ class AgentState(TypedDict):
 
 
 #### Create graph
-class Agent:
-    def __init__(self, llm, rag):
+class Agent:    #GrantsAgent
+    def __init__(self, llm, rag, mini_sys_prompts: dict):
         graph = StateGraph(AgentState)
+        ## Creating nodes
         graph.add_node('rag', self.rag_node)
-        # graph.add_edge('rag', END)
-        # graph.set_entry_point('rag')
-
         graph.add_node('planner', self.plan_node)
+        graph.add_node('cover_sec', self.cover_node)
+        graph.add_node('executive_sec', self.executive_node)
+
         graph.set_entry_point('rag')
         graph.add_edge('rag', 'planner')
-        graph.add_edge('planner', END)
+        graph.add_edge('planner', 'cover_sec')
+        graph.add_edge('planner', 'executive_sec')
+        graph.add_edge('cover_sec', END)
+        graph.add_edge('executive_sec', END)
+
+
         self.graph = graph.compile(
             # checkpointer= memory,   #FOr short-term memory
             # store= store,   # For long-term memory
         )
         self.llm = llm
         self.rag = rag
+        self.mini_sys_prompts = mini_sys_prompts
+        # print(self.mini_sys_prompts)
 
     # def rag_node(self, state: AgentState):    #Original
     #     user_query = state['msgs'][0]
@@ -600,12 +611,15 @@ class Agent:
 #         return {"plan" : plan, 'id_counter' : id_counter}
 
     def plan_node(self, state:AgentState):
+        # print(state['rag_context'])
         # print('TWO')
         data = retrieve_data(DB_NAME, 2)
         # print(type(data))
         # print(data.cover_letter)
         # print(data.organizational_background)
         # print(type(data).model_fields.items())
+        # print(dir(data))
+        # print(data.__getattribute__('cover_letter'))
         overview = type(data).model_fields
             # This is a dictionary
             # Syntax: {key = fieldName, value = fieldRequirements}
@@ -620,18 +634,46 @@ class Agent:
         #     print('\n'*2)
         return {'plan': data}
 
+    def cover_node(self, state: AgentState):
+        key = "cover_letter"
+        replacements = {
+            'plan': state['plan'].__getattribute__(key),
+            'theme': state['theme'],
+            'requirements': state['doner_requirements'],
+        }
+        sys_prompt = self.mini_sys_prompts[key]
+        agent = MiniAgent(sys_prompt, replacements)
+        #TODO: execute agent
+        return
+
+    def executive_node(self, state: AgentState):
+        key = 'executive_summary'
+        replacements = {
+            'plan': state['plan'].__getattribute__(key),
+            'theme': state['theme'],
+            'requirements': state['doner_requirements'],
+        }
+        sys_prompt = self.mini_sys_prompts[key]
+        agent = MiniAgent(sys_prompt, replacements)
+        #Todo: execute agent
+        return
 
 
 
 
 #### Initialize agent and visualize
+sys_prompts_mini = SystemPrompts().create_prompts()
 # agent = Agent(fake_llm, base_rag)
 # agent = Agent(base_llm, base_rag)
 # agent = Agent(base_llm, fake_rag)
-agent = Agent(fake_llm, fake_rag)
+agent = Agent(fake_llm, fake_rag, sys_prompts_mini)
 # print(agent.graph.get_graph().draw_ascii())
 
-result = agent.graph.invoke({})
+start_state = {
+    'theme': 'educational projects',
+    'doner_requirements': 'none',
+}
+result = agent.graph.invoke(start_state)
 # for k,v in result.items():
 #     print(k)
 #     print(v)

@@ -27,53 +27,58 @@ from langchain_cohere import ChatCohere
 load_dotenv()
 cohere_api_key = os.getenv("COHERE_API_KEY")
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #### Setting up model
 # llm = ChatCohere(
 #     cohere_api_key=cohere_api_key,
 #     model='command-r-08-2024',
 # )
+llm = None
 
-
+##### Playing with model API integration with pickle
 # result = llm.invoke("Hi!")
-
 # print(result)
-
 # with open('output.pkl', 'wb') as file:
 #     pickle.dump(result, file)
-
-with open('output.pkl', 'rb') as file:
-    res = pickle.load(file)
-
+# with open('output.pkl', 'rb') as file:
+#     res = pickle.load(file)
 # print(res)
-
 # print(res.content)
 
 
 
-##### Creating Agent Class
-class Agent:
-    def __init__(self, system=''):
-        self.system = system
-        self.messages = []
-        if self.system:
-            self.messages.append({
-                "role": "system",
-                "content": system,
-            })
-    def __call__(self, message):
-        self.messages.append({
-            "role": "user",
-            "content": message,
-        })
-        result = self.execute()
-        self.messages.append({
-            "role": "assistant",
-            "content": result,
-        })
-        return result
-    def execute(self):
-        completion = llm.invoke(self.messages)
-        return completion.content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -81,6 +86,7 @@ class Agent:
 
 ##### Creating system prompts
 #### Mini agents
+mini_section_prompts = {}   #Used to store prompts in one place
 COVER_SECTION = """\
 Cover letter section, with the following:
 <Cover letter components>
@@ -95,6 +101,7 @@ Cover letter section, with the following:
     - Past work experience and qualifications?
 </Cover letter components>\
 """
+mini_section_prompts['cover_letter'] = COVER_SECTION
 
 EXECUTIVE_SECTION = """\
 Executive summary section, with the following:
@@ -116,6 +123,7 @@ Executive summary section, with the following:
     - Key organizational strengths for execution
 </Executive summary components>\
 """
+mini_section_prompts['executive_summary'] = EXECUTIVE_SECTION
 
 NEED_SECTION = """\
 Statement of need section, with the following:
@@ -135,6 +143,7 @@ Statement of need section, with the following:
     - Make the case that the project delivers lasting value
 </Statement of need components>\
 """
+mini_section_prompts['statement_of_need'] = NEED_SECTION
 
 GOALS_SECTION = """\
 Goals and objectives section, with the following:
@@ -147,6 +156,7 @@ Goals and objectives section, with the following:
 * Include collaborations with other entities and institutions
 </Goals and objectives components>\
 """
+mini_section_prompts['goals_and_objectives'] = GOALS_SECTION
 
 METHODS_SECTION = """\
 Methods and strategies section, with the following:
@@ -160,6 +170,7 @@ Methods and strategies section, with the following:
     - State specific short- and long-term impacts the funding will produce
 </Methods and strategies components>\
 """
+mini_section_prompts['methods_and_strategies'] = METHODS_SECTION
 
 EVALUATION_SECTION = """\
 Plan of evaluation section, with the following:
@@ -177,6 +188,7 @@ Plan of evaluation section, with the following:
     - List who provides time/money after approval 
 </Plan of evaluation components>\
 """
+mini_section_prompts['plan_of_evaluation'] = EVALUATION_SECTION
 
 BUDGET_SECTION = """\
 Budget information section, with the following:
@@ -195,6 +207,7 @@ Budget information section, with the following:
     - State end-to-end budget organized from launch to closeout
 </Budget information components>\
 """
+mini_section_prompts['budget_information'] = BUDGET_SECTION
 
 BACKGROUND_SECTION = """\
 Organizational background section, with the following:
@@ -207,15 +220,38 @@ Organizational background section, with the following:
     - Include staff members who have contributed significantly
 </Organizational background components>\
 """
+mini_section_prompts['organizational_background'] = BACKGROUND_SECTION
+
+# for prompt in mini_section_prompts:
+#     print(prompt)
+#     print('\n'*2)
+
 
 
 
 #### Mini summarizer agents
+summarizer_section_prompts = {}
 SECTIONS_ONE = "Cover letter, Executive summary, Statement of Need, \
-    Goals and Objectives"
+Goals and Objectives"
+summarizer_section_prompts['first_half'] = SECTIONS_ONE
 
 SECTIONS_TWO = "Methods and strategies, Plan of evaluation, \
-    Budget information, Organizational background"
+Budget information, Organizational background"
+summarizer_section_prompts['second_half'] = SECTIONS_TWO
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -231,19 +267,16 @@ SECTIONS_TWO = "Methods and strategies, Plan of evaluation, \
 #### For Mini agents
 GENERAL_MINI_PROMPTS = """\
 You are a senior grant writing expert for non-profit organizations. \
-You're role in the grant's writing process will focus on {mini_section}. \
+You're role in the grant's writing process will focus on {mini_section}.
 The organization LAFF is applying for the grant in order to support \
 a community project focused on {theme}. The grant donaters have the \
 following requirements for their grant: {requirements}. Your task is \
-to write you're section of the grant by using the following plan:
+to write your section of the grant by using the following plan:
 
 <Section plan>
 {plan}
 </Section plan>\
 """
-
-
-
 
 #### For Summarizer agents
 GENERAL_SUMMARIZER_PROMPT = """\
@@ -276,6 +309,143 @@ The grant donaters have the following requirements: {requirements}. \
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Playing with prompt formatting
+#### Regular substitution with ".format"
+general_prompt = GENERAL_MINI_PROMPTS.format(
+    mini_section = 'ONE',
+    theme = 'TWO',
+    requirements = 'THREE',
+    plan = 'FOUR',
+)
+# print(general_prompt)
+
+####REg susbtitution with '.format' and dictionary
+replacements = {
+    'mini_section': 'UNO',
+    'theme': "DOS",
+    'requirements': 'TRES',
+    'plan': 'CUATRO',
+}
+gen_prompt = GENERAL_MINI_PROMPTS.format(**replacements)
+# print(gen_prompt)
+
+
+#### Trying to replace some placeholders and leave others untouchec
+    # Doesn't work, requires a custom function
+# print(GENERAL_MINI_PROMPTS)
+# mini_main_prompts = []
+# for prompt in mini_section_prompts:
+#     formatted = GENERAL_MINI_PROMPTS.format(
+#         mini_section = prompt,
+#         theme = 'Educational projects',
+#         requirements = 'None',
+#         # plan = 'FOUR',
+#     )
+#     mini_main_prompts.append(formatted)
+
+# for prompt in mini_main_prompts:
+#     print(prompt)
+#     print('\n' * 2)
+
+
+#### Creating custom function
+    #Used to replace some placeholders and leave others untouched
+class FormatDict(dict):
+    def __missing__(self, key):
+        return '{' + key + '}'
+
+### Using custom function
+template = "Hello {name}, today is {day}. Your score is {score}."
+data = FormatDict(name="Alice", day="Monday")
+result = template.format_map(data)
+# print(result)    
+
+### Replacing untouched placeholder in another run
+    # Outcome: it works
+new_result = result.format(score="ten")
+# print(new_result)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Replaceing general prompt placeholders
+#### Using custom fcn to replace section prompts
+mini_main_prompts = []
+for prompt in mini_section_prompts:
+    formats = FormatDict(
+        mini_section = prompt,
+        theme = 'Educational projects',
+        requirements = 'None',
+        # plan = 'FOUR',
+    )
+    formatted = GENERAL_MINI_PROMPTS.format_map(formats)
+    mini_main_prompts.append(formatted)
+
+# for prompt in mini_main_prompts:
+#     print(prompt)
+#     print('\n'*2)
+
+
+#### Using custom fcn to replace summarizer prompts
+summarizer_main_prompts = []
+for prompt in summarizer_section_prompts:
+    formats = FormatDict(
+        theme = 'Educational projects',
+        requirements = 'None',
+        summarizer_sections = prompt
+    )
+    formatted = GENERAL_SUMMARIZER_PROMPT.format_map(formats)
+    summarizer_main_prompts.append(formatted)
+
+# for prompt in summarizer_main_prompts:
+#     print(prompt)
+#     print('\n'*2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Creating agents
 #### Gathering their names into a list
 sections_names = []
@@ -294,6 +464,132 @@ for i, name in enumerate(sections_names):
     exec(f"agent_names.append('{name}_agent')")
     # print(samples[i])
     # exec(f"{name}_agent = {i}; sample[{i}] = {name}_agent")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### Creating Agent Class
+class MiniAgent:
+    def __init__(self, system_prompt: str = '', replacements: dict = {}):
+        self.system = system_prompt.format(**replacements)
+        print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
+        self.messages = []
+        if self.system:
+            self.messages.append({
+                "role": "system",
+                "content": self.system,
+            })
+    def __call__(self):    #def __call__(self, message):
+        self.messages.append({
+            "role": "user",
+            "content": 'Execute your task.',
+        })
+        result = self.execute()
+        self.messages.append({
+            "role": "assistant",
+            "content": result,
+        })
+        return result
+    def execute(self):
+        completion = llm.invoke(self.messages)
+        return completion.content
+
+
+class SystemPrompts:
+    # I need to find a way to gather ALL agents into one class
+        # mini and sumamriezers
+    # BUT I also need to find a way to leave them SEMI-UNINITIALIZED
+        #So that I can integrate the main agent's plan into the mini agents
+            #I.e., replace the missing placeholders
+    # def __init__(self, section_plan_list):
+        #I dont think i need a custom init
+    
+    def create_prompts(self) -> dict:
+        syst_prompts = {}
+        for section, prompt in mini_section_prompts.items():
+            formats = FormatDict(
+                mini_section = prompt,
+                # theme = 'Educational projects',
+                # requirements = 'None',
+                # plan = 'FOUR',
+            )
+            formatted = GENERAL_MINI_PROMPTS.format_map(formats)
+            syst_prompts[section] = formatted
+        for half, prompt in summarizer_section_prompts.items():
+            formats = FormatDict(
+                # theme = 'Educational projects',
+                # requirements = 'None',
+                summarizer_sections = prompt
+            )
+            formatted = GENERAL_SUMMARIZER_PROMPT.format_map(formats)
+            syst_prompts[half] = formatted
+        return syst_prompts
+
+# sys_prompts = SystemPrompts().create_prompts()
+# for k,v in sys_prompts.items():
+#     print(k)
+#     print(v)
+#     print('\n'*2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
