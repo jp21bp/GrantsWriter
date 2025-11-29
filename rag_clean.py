@@ -40,17 +40,17 @@ jina_api_key = os.getenv("JINA_API_KEY")
 #### Setting up models
 ### LLM model
     # Web: https://aistudio.google.com/welcome
-llm = ChatGoogleGenerativeAI(
-    api_key=google_api_key,
-    model="gemini-2.0-flash",
-    # max_tokens=128
-)
+# llm = ChatGoogleGenerativeAI(
+#     api_key=google_api_key,
+#     model="gemini-2.0-flash",
+#     # max_tokens=128
+# )
 ### Embedding model
     # Web: https://jina.ai/
-embedding_model = JinaEmbeddings(
-    api_token=jina_api_key,
-    model="jina-embeddings-v2-base-es"
-)
+# embedding_model = JinaEmbeddings(
+#     api_token=jina_api_key,
+#     model="jina-embeddings-v2-base-es"
+# )
 
 
 
@@ -132,7 +132,7 @@ else:
 retriever = vstore.as_retriever(
     search_type="similarity",
         #Literal["similarity", "mmr", "similarity_score_threshold"]
-    search_kwargs={"k": 2}
+    search_kwargs={"k": 1}
         #Number of chunked documents to return
 )
 
@@ -309,8 +309,8 @@ class RAG():
         return final_context
 
 
-rag = RAG()
-print(rag.invoke("What are current educational projects?"))
+# rag = RAG()
+# print(rag.invoke("What are current educational projects?"))
 
 
 

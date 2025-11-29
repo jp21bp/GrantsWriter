@@ -42,10 +42,12 @@ from pydantic import BaseModel
 from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
 from IPython.display import Image
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 ##### Setting up environment
 load_dotenv()
 mistral_api_key = os.getenv("MISTRAL_API_KEY")
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
 
 
@@ -114,13 +116,28 @@ DB_NAME = 'output.db'
 
 
 
-##### Creating models
-# base_llm = ChatMistralAI(
+##### Intialize agent components
+#### Model
+# llm = ChatMistralAI(
 #     api_key= mistral_api_key,
 #     model_name= 'mistral-small'
 # )
 
+llm = ChatGoogleGenerativeAI(
+    api_key=google_api_key,
+    model="gemini-2.0-flash-lite",
+    # max_tokens=128
+)
+
+base_llm = llm
 fake_llm = None
+#### RAG
+# from rag_clean import RAG
+# base_rag = RAG()
+fake_rag = None
+
+
+
 
 
 
@@ -163,6 +180,9 @@ fake_llm = None
 # print(data.content)
 # print(data.response_metadata)
 # print(data.response_metadata['model_name'])
+
+
+
 
 
 
@@ -332,84 +352,6 @@ the current grant draft based on provided techniques.
 
 
 
-##### Creating pydantic model
-#### For Planning node
-class SectionOutlines(BaseModel):
-    """Stores the outline for each section of the grant proposal"""
-    cover_letter: str
-    executive_summary: str
-    statement_of_need: str
-    goals_and_objective: str
-    methods_and_strategies: str
-    plan_of_evaluation: str
-    budget_information: str
-    organizational_background: str
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##### Create Agent state
-class AgentState(TypedDict):
-    # Note: ALL "Annotated" attrs WILL show up in results
-        # Even if they're empty, the will be initialized and shown
-    # General fields
-    msgs: Annotated[List[AnyMessage], operator.add]
-        # Needed to store the LC "Messages" from agents
-        # REQUIRES inputs to be in [] bc of "List"
-    theme: str
-    doner_requirements: str
-    num_revisions: int
-    max_revisions: int
-    id_counter: int 
-        #DB Index field
-    # Node related fields
-    plan: SectionOutlines
-    draft: str
-    critique: str
-    rag_context: Annotated[List[str], operator.add]
-        # REQUIRES inputs to be in [] bc of "List"
-    # random: Annotated[List[int], operator.add]
-
-
-
-
-
-
-
-
-
 
 
 
@@ -424,6 +366,28 @@ class AgentState(TypedDict):
 
 ##### Sampling and playing with Agent graph and db integrations
     #NOte: both "####" sections work
+#### Create Agent state
+# class AgentState(TypedDict):
+#     # Note: ALL "Annotated" attrs WILL show up in results
+#         # Even if they're empty, the will be initialized and shown
+#     # General fields
+#     msgs: Annotated[List[AnyMessage], operator.add]
+#         # Needed to store the LC "Messages" from agents
+#         # REQUIRES inputs to be in [] bc of "List"
+#     theme: str
+#     doner_requirements: str
+#     num_revisions: int
+#     max_revisions: int
+#     id_counter: int 
+#         #DB Index field
+#     ## Node related fields
+#     # plan: SectionOutlines
+#     draft: str
+#     critique: str
+#     rag_context: Annotated[List[str], operator.add]
+#         # REQUIRES inputs to be in [] bc of "List"
+#     # random: Annotated[List[int], operator.add]
+
 #### Create Sample Agent graph for testing invocation and saving to DB
 ### Create class
 # class Agent:
@@ -472,8 +436,9 @@ class AgentState(TypedDict):
 #     def __init__(self, llm):
 #         graph = StateGraph(AgentState)
 #         graph.add_node('sample', self.sample_node)
-
-#         graph.add_edge('sample', END)
+#         graph.add_node('sample_2', self.sample_node)
+#         graph.add_edge('sample', 'sample_2')
+#         graph.add_edge('sample_2', END)
 #         graph.set_entry_point('sample')
 #         self.graph = graph.compile(
 #             # checkpointer= memory,   #FOr short-term memory
@@ -485,9 +450,13 @@ class AgentState(TypedDict):
 #         data = retrieve_data(DB_NAME, 2)
 #         print(type(data))
 #         return {'msgs': [data]}
+#         # return {'rag_context': [data]}
 
-### Execute the graph
+# ### Visualize graph
 # abot = Agent(fake_llm)
+# print(abot.graph.get_graph().draw_ascii())
+
+# ### Execute the graph
 # result = abot.graph.invoke({})
 # print('psot execution')
 # # print(type(result))
@@ -495,6 +464,7 @@ class AgentState(TypedDict):
 # for k,v in result.items():
 #     print(f"Key: {k}")
 #     print(f"value: {v}")
+#     print(len(v))
 #     print('\n'*2)
 
 
@@ -521,6 +491,183 @@ class AgentState(TypedDict):
 
 
 
+##### Creating main agent graph
+#### Creating pydantic models
+### For Planning node
+class SectionOutlines(BaseModel):
+    """Stores the outline for each section of the grant proposal"""
+    cover_letter: str
+    executive_summary: str
+    statement_of_need: str
+    goals_and_objective: str
+    methods_and_strategies: str
+    plan_of_evaluation: str
+    budget_information: str
+    organizational_background: str
+
+
+#### Create Agent state
+    # SAme as sample agent state
+class AgentState(TypedDict):
+    # Note: ALL "Annotated" attrs WILL show up in results
+        # Even if they're empty, the will be initialized and shown
+    # General fields
+    msgs: Annotated[List[AnyMessage], operator.add]
+        # Needed to store the LC "Messages" from agents
+        # REQUIRES inputs to be in [] bc of "List"
+    theme: str
+    doner_requirements: str
+    num_revisions: int
+    max_revisions: int
+    id_counter: int 
+        #DB Index field
+    # Node related fields
+    plan: SectionOutlines
+    draft: str
+    critique: str
+    rag_context: Annotated[List[str], operator.add]
+        # REQUIRES inputs to be in [] bc of "List"
+    # random: Annotated[List[int], operator.add]
+
+
+#### Create graph
+class Agent:
+    def __init__(self, llm, rag):
+        graph = StateGraph(AgentState)
+        graph.add_node('rag', self.rag_node)
+        # graph.add_edge('rag', END)
+        # graph.set_entry_point('rag')
+
+        graph.add_node('planner', self.plan_node)
+        graph.set_entry_point('rag')
+        graph.add_edge('rag', 'planner')
+        graph.add_edge('planner', END)
+        self.graph = graph.compile(
+            # checkpointer= memory,   #FOr short-term memory
+            # store= store,   # For long-term memory
+        )
+        self.llm = llm
+        self.rag = rag
+
+    # def rag_node(self, state: AgentState):    #Original
+    #     user_query = state['msgs'][0]
+    #     id_counter = state['id_counter']
+    #     rag_result = self.rag.invoke(user_query)
+    #     print(f"'rag' db index at index: {id_counter}")
+    #     print(rag_result)
+    #     id_counter = save_data(DB_NAME, rag_result, id_counter)
+    #     return {"rag_context": [rag_result], "id_counter": id_counter}
+
+    def rag_node(self, state:AgentState):
+        # print('ONE')
+        # USing retrieve from db, to avoid api usage
+        data = retrieve_data(DB_NAME, 1)
+        # print(type(data))
+        # print(data)
+        # return {'msgs': [data]}
+        # print(state)
+        return {'rag_context': [data]}
+#     def plan_node(self, state: AgentState):   #Original
+#         USER_PROMPT = \
+# """\
+# Write all section outlines for the following theme: {theme}. \
+# The organizational context regarding this proposal and theme is:
+# <Organizational Context>
+# {context}
+# </Organizational Context>\
+# # """
+# #         print(USER_PROMPT)
+# #         return
+#         prompts = ChatPromptTemplate.from_messages([
+#             ('system', PLAN_PROMPT),
+#             ("user", USER_PROMPT)
+#         ]) 
+
+#         msgs = prompts.invoke({
+#             "requirements": state['doner_requirements'],
+#             "theme": state['theme'],
+#             "context": state['rag_context']
+#         })
+#         # print(msgs)
+#         # return
+
+#         model = self.llm.with_structured_output(SectionOutlines)
+#         plan = model.invoke(msgs)
+#         print(f"'Plan' DB data is with index: {state['id_counter']}")
+#         print(plan)
+#         id_counter = save_data(DB_NAME, plan, 2)
+#         # id_counter = save_data(DB_NAME, plan, state['id_counter'])
+#         return {"plan" : plan, 'id_counter' : id_counter}
+
+    def plan_node(self, state:AgentState):
+        # print('TWO')
+        data = retrieve_data(DB_NAME, 2)
+        # print(type(data))
+        # print(data.cover_letter)
+        # print(data.organizational_background)
+        # print(type(data).model_fields.items())
+        overview = type(data).model_fields
+            # This is a dictionary
+            # Syntax: {key = fieldName, value = fieldRequirements}
+        # print(items)
+        details = data.model_dump()
+            #This is also dictionary
+            # Syntax: {key = fieldName, vluew = attribute values}
+        # print(details)
+        # for k,v in details.items():
+        #     print(k)
+        #     print(v)
+        #     print('\n'*2)
+        return {'plan': data}
+
+
+
+
+
+#### Initialize agent and visualize
+# agent = Agent(fake_llm, base_rag)
+# agent = Agent(base_llm, base_rag)
+# agent = Agent(base_llm, fake_rag)
+agent = Agent(fake_llm, fake_rag)
+# print(agent.graph.get_graph().draw_ascii())
+
+result = agent.graph.invoke({})
+# for k,v in result.items():
+#     print(k)
+#     print(v)
+#     print('\n'*2)
+
+#### Invoking the agent
+    # WIll requiring turning a user query into "HumanMessage"
+    # That way it can be appended to "state['msgs']"
+        #THis can later be used in the nodes themselves
+### TRying out with ChatPromptTemplate
+# prompt = ChatPromptTemplate.from_messages([
+#     ("system", PLAN_PROMPT),
+#     ("user", "Write the section outline for the following theme: {theme}.")
+# ])
+    #Doesn't quite work for what we want
+        #THis sets up a prompts to be fed into a model
+        # BUT we want to simply get a "HumanMessage" to fed into grpah state
+    # The "type(prompt)" is "<class 'langchain_core.prompts.chat.ChatPromptTemplate'>'"
+        #This won't be able to be appended to "state['msgs]"
+            #Since this expects a list of "AnyMessage"
+    # Technically it can be done if we INVOKE "ChatPromptTemplate"
+
+
+
+
+### Trying out with HumanMessage
+# user_query = [HumanMessage(content="what are current educational projects?")]
+#     # Also going to need to provide id_counter
+# starting_state = {
+#     "msgs": user_query,
+#     'id_counter': 1,
+#     'theme': 'educational projects',
+#     "doner_requirements": 'none',
+# }
+# result = agent.graph.invoke(starting_state)
+#     # WORKS! Accepts inputs, tranlsates to user qury, adn returns rag output
 
 
 
@@ -530,38 +677,8 @@ class AgentState(TypedDict):
 
 
 
-##### Create node functionalities
-    # Note: these nodes are placed here for ease of access
-    # BUT, they will end up being integrated DIRECTLY into the graph
-        #Since this will make it easier to pass a single, base LLM to all nodes
-#### Temp sample node - to test graph and proper usage
-def sample_node_outside(state: AgentState, llm):
-    prompt = 'hola!'
-    response = llm.invoke(prompt)
-    id_counter = state['id_counter']
-    print(response)
-    print(f'index for sample response is {id_counter}')
-    id_counter = save_data(DB_NAME, response, id_counter)
-    print(f'new counter: {id_counter}')
-    return {'msgs': response, 'id_counter': id_counter}
-#### Planner node
-def plan_node(state: AgentState, llm):
-    prompts = ChatPromptTemplate.from_messages([
-        ('system', PLAN_PROMPT),
-        ("user", "Write all section outlines for the following theme: {theme}.")
-    ]) 
 
-    msgs = prompts.invoke({
-        "requirements": state['doner_requirements'],
-        "theme": state['theme'],
-    })
 
-    model = llm.with_structured_output(SectionOutlines)
-    plan = model.invoke(msgs)
-    print(f"'Plan' DB data is with index: {state['id_counter']}")
-    print(plan)
-    id_counter = save_data(DB_NAME, plan, state['id_counter'])
-    return {"plan" : plan, 'id_counter' : id_counter}
 
 
 
