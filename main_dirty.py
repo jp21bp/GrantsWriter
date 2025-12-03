@@ -26,6 +26,17 @@
                     # It would get new context info from organizations
 
 
+#####Important notes
+####Concurrent node execution
+    # All concurrent nodes w.in a single "super-step" share and 
+            #upate a SINGLE, UNIFIED snapshot
+    # All nodes executing in parallel receive the SAME CURRENT state
+            # as input
+    # Once all nodes finish, LG SYNCH their outputs
+        # Updates are then merged back into the single, global state
+    # If multiple concurrent nodes attempt to update the same state key,
+            # you MUST define a reducer fc (ex: "operator.add")
+
 ##### General setup
 #### Importing libraries
 from dotenv import load_dotenv
@@ -33,6 +44,7 @@ import os
 import operator
 import pickle
 import sqlite3
+import threading
 from typing import TypedDict, Annotated, List
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import InMemorySaver
@@ -223,7 +235,7 @@ requirements, which are: {requirements}.\
     # theme: {theme}.
 DRAFT_PROMPT = """\
 You are an experienced, senior grant writer. Your task \
-is to unite previously created drafts of the grant. The \
+is to unite previously created proposal components of the grant. The \
 first half of the grant is:
 
 <First half of grant>
@@ -524,8 +536,10 @@ class AgentState(TypedDict):
         #DB Index field
     # Node related fields
     plan: SectionOutlines
-    first_half: str     #?
-    second_half: str    #?
+    summarizer_sections: Annotated[dict[str, AIMessage], operator.or_]
+    mini_sections_first_half: Annotated[dict[str, AIMessage], operator.or_]
+    mini_sections_second_half: Annotated[dict[str, AIMessage], operator.or_]
+        #Use to store all the mini agent outputs    
     draft: str
     critique: str
     rag_context: Annotated[List[str], operator.add]
@@ -542,23 +556,58 @@ class Agent:    #GrantsAgent
         graph.add_node('planner', self.plan_node)
         graph.add_node('cover_sec', self.cover_node)
         graph.add_node('executive_sec', self.executive_node)
+        graph.add_node('need_sec', self.need_node)
+        graph.add_node('goal_sec', self.goal_node)
+        graph.add_node('methods_sec', self.methods_node)
+        graph.add_node('eval_sec', self.eval_node)
+        graph.add_node('budget_sec', self.budget_node)
+        graph.add_node('background_sec', self.background_node)
+        graph.add_node('summarizer_one', self.summarizer_one)
+        graph.add_node('summarizer_two', self.summarizer_two)
+        graph.add_node('draft', self.draft_node)
 
         graph.set_entry_point('rag')
         graph.add_edge('rag', 'planner')
         graph.add_edge('planner', 'cover_sec')
         graph.add_edge('planner', 'executive_sec')
-        graph.add_edge('cover_sec', END)
-        graph.add_edge('executive_sec', END)
+        graph.add_edge('planner', 'need_sec')
+        graph.add_edge('planner', 'goal_sec')
+        graph.add_edge('planner', 'methods_sec')
+        graph.add_edge('planner', 'eval_sec')
+        graph.add_edge('planner', 'budget_sec')
+        graph.add_edge('planner', 'background_sec')
+
+        graph.add_edge('cover_sec','summarizer_one')
+        graph.add_edge('executive_sec','summarizer_one')
+        graph.add_edge('need_sec','summarizer_one')
+        graph.add_edge('goal_sec','summarizer_one')
+        graph.add_edge('methods_sec','summarizer_two')
+        graph.add_edge('eval_sec','summarizer_two')
+        graph.add_edge('budget_sec','summarizer_two')
+        graph.add_edge('background_sec','summarizer_two')
+
+        graph.add_edge('summarizer_one', 'draft')
+        graph.add_edge('summarizer_two', 'draft')
+
+        # Recall concurrent node execution notes at top of file
+        graph.add_edge('draft', END)
 
 
         self.graph = graph.compile(
             # checkpointer= memory,   #FOr short-term memory
             # store= store,   # For long-term memory
         )
+
+        self.lock = threading.Lock()
         self.llm = llm
         self.rag = rag
         self.mini_sys_prompts = mini_sys_prompts
         # print(self.mini_sys_prompts)
+        # for k,v in self.mini_sys_prompts.items():
+        #     print(k)
+        #     print(v)
+        #     print('\n'*3)
+        # print(self.mini_sys_prompts['first_half'])
 
     # def rag_node(self, state: AgentState):    #Original
     #     user_query = state['msgs'][0]
@@ -611,6 +660,13 @@ class Agent:    #GrantsAgent
 #         return {"plan" : plan, 'id_counter' : id_counter}
 
     def plan_node(self, state:AgentState):
+        # id_counter = state['id_counter']
+        # print(f'START: {id_counter}')
+        # id_counter += 1
+        # state['id_counter'] = id_counter
+        # new_id = state['id_counter']
+        # print(f'AFTER: {new_id}')
+
         # print(state['rag_context'])
         # print('TWO')
         data = retrieve_data(DB_NAME, 2)
@@ -634,8 +690,10 @@ class Agent:    #GrantsAgent
         #     print('\n'*2)
         return {'plan': data}
 
-    def cover_node(self, state: AgentState):
-        key = "cover_letter"
+
+
+
+    def mini_agent_template(self, state: AgentState, key: str):
         replacements = {
             'plan': state['plan'].__getattribute__(key),
             'theme': state['theme'],
@@ -643,20 +701,182 @@ class Agent:    #GrantsAgent
         }
         sys_prompt = self.mini_sys_prompts[key]
         agent = MiniAgent(sys_prompt, replacements)
-        #TODO: execute agent
+        # print('HERE')
+        # print(f'Prompt for {key}: {agent.system}' + '\n' * 4)
+        # response = agent()
+        # messages = agent.messages
+        response = AIMessage(content=key)# Tryout
+        messages = [    #Just to try out
+            SystemMessage(content=key),
+            HumanMessage(content=key),
+            AIMessage(content=key)
+        ]
+
+        return response, messages, agent
+            # "agent" return only needed to check syst prompt
+
+
+    def print_sys(self, key: str, prompt: str):
+        # to_print = f'Prompt for {key}:\n{prompt}' + '\n' * 4
+        # print(to_print)
         return
 
+    def cover_node(self, state: AgentState):
+        # key = "cover_letter"
+        # replacements = {
+        #     'plan': state['plan'].__getattribute__(key),
+        #     'theme': state['theme'],
+        #     'requirements': state['doner_requirements'],
+        # }
+        # sys_prompt = self.mini_sys_prompts[key]
+        # agent = MiniAgent(sys_prompt, replacements)
+        key = 'cover_letter'
+        print('HERE')
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_first_half': {'section_one': response}, 'msgs': msgs}
+
     def executive_node(self, state: AgentState):
+        # key = 'executive_summary'
+        # replacements = {
+        #     'plan': state['plan'].__getattribute__(key),
+        #     'theme': state['theme'],
+        #     'requirements': state['doner_requirements'],
+        # }
+        # sys_prompt = self.mini_sys_prompts[key]
+        # agent = MiniAgent(sys_prompt, replacements)
         key = 'executive_summary'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_first_half': {'section_two': response}, 'msgs': msgs}
+    
+    def need_node(self, state: AgentState):
+        key = 'statement_of_need'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_first_half': {'section_three': response}, 'msgs': msgs}
+    
+    def goal_node(self, state: AgentState):
+        key = 'goals_and_objective'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_first_half': {'section_four': response}, 'msgs': msgs}
+
+    def methods_node(self, state: AgentState):
+        key = 'methods_and_strategies'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_second_half': {'section_one': response}, 'msgs': msgs}
+    
+    def eval_node(self, state: AgentState):
+        key = 'plan_of_evaluation'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_second_half': {'section_two': response}, 'msgs': msgs}
+    
+    def budget_node(self, state: AgentState):
+        key = 'budget_information'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_second_half': {'section_three': response}, 'msgs': msgs}
+    
+    def background_node(self, state: AgentState):
+        key = 'organizational_background'
+        response, msgs, agent = self.mini_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        return {'mini_sections_second_half': {'section_four': response}, 'msgs': msgs}
+
+
+
+
+
+
+
+    def summarizer_agent_template(self, state: AgentState, key: str):
+        print(f'AQUI: {key}')
         replacements = {
-            'plan': state['plan'].__getattribute__(key),
+            'section_one': state[f'mini_sections_{key}_half']['section_one'].content,
+            'section_two': state[f'mini_sections_{key}_half']['section_two'].content,
+            'section_three': state[f'mini_sections_{key}_half']['section_three'].content,
+            'section_four': state[f'mini_sections_{key}_half']['section_four'].content,
             'theme': state['theme'],
             'requirements': state['doner_requirements'],
         }
-        sys_prompt = self.mini_sys_prompts[key]
+        sys_prompt = self.mini_sys_prompts[f'{key}_half']
+        # return sys_prompt
         agent = MiniAgent(sys_prompt, replacements)
-        #Todo: execute agent
-        return
+        # print('HERE')
+        # print(f'Prompt for {key}: {agent.system}' + '\n' * 4)
+        # response = agent()
+        # messages = agent.messages
+        response = AIMessage(content=f'This is the {key} part')# Tryout
+        messages = [    #Just to try out
+            SystemMessage(content=key),
+            HumanMessage(content=key),
+            AIMessage(content=key)
+        ]
+
+        return response, messages, agent
+            # "agent" return only needed to check syst prompt
+
+    def summarizer_one(self, state: AgentState):
+        key = 'first'
+        # print(state[f'mini_sections_{key}_half'])
+        # print(self.mini_sys_prompts[f'{key}_half'])
+        # print(state[f'mini_sections_{key}_half']['section_four'].content)
+        # print(self.summarizer_agent_template(state, key))
+        response, msgs, agent = self.summarizer_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        # return
+        return {'summarizer_sections': {f'{key}_half': response}, 'msgs': msgs}
+    
+    def summarizer_two(self, state: AgentState):
+        key = 'second'
+        # print(self.mini_sys_prompts[f'{key}_half'])
+        # print(self.summarizer_agent_template(state, key))
+        # print(' HERE')
+        response, msgs, agent = self.summarizer_agent_template(state, key)
+        self.print_sys(key, agent.system)
+        # return
+        return {'summarizer_sections': {f'{key}_half': response}, 'msgs': msgs}
+        
+
+
+
+
+
+
+    def draft_node(self, state: AgentState):
+        # print(state['summarizer_sections'])
+        replacements = {
+            'first_half': state['summarizer_sections']['first_half'].content,
+            'second_half': state['summarizer_sections']['second_half'].content,
+            'requirements': state['doner_requirements'],
+        }
+        sys_prompt = DRAFT_PROMPT.format(**replacements)
+        user_prompt = f"""\
+Using the information above, create a full grant proposal draft for \
+the following theme: {state['theme']}
+"""
+        prompts = ChatPromptTemplate.from_messages([
+            ('system', sys_prompt),
+            ("user", user_prompt)
+        ]) 
+        # print(prompts.invoke({}))
+
+        # response = self.llm.invoke(prompts)
+        response = AIMessage(content='this is the draft')
+        draft = response.content
+        return {'draft': draft}
+
+
+        # print(f"'Draft' DB data is with index: {state['id_counter']}")
+        # print(draft)
+        # id_counter = save_data(DB_NAME, draft, 3)
+        # # id_counter = save_data(DB_NAME, plan, state['id_counter'])
+        # return {"draft" : draft, 'id_counter' : id_counter}
+
+
 
 
 
@@ -667,11 +887,12 @@ sys_prompts_mini = SystemPrompts().create_prompts()
 # agent = Agent(base_llm, base_rag)
 # agent = Agent(base_llm, fake_rag)
 agent = Agent(fake_llm, fake_rag, sys_prompts_mini)
-# print(agent.graph.get_graph().draw_ascii())
+print(agent.graph.get_graph().draw_ascii())
 
 start_state = {
     'theme': 'educational projects',
     'doner_requirements': 'none',
+    # 'id_counter': 3,
 }
 result = agent.graph.invoke(start_state)
 # for k,v in result.items():

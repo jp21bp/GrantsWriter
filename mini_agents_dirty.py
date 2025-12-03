@@ -20,6 +20,7 @@
 import os
 import pickle
 from dotenv import load_dotenv
+from langchain_core.messages import SystemMessage, HumanMessage
 from langchain_cohere import ChatCohere
 
 
@@ -156,7 +157,7 @@ Goals and objectives section, with the following:
 * Include collaborations with other entities and institutions
 </Goals and objectives components>\
 """
-mini_section_prompts['goals_and_objectives'] = GOALS_SECTION
+mini_section_prompts['goals_and_objective'] = GOALS_SECTION
 
 METHODS_SECTION = """\
 Methods and strategies section, with the following:
@@ -281,7 +282,7 @@ to write your section of the grant by using the following plan:
 #### For Summarizer agents
 GENERAL_SUMMARIZER_PROMPT = """\
 You are a senior grant writing expert for non-profit organizations. \
-Your role is to unite four different grant sections, which were previously \
+Your task is to unite four different grant sections, which were previously \
 created, in a concise and coherent style. The four sections are: \
 {summarizer_sections}. The work done in each of these sections is as follows: \
 
@@ -304,7 +305,7 @@ created, in a concise and coherent style. The four sections are: \
 Unite these four sections to create a draft of half of the first \
 part of the application. Do not write the whole aplication. Only \
 use the info provided above. The theme of the aplication is {theme}. \
-The grant donaters have the following requirements: {requirements}. \
+The grant doners have the following requirements: {requirements}. \
 """
 
 
@@ -486,10 +487,11 @@ for i, name in enumerate(sections_names):
 
 
 ##### Creating Agent Class
+#### USing (role, content) tuples
 class MiniAgent:
     def __init__(self, system_prompt: str = '', replacements: dict = {}):
         self.system = system_prompt.format(**replacements)
-        print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
+        # print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
         self.messages = []
         if self.system:
             self.messages.append({
@@ -509,9 +511,35 @@ class MiniAgent:
         return result
     def execute(self):
         completion = llm.invoke(self.messages)
-        return completion.content
+        return completion
+
+#### USing "Message" types
+    # This is better, since LG intenrally does the conversion ANYWAYS
+class MiniAgent:
+    def __init__(self, system_prompt: str = '', replacements: dict = {}):
+        self.system = system_prompt.format(**replacements)
+        # print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
+        self.messages = []
+        if self.system:
+            self.messages.append(
+                SystemMessage(content=self.system)
+            )
+    def __call__(self):    #def __call__(self, message):
+        self.messages.append(
+            HumanMessage(content="Execute your task.")
+        )
+        result = self.execute() #Will be an "AIMessage" type
+        self.messages.append(result)
+        return result
+    def execute(self):
+        completion = llm.invoke(self.messages)
+        return completion
 
 
+
+
+
+##### Creating class for system prompts
 class SystemPrompts:
     # I need to find a way to gather ALL agents into one class
         # mini and sumamriezers
@@ -540,6 +568,7 @@ class SystemPrompts:
             )
             formatted = GENERAL_SUMMARIZER_PROMPT.format_map(formats)
             syst_prompts[half] = formatted
+            # print(f'prompt for {half}:\n{syst_prompts[half]}' + '\n' * 3)
         return syst_prompts
 
 # sys_prompts = SystemPrompts().create_prompts()
