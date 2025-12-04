@@ -3,7 +3,11 @@
 # on their given prompts
 from langchain_core.messages import AnyMessage, AIMessage
 from copy import deepcopy
+import pickle, sqlite3
 
+
+##### Metrics class
+    # Keep track of token usage
 class Metrics():
     def __init__(self):
         self.history: dict[str,dict[str,int]] = {
@@ -84,7 +88,7 @@ class Metrics():
             self.history['sum'][category] += amount
         self.history = self.history | copy
         del copy
-        return self.history
+        return self
 
 
 
@@ -107,11 +111,80 @@ class Metrics():
 #     }
 # }
 
-# print(new.aggregate(first_chain))
-# print(new.aggregate(second_chain))
+# print(new.aggregate(first_chain).history)
+# print(new.aggregate(second_chain).history)
+
+# print(new.aggregate(first_chain).aggregate(second_chain).history)
 
 # ai_empty = AIMessage(content = "hello")
 
 # print(new.extract_tokens_used(ai_empty, 'empty'))
+
+
+##### Storage class
+    # Save and retrieve data to a local db
+class Storage():
+    def __init__(self, db_name: str, table_name: str):
+        self.db_name = db_name
+        self.table_name = table_name
+
+    #### Saving data to sqlite
+    def save_data(self, data, data_id: int):
+        pickled_data = pickle.dumps(data)
+        with sqlite3.connect(self.db_name) as conn:
+            conn.execute(
+                f'CREATE TABLE IF NOT EXISTS {self.table_name} (data_id INTEGER, content BLOB)'
+            )
+            conn.execute(
+                f'INSERT INTO {self.table_name} (data_id, content) VALUES (?,?)',
+                (data_id, sqlite3.Binary(pickled_data))
+            )
+            conn.commit()
+            return data_id + 1
+
+    #### Retrieving data from sqlite
+    def retrieve_data(self, data_id: int):
+        with sqlite3.connect(self.db_name) as conn:
+            conn.row_factory = sqlite3.Row
+            cursor = conn.cursor()
+            cursor.execute(
+                f'SELECT content FROM {self.table_name} WHERE data_id = ?',
+                (data_id,)
+            )
+            row = cursor.fetchone()
+            if row:
+                unpickled_data = pickle.loads(row['content'])
+                return unpickled_data
+            else:
+                print('Error: content not found')
+                return
+
+
+# #### Test cases
+
+# test1 = "hello"
+# test2 = 'hola'
+
+# DB_NAME = 'test.db'
+# storage1 = Storage(DB_NAME, 'test1')
+#     # Should create "test1" table
+# storage2 = Storage(DB_NAME, 'test2')
+#     # Should create "test2" table in same db above
+
+# print(storage1.save_data(test1, 2))
+# print(storage2.save_data(test2, 5))
+
+# print(storage1.retrieve_data(2))
+# print(storage2.retrieve_data(5))
+
+
+
+
+
+
+
+
+
+
 
 
