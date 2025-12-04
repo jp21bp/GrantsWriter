@@ -2,7 +2,7 @@
 # test the tokens that are sused by the models when they are exeuting 
 # on their given prompts
 from langchain_core.messages import AnyMessage, AIMessage
-
+from copy import deepcopy
 
 class Metrics():
     def __init__(self):
@@ -62,16 +62,34 @@ class Metrics():
                 # "self.history" dict
         # Will also sum up the tokens into the "sum" section of the
                 # "self.history" dictionary
-        inner_dict = list(tokens_dict.values())[0]
+        copy = deepcopy(tokens_dict)
+            #This is done bc of the following case study:
+                # Consider the following:
+                    # p1 = Metrics(); p1.history['sum']['prompt_tokens'] = 99
+                    # p2 = Metrics(); p3 = deepcopy(p1)
+                #Thus
+                    #p3.aggregate(p2.history) = {'sum': {'prompt_tokens': 0, 'completion_tokens': 0, 'total_tokens': 0}}
+                            # = p3.history = p2.history
+                    # This makes sense, since p3 | p2 => p2 overrules
+                # BUT
+                    # p3.aggregate(p1.history) = {'sum': {'prompt_tokens': 99, 'completion_tokens': 0, 'total_tokens': 0}}
+                            # = p3.history = p1.history
+                            # AND ALSO = p2.history
+                    # The p2.history changing does NOT make sense
+                        # Why does p2 change when it wasn't invoked in the function?
+                            # There must be some lingering connection from the first fcn
+                # Using "deepcopy" resolves this issue
+        inner_dict = list(copy.values())[0]
         for category, amount in inner_dict.items():
             self.history['sum'][category] += amount
-        self.history = self.history | tokens_dict
+        self.history = self.history | copy
+        del copy
         return self.history
 
 
 
 #### Test cases
-new = Metrics()
+# new = Metrics()
 
 # first_chain = {
 #     'first_chain': {
@@ -92,8 +110,8 @@ new = Metrics()
 # print(new.aggregate(first_chain))
 # print(new.aggregate(second_chain))
 
-ai_empty = AIMessage(content = "hello")
+# ai_empty = AIMessage(content = "hello")
 
-print(new.extract_tokens_used(ai_empty, 'empty'))
+# print(new.extract_tokens_used(ai_empty, 'empty'))
 
 
