@@ -49,7 +49,8 @@ from typing import TypedDict, Annotated, List
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import InMemorySaver
 from langchain_core.messages import AnyMessage,\
-    HumanMessage, AIMessage, ToolMessage, SystemMessage, BaseMessage
+    HumanMessage, AIMessage, SystemMessage
+from langchain_core.messages.utils import merge_message_runs
 from pydantic import BaseModel
 from langchain_core.prompts.chat import ChatPromptTemplate
 from langchain_mistralai.chat_models import ChatMistralAI
@@ -97,6 +98,7 @@ google_api_key = os.getenv("GOOGLE_API_KEY")
 def save_data(db_name, data, id_counter: int):
     pickled_data = pickle.dumps(data)
     with sqlite3.connect(db_name) as conn:
+        # "data" = table's name
         conn.execute(
             'CREATE TABLE IF NOT EXISTS data (id INTEGER, content BLOB)'
         )
@@ -256,22 +258,26 @@ The doner requirements are: {requirements}\
 CRITIQUE_PROMPT = """\
 You are a senior Grants officer reviewing a grant propsal from \
 a non-profit organization for the following theme: {theme}. \
-Generate critique and recommendations for the user's submission. \
+Your task is to generate critique and recommendations for the user's submission draft. \
 Provide detailed recommendations, including requests for length, \
-depth, style, etc.\
+depth, style, etc.
+
+<User Submission Draft>
+{draft}
+</User Submission Draft>\
 """
 # The current draft submission is: {draft}
 
 INVESTIGATION_PROMPT = """\
 You are an experienced mentor in providing support for writing grant \
 proposal for non-profit organizations. Your task is to create a simple \
-rag prompt that will look into the applicant organizational documents. \
+RAG prompt that will look into the applicant's organizational documents. \
 You goals is to retrieve more contextual documents that will help improve \
 the current grant draft based on provided techniques.
 
 <Current draft>
 {draft}
-</Current draft>
+</Current draft>\
 """
 # The critique for this draft is: {critique}. Execute and complete
 # your task.
@@ -522,6 +528,17 @@ class SectionOutlines(BaseModel):
 #### Create Agent state
     # SAme as sample agent state
 class AgentState(TypedDict):
+    # Note: I'm going to change all the "str" to "AIMEssage"
+        # This will be useful when trying to calculatre the tokens
+                # that are consumed per ai call
+        # They can be used to create a metriccs function to guage the 
+                # cost of running that particulat prompt for that 
+                # particular model
+            # This will help gauge how much it would be to use the 
+                    # other models
+            # Especially since the input tokens will remain the same
+            # The only thing that changes per model is the output tokens
+                #But this canb be limited when initialiizing the model
     # Note: ALL "Annotated" attrs WILL show up in results
         # Even if they're empty, the will be initialized and shown
     # General fields
@@ -565,6 +582,8 @@ class Agent:    #GrantsAgent
         graph.add_node('summarizer_one', self.summarizer_one)
         graph.add_node('summarizer_two', self.summarizer_two)
         graph.add_node('draft', self.draft_node)
+        graph.add_node('critique', self.critique_node)
+        graph.add_node('investigation', self.investigation_node)         
 
         graph.set_entry_point('rag')
         graph.add_edge('rag', 'planner')
@@ -589,8 +608,14 @@ class Agent:    #GrantsAgent
         graph.add_edge('summarizer_one', 'draft')
         graph.add_edge('summarizer_two', 'draft')
 
-        # Recall concurrent node execution notes at top of file
-        graph.add_edge('draft', END)
+        graph.add_conditional_edges(
+            'draft',
+            self.should_continue,
+            {END: END, 'critique': 'critique'}
+        )
+
+        graph.add_edge('critique', 'investigation')
+        graph.add_edge('investigation', 'draft')
 
 
         self.graph = graph.compile(
@@ -598,7 +623,7 @@ class Agent:    #GrantsAgent
             # store= store,   # For long-term memory
         )
 
-        self.lock = threading.Lock()
+        # self.lock = threading.Lock()
         self.llm = llm
         self.rag = rag
         self.mini_sys_prompts = mini_sys_prompts
@@ -608,6 +633,18 @@ class Agent:    #GrantsAgent
         #     print(v)
         #     print('\n'*3)
         # print(self.mini_sys_prompts['first_half'])
+
+
+
+    def should_continue(self, state: AgentState):
+        # print('CONDITION')
+        #Recall: first draft starts at revision 0
+        if state['num_revisions'] >= state['max_revisions']:
+            return END
+        return 'critique'
+
+
+
 
     # def rag_node(self, state: AgentState):    #Original
     #     user_query = state['msgs'][0]
@@ -705,13 +742,15 @@ class Agent:    #GrantsAgent
         # print(f'Prompt for {key}: {agent.system}' + '\n' * 4)
         # response = agent()
         # messages = agent.messages
-        response = AIMessage(content=key)# Tryout
+        response = AIMessage(content=f'This is for section {key}')# Tryout
         messages = [    #Just to try out
             SystemMessage(content=key),
             HumanMessage(content=key),
             AIMessage(content=key)
         ]
 
+        section_annotation = AIMessage(content=key)
+        response = merge_message_runs([section_annotation, response], chunk_separator = " -- ")[0]
         return response, messages, agent
             # "agent" return only needed to check syst prompt
 
@@ -726,12 +765,12 @@ class Agent:    #GrantsAgent
         # replacements = {
         #     'plan': state['plan'].__getattribute__(key),
         #     'theme': state['theme'],
-        #     'requirements': state['doner_requirements'],
+        #     'requirements': s .....ate['doner_requirements'],
         # }
         # sys_prompt = self.mini_sys_prompts[key]
         # agent = MiniAgent(sys_prompt, replacements)
         key = 'cover_letter'
-        print('HERE')
+        # print('HERE')
         response, msgs, agent = self.mini_agent_template(state, key)
         self.print_sys(key, agent.system)
         return {'mini_sections_first_half': {'section_one': response}, 'msgs': msgs}
@@ -793,16 +832,16 @@ class Agent:    #GrantsAgent
 
 
     def summarizer_agent_template(self, state: AgentState, key: str):
-        print(f'AQUI: {key}')
+        # print(f'AQUI: {key}')
         replacements = {
-            'section_one': state[f'mini_sections_{key}_half']['section_one'].content,
-            'section_two': state[f'mini_sections_{key}_half']['section_two'].content,
-            'section_three': state[f'mini_sections_{key}_half']['section_three'].content,
-            'section_four': state[f'mini_sections_{key}_half']['section_four'].content,
+            'section_one': state[f'mini_sections_{key}']['section_one'].content,
+            'section_two': state[f'mini_sections_{key}']['section_two'].content,
+            'section_three': state[f'mini_sections_{key}']['section_three'].content,
+            'section_four': state[f'mini_sections_{key}']['section_four'].content,
             'theme': state['theme'],
             'requirements': state['doner_requirements'],
         }
-        sys_prompt = self.mini_sys_prompts[f'{key}_half']
+        sys_prompt = self.mini_sys_prompts[f'{key}']
         # return sys_prompt
         agent = MiniAgent(sys_prompt, replacements)
         # print('HERE')
@@ -815,12 +854,15 @@ class Agent:    #GrantsAgent
             HumanMessage(content=key),
             AIMessage(content=key)
         ]
+        
+        section_annotation = AIMessage(content = key)
+        response = merge_message_runs([section_annotation, response], chunk_separator = " -- ")[0]
 
         return response, messages, agent
             # "agent" return only needed to check syst prompt
 
     def summarizer_one(self, state: AgentState):
-        key = 'first'
+        key = 'first_half'
         # print(state[f'mini_sections_{key}_half'])
         # print(self.mini_sys_prompts[f'{key}_half'])
         # print(state[f'mini_sections_{key}_half']['section_four'].content)
@@ -828,25 +870,52 @@ class Agent:    #GrantsAgent
         response, msgs, agent = self.summarizer_agent_template(state, key)
         self.print_sys(key, agent.system)
         # return
-        return {'summarizer_sections': {f'{key}_half': response}, 'msgs': msgs}
+        return {'summarizer_sections': {f'{key}': response}, 'msgs': msgs}
     
     def summarizer_two(self, state: AgentState):
-        key = 'second'
+        key = 'second_half'
         # print(self.mini_sys_prompts[f'{key}_half'])
         # print(self.summarizer_agent_template(state, key))
         # print(' HERE')
         response, msgs, agent = self.summarizer_agent_template(state, key)
         self.print_sys(key, agent.system)
         # return
-        return {'summarizer_sections': {f'{key}_half': response}, 'msgs': msgs}
+        return {'summarizer_sections': {f'{key}': response}, 'msgs': msgs}
         
 
 
 
 
 
+    def minis_to_db(self, state: AgentState):
+        # This fcn will save the results from the 8 minis and
+                #2 summarizers into the DB
+        # This is done to avoid working with the concurrency threads
+                # that are executed when the 10 minis are 
+                # executed in parallel
+        # This is fcn is only going to be called ONCE, during the 
+                # first iteration of the draft
+            # Since the minis won't be executed more than once
+        # print('saving minis')
+        id_counter = state['id_counter']
+        to_save = [
+            'mini_sections_first_half',
+            'mini_sections_second_half',
+            'summarizer_sections',
+        ]
+        for keys in to_save:
+            for _, AiMsg in state[keys].items():
+                id_counter = save_data(DB_NAME, AiMsg, id_counter)
+                # id_counter += 1
+        return id_counter
+        
+
 
     def draft_node(self, state: AgentState):
+        id_counter = state['id_counter']
+        if state['num_revisions'] == 0:
+            id_counter = self.minis_to_db(state)
+            # print(id_counter)
         # print(state['summarizer_sections'])
         replacements = {
             'first_half': state['summarizer_sections']['first_half'].content,
@@ -856,7 +925,12 @@ class Agent:    #GrantsAgent
         sys_prompt = DRAFT_PROMPT.format(**replacements)
         user_prompt = f"""\
 Using the information above, create a full grant proposal draft for \
-the following theme: {state['theme']}
+the following theme: {state['theme']}. Consider the following context, \
+retrieved from the organization's webpage using RAG, when completing your task:
+
+<RAG Organizational Context>
+{state['rag_context']}
+</RAG Organizational Context>\
 """
         prompts = ChatPromptTemplate.from_messages([
             ('system', sys_prompt),
@@ -867,7 +941,18 @@ the following theme: {state['theme']}
         # response = self.llm.invoke(prompts)
         response = AIMessage(content='this is the draft')
         draft = response.content
-        return {'draft': draft}
+        # print('DRAFT DONE')
+        # for i, context in enumerate(state['rag_context']):
+        #     print(f"context {i}: ")
+        #     print(context)
+        #     print('\n' * 2)
+        # print(f"this is revision: {state['num_revisions']}")
+        id_counter = save_data(DB_NAME, response, id_counter)
+        return {
+            'draft': draft, 
+            'num_revisions': state['num_revisions'] + 1,
+            'id_counter' : id_counter,
+        }
 
 
         # print(f"'Draft' DB data is with index: {state['id_counter']}")
@@ -875,6 +960,58 @@ the following theme: {state['theme']}
         # id_counter = save_data(DB_NAME, draft, 3)
         # # id_counter = save_data(DB_NAME, plan, state['id_counter'])
         # return {"draft" : draft, 'id_counter' : id_counter}
+
+
+    def critique_node(self, state: AgentState):
+        replacements = {
+            'theme': state['theme'],
+            'draft': state['draft'],
+        }
+        sys_prompt = CRITIQUE_PROMPT.format(**replacements)
+        # print(sys_prompt)
+        prompts = ChatPromptTemplate.from_messages([
+            ('system', sys_prompt),
+            ("user", 'Execute your task.')
+        ])
+        # print(prompts.invoke({}))
+
+        # response = self.llm.invoke(prompts)
+        response = AIMessage(content='this is a critique')
+        critique = response.content
+        id_counter = save_data(DB_NAME, response, state['id_counter'])
+        return {'critique': critique, 'id_counter': id_counter}
+    
+    def investigation_node(self, state: AgentState):
+        # Note: this will perform TWO "save_data"
+            # One for the rag prompt created
+            # Other for the info retrieved from using that rag prompt
+        replacements = {
+            'draft': state['draft'],
+        }
+        sys_prompt = INVESTIGATION_PROMPT.format(**replacements)
+        user_prompt = f"""\
+The draft above has been given the following critique: \
+{state['critique']}. Create the RAG prompt, which will be fed \
+to the organizational's website RAG agent.\
+"""
+        prompts = ChatPromptTemplate.from_messages([
+            ('system', sys_prompt),
+            ("user", user_prompt)
+        ])
+        # print(prompts.invoke({}))
+
+        # response = self.llm.invoke(prompts)
+        response = AIMessage(content='this is a RAG response')
+        id_counter = save_data(DB_NAME, response, state['id_counter'])
+        rag_prompt = response.content
+        human_query = HumanMessage(content=rag_prompt)
+        # rag_result = self.rag.invoke(human_query)
+        rag_result = 'this is a sample rag context retrieved'
+        id_counter = save_data(DB_NAME, response, id_counter)
+        return {'rag_context': [rag_result], 'id_counter': id_counter}
+
+
+
 
 
 
@@ -887,18 +1024,36 @@ sys_prompts_mini = SystemPrompts().create_prompts()
 # agent = Agent(base_llm, base_rag)
 # agent = Agent(base_llm, fake_rag)
 agent = Agent(fake_llm, fake_rag, sys_prompts_mini)
-print(agent.graph.get_graph().draw_ascii())
+# print(agent.graph.get_graph().draw_ascii())
 
 start_state = {
     'theme': 'educational projects',
     'doner_requirements': 'none',
-    # 'id_counter': 3,
+    'num_revisions': 0,
+    'max_revisions': 2,
+    'id_counter': 3,
 }
-result = agent.graph.invoke(start_state)
+# result = agent.graph.invoke(start_state)
+
+### Checking the response "AgentState", which is a "TypedDict" dict
 # for k,v in result.items():
 #     print(k)
 #     print(v)
 #     print('\n'*2)
+
+### Checking the items that were saved in the DB
+for i in range(1,3):
+    print(f"Sowing index {i}")
+    print(retrieve_data(DB_NAME, i))
+    print('\n' + '=' * 30 + '\n')
+
+
+
+
+
+
+
+
 
 #### Invoking the agent
     # WIll requiring turning a user query into "HumanMessage"
@@ -928,6 +1083,8 @@ result = agent.graph.invoke(start_state)
 #     'id_counter': 1,
 #     'theme': 'educational projects',
 #     "doner_requirements": 'none',
+#     'num_revisions': 0,
+#     'max_revisions': 2,
 # }
 # result = agent.graph.invoke(starting_state)
 #     # WORKS! Accepts inputs, tranlsates to user qury, adn returns rag output
