@@ -7,7 +7,22 @@
 #### General libraries
 from langchain_core.messages import AnyMessage
 from copy import deepcopy
-import pickle, sqlite3
+import pickle, sqlite3, json
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -18,8 +33,8 @@ class Metrics():
     def __init__(self):
         self.history: dict[str,dict[str,int]] = {
             "sum":{
-                "prompt_tokens": 0,
-                "completion_tokens": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
                 "total_tokens": 0,
             }
         }
@@ -42,26 +57,30 @@ class Metrics():
             #     }
             # }
     
-    def extract_tokens_used(self, msg: AnyMessage, name: str) -> dict:
+    def extract_tokens_used(self, message: AnyMessage, name: str) -> dict:
         # Will extract that tokens that were used in a given model executioon
-        # Should be in format {'prompt': x, 'completion': y, 'total': z}
-        metadata = msg.response_metadata
+        
+        #First, turn the "AnyMessage" into a dict
+        msg = dict(message)
+
+        # Second, extract the needed component from the dictionary
+        metadata = message['usage_metadata']
+
+        # Third, format the extraction dictionary
         if metadata:
-            # In here the metadata is not empty
             extraction = {
                 f"{name}":{
-                    "prompt_tokens": metadata['token_usage']['prompt_tokens'],
-                    "completion_tokens": metadata['token_usage']['completion_tokens'],
-                    "total_tokens": metadata['token_usage']['total_tokens'],
+                    "input_tokens": metadata['input_tokens'],
+                    "output_tokens": metadata['output_tokens'],
+                    "total_tokens": metadata['total_tokens'],
                 }
             }
         elif not metadata:
-            # In here the metada is empty
             print(f"Error extracting '{name}' - creating negative values")
             extraction = {
                 f"{name}":{
-                    "prompt_tokens": -1,
-                    "completion_tokens": -1,
+                    "input_tokens": -1,
+                    "output_tokens": -1,
                     "total_tokens": -1,
                 }
             }
@@ -72,6 +91,8 @@ class Metrics():
                 # "self.history" dict
         # Will also sum up the tokens into the "sum" section of the
                 # "self.history" dictionary
+
+        #First, create a copy of the 'tokens_dict'
         copy = deepcopy(tokens_dict)
             #This is done bc of the following case study:
                 # Consider the following:
@@ -89,12 +110,40 @@ class Metrics():
                         # Why does p2 change when it wasn't invoked in the function?
                             # There must be some lingering connection from the first fcn
                 # Using "deepcopy" resolves this issue
+
+        # Second, extract the inner dictionary
         inner_dict = list(copy.values())[0]
+
+        # Third, sum up the used tokens
         for category, amount in inner_dict.items():
             self.history['sum'][category] += amount
+
+        # Fourth, insert the "tokens_dict" into the history
         self.history = self.history | copy
+
+        # Fifth, delete the deepcopy
         del copy
         return self
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -136,6 +185,77 @@ class Storage():
             else:
                 print('Error: content not found')
                 return
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### General Utilities
+    # This class will contain all the fcns necessary for general usage
+class Utilities():
+    def __init__(self):
+        self.finializer = '\n' + '=' * 50 + '\n'
+            #For fomatting purposes
+    def disect(self, message: AnyMessage, indent: int = 2, finish: bool = True):
+        # Will printout "message" in a nice JSON format
+        print(f'JSON disection of LC Message' + '\n')
+        # First: turn the AIMEsage into a dicationary
+        msg_dict = dict(message)
+        # Second: turn the dict into json
+        json_str = json.dumps(msg_dict, indent=indent)
+        # Third: print json string with desired indentation
+        print(json_str)
+        if finish: print(self.finializer)
+
+
+    def analyze_attrs(self, variable, num_spaces : int = 1, finish: bool = True):
+        print(f'Analyzing attributes of {variable}' + '\n\n')
+        for attr in dir(variable):
+            if attr.startswith("_"): continue
+                # These are dunder methods
+            print(f"Data Type: {type(attr)}")
+            print(f"Name of attr: {attr}")
+            print(f"Attribute details: {variable.__getattribute__(attr)}")
+            print('\n'* num_spaces)
+        if finish: print(self.finializer)
+
+    def analyze_mro(self, variable, num_spaces: int = 1, finish: bool = True):
+        print(f'Analyzing MRO of {variable}' + '\n\n')
+        print(f"Data Type: {type(variable)}")
+        for clase in type(variable).mro():
+            print(f"Class:{clase.__module__}")
+            print(f"Name: {clase.__name__}")
+            print('\n'*num_spaces)
+        if finish: print(self.finializer)
+
+    def multi_analysis(self, variable, num_spaces: int = 1):
+        print(f'Full analysis on {variable}')
+        self.analyze_attrs(variable, num_spaces, False)
+        self.analyze_mro(variable, num_spaces, False)
+        print(self.finializer)
 
 
 

@@ -3,7 +3,7 @@
 # on their given prompts
 from langchain_core.messages import AnyMessage, AIMessage
 from copy import deepcopy
-import pickle, sqlite3
+import pickle, sqlite3, json
 
 
 ##### Metrics class
@@ -12,8 +12,8 @@ class Metrics():
     def __init__(self):
         self.history: dict[str,dict[str,int]] = {
             "sum":{
-                "prompt_tokens": 0,
-                "completion_tokens": 0,
+                "input_tokens": 0,
+                "output_tokens": 0,
                 "total_tokens": 0,
             }
         }
@@ -36,17 +36,23 @@ class Metrics():
             #     }
             # }
     
-    def extract_tokens_used(self, msg: AnyMessage, name: str) -> dict:
+    def extract_tokens_used(self, message: AnyMessage, name: str) -> dict:
         # Will extract that tokens that were used in a given model executioon
         # Should be in format {'prompt': x, 'completion': y, 'total': z}
-        metadata = msg.response_metadata
+        
+        #First, turn the AIMessage into a dict
+        msg = dict(message)
+        #Then extract the needed component
+        metadata = message['usage_metadata']
+            #Where to find the token usage metrics
+            # This should be a DICTIONARY 
         if metadata:
             # In here the metadata is not empty
             extraction = {
                 f"{name}":{
-                    "prompt_tokens": metadata['token_usage']['prompt_tokens'],
-                    "completion_tokens": metadata['token_usage']['completion_tokens'],
-                    "total_tokens": metadata['token_usage']['total_tokens'],
+                    "input_tokens": metadata['input_tokens'],
+                    "output_tokens": metadata['output_tokens'],
+                    "total_tokens": metadata['total_tokens'],
                 }
             }
         elif not metadata:
@@ -54,8 +60,8 @@ class Metrics():
             print(f"Error extracting '{name}' - creating negative values")
             extraction = {
                 f"{name}":{
-                    "prompt_tokens": -1,
-                    "completion_tokens": -1,
+                    "input_tokens": -1,
+                    "output_tokens": -1,
                     "total_tokens": -1,
                 }
             }
@@ -121,6 +127,29 @@ class Metrics():
 # print(new.extract_tokens_used(ai_empty, 'empty'))
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##### Storage class
     # Save and retrieve data to a local db
 class Storage():
@@ -183,6 +212,90 @@ class Storage():
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### General class
+    # This class will contain all the fcns necessary for general usage
+class Utilities():
+    def __init__(self):
+        self.finializer = '\n' + '=' * 50 + '\n'
+    def disect(self, message: AIMessage, indent: int = 2, finish: bool = True):
+        # This will technically be used to breakdown any complex dict
+        # However, it will mainly be used to disect "AnyMessage" 
+                #types in langchain
+        # NOte: technically I can turn it into JSON and then use
+                # one of the fcns associated with JSon
+            # BUT i want to try full tweaking abilities of the output
+                    # format of these dictionaries
+        print(f'JSON disection of LC Message' + '\n')
+        #First: turn the AIMEsage into a dicationary
+        msg_dict = dict(message)
+        # SEcond: turn the dict into json
+        json_str = json.dumps(msg_dict, indent=indent)
+        # Third: print json string with desired indentation
+        print(json_str)
+        if finish: 
+            print(self.finializer)
+
+
+    def analyze_attrs(self, variable, num_spaces : int = 1, finish: bool = True):
+        # print(dir(variable))
+        #     # "dir" gets ALL the attributes of "variable"
+        #     # EX: [__init__, ..., __getattribute__,...]
+        # print('\n\n')
+        print(f'Analyzing attributes of {variable}' + '\n\n')
+        for attr in dir(variable):
+            if attr.startswith("_"):
+                # THese are dunder methods
+                continue
+            print(f"Data Type: {type(attr)}")
+            print(f"Name of attr: {attr}")
+            print(f"Attribute details: {variable.__getattribute__(attr)}")
+            print('\n'* num_spaces)
+        if finish: 
+            print(self.finializer)
+
+    def analyze_mro(self, variable, num_spaces: int = 1, finish: bool = True):
+        print(f'Analyzing MRO of {variable}' + '\n\n')
+        print(f"Data Type: {type(variable)}") # Prints type of "variable"
+        for clase in type(variable).mro():
+            print(f"Class:{clase.__module__}")
+            print(f"Name: {clase.__name__}")
+            print('\n'*num_spaces)
+        if finish: 
+            print(self.finializer)
+
+    def multi_analysis(self, variable, num_spaces: int = 1):
+        print(f'Full analysis on {variable}')
+        self.analyze_attrs(variable, num_spaces, False)
+        self.analyze_mro(variable, num_spaces, False)
+        print(self.finializer)
 
 
 
