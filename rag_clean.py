@@ -31,6 +31,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
+### Utilities library
+from utilities_clean import *
 
 #### Setting up environment
 load_dotenv()
@@ -42,8 +44,7 @@ jina_api_key = os.getenv("JINA_API_KEY")
     # Web: https://aistudio.google.com/welcome
 # llm = ChatGoogleGenerativeAI(
 #     api_key=google_api_key,
-#     model="gemini-2.0-flash",
-#     # max_tokens=128
+#     model="gemini-2.5-flash-lite",
 # )
 ### Embedding model
     # Web: https://jina.ai/
@@ -190,7 +191,7 @@ class Translator(BaseModel):
     )
 
 #### Setup llm model
-translator_model = llm.with_structured_output(Translator)
+translator_model = llm.with_structured_output(Translator, include_raw=True)
 
 #### Setup translator chain
 translation_chain = prompt | translator_model
@@ -254,11 +255,8 @@ prompt = ChatPromptTemplate.from_messages([
 #### Create model
 modelo_espanol = llm
 
-#### Create output parser
-output = StrOutputParser()
-
 #### Creating chain
-mini_cadena = prompt | modelo_espanol | output
+mini_cadena = prompt | modelo_espanol
 cadena_espanol = inputs | extract | mini_cadena.map()
     # Returns a LIST of translated docs
 
@@ -284,33 +282,77 @@ cadena_espanol = inputs | extract | mini_cadena.map()
 
 ##### Main pipeline
 #### Putting it all together
+### Setting up Utilities class for working with data
+DB_NAME = 'output.db'
+TABLE_NAME = 'rag'
+DATA_ID = 1
+storage = Storage(DB_NAME, TABLE_NAME)
+
+utilities = Utilities()
+### Create the RAG class
 class RAG():
+    def __init__(self, data_id:int):
+        self.data_id = data_id
+        self.metrics = Metrics()
+
     def invoke(self, user_input: str) -> str:
-        ### Running the first chain
+        ### First chain logic
+        ## Invocation
+        name = 'first_chain'
         translation_results = translation_chain.invoke({
             "query": user_input
         })
-        original = translation_results.original
-        translation = translation_results.translation
+        
+        ## Save invocation to DB
+        self.data_id = storage.save_data(translation_results, self.data_id, name)
+        
+        ## Analyze metrics
+        extract = self.metrics.extract_tokens_used(translation_results['raw'], name)
+        self.metrics = self.metrics.aggregate(extract)
+        
+        ## Get the pydantic results
+        py_model = translation_results['parsed']
+        original = py_model.original
+        translation = py_model.translation
 
-        ### Running the second chain
+
+
+        ### Second chain
+        ## Invocation
         context_spanish = cadena_espanol.invoke({
             "entrada": translation
         })
             #Returns list of strings
                 # These strings are translated versions of the original doc
 
+        ## Save and metric the results of the second chain
+        spanish_context_string = []
+        for i, item in enumerate(context_spanish):
+            name = f'second_chain_{i}'
+            self.data_id = storage.save_data(item, self.data_id, name)
+            extract = self.metrics.extract_tokens_used(item, name)
+            self.metrics = self.metrics.aggregate(extract)
+            spanish_context_string.append(item.content)
+
+
+
         ### Running similarity search on original query
         context_english = retriever.invoke(original)
         context_english = [x.page_content for x in context_english]
 
         ### Combining all info together
-        final_context = "\n\n\n".join(context_english + context_spanish)
-        return final_context
+        final_context = "\n\n\n".join(context_english + spanish_context_string)
+        self.data_id = storage.save_data(final_context, self.data_id, 'final_rag_context')
+        return final_context, self.data_id
 
 
-# rag = RAG()
-# print(rag.invoke("What are current educational projects?"))
+# rag = RAG(DATA_ID)
+# final_context, last_id = rag.invoke("What are current educational projects?")
+# print(final_context)
+# print('='*50)
+# print(last_id)
+# print('='*50)
+# print(rag.metrics.history)
 
 
 

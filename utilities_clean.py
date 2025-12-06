@@ -61,7 +61,7 @@ class Metrics():
         # Will extract that tokens that were used in a given model executioon
         
         #First, turn the "AnyMessage" into a dict
-        msg = dict(message)
+        message = dict(message)
 
         # Second, extract the needed component from the dictionary
         metadata = message['usage_metadata']
@@ -156,15 +156,15 @@ class Storage():
         self.table_name = table_name
 
     #### Saving data to sqlite
-    def save_data(self, data, data_id: int):
+    def save_data(self, data, data_id: int, data_name: str = "NoneGiven"):
         pickled_data = pickle.dumps(data)
         with sqlite3.connect(self.db_name) as conn:
             conn.execute(
-                f'CREATE TABLE IF NOT EXISTS {self.table_name} (data_id INTEGER, content BLOB)'
+                f'CREATE TABLE IF NOT EXISTS {self.table_name} (data_id INTEGER, data_name VARCHAR(255), content BLOB)'
             )
             conn.execute(
-                f'INSERT INTO {self.table_name} (data_id, content) VALUES (?,?)',
-                (data_id, sqlite3.Binary(pickled_data))
+                f'INSERT INTO {self.table_name} (data_id, data_name, content) VALUES (?,?,?)',
+                (data_id, data_name, sqlite3.Binary(pickled_data))
             )
             conn.commit()
             return data_id + 1
