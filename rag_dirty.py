@@ -446,7 +446,7 @@ TABLE_NAME = 'rag'
 DATA_ID = 1
 storage = Storage(DB_NAME, TABLE_NAME)
 
-utilities = Utilities()
+utilities = Analyzer()
 metrics = Metrics()
 
 

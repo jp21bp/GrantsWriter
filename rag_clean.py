@@ -284,21 +284,24 @@ cadena_espanol = inputs | extract | mini_cadena.map()
 #### Putting it all together
 ### Setting up Utilities class for working with data
 DB_NAME = 'output.db'
-TABLE_NAME = 'rag'
+TABLE_NAME = 'main'
 DATA_ID = 1
 storage = Storage(DB_NAME, TABLE_NAME)
 
-utilities = Utilities()
+utilities = Analyzer()
 ### Create the RAG class
 class RAG():
-    def __init__(self, data_id:int):
-        self.data_id = data_id
+    def __init__(self):
         self.metrics = Metrics()
+        self.data_id = None
 
-    def invoke(self, user_input: str) -> str:
+    def invoke(self, user_input: str, data_id: int = None, base_name: str = 'NONE') -> str:
+        ### Updating data_id
+        self.data_id = data_id
+
         ### First chain logic
         ## Invocation
-        name = 'first_chain'
+        name = base_name + '_rag_first_chain'
         translation_results = translation_chain.invoke({
             "query": user_input
         })
@@ -328,7 +331,7 @@ class RAG():
         ## Save and metric the results of the second chain
         spanish_context_string = []
         for i, item in enumerate(context_spanish):
-            name = f'second_chain_{i}'
+            name = f'{base_name}_rag_second_chain_{i}'
             self.data_id = storage.save_data(item, self.data_id, name)
             extract = self.metrics.extract_tokens_used(item, name)
             self.metrics = self.metrics.aggregate(extract)
@@ -341,9 +344,11 @@ class RAG():
         context_english = [x.page_content for x in context_english]
 
         ### Combining all info together
-        final_context = "\n\n\n".join(context_english + spanish_context_string)
-        self.data_id = storage.save_data(final_context, self.data_id, 'final_rag_context')
-        return final_context, self.data_id
+        final_context = "\n\n".join(context_english + spanish_context_string)
+        # self.data_id = storage.save_data(final_context, self.data_id, 'final_rag_context')
+            # ESta parte no es necesario
+            # El node del main guarda este resultado
+        return final_context, self.data_id, self.metrics
 
 
 # rag = RAG(DATA_ID)

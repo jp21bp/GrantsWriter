@@ -14,7 +14,6 @@
     #     res = pickle.load(file)
     # print(res)
 
-
 ##### General setup
 #### Importing libraries
 import os
@@ -28,45 +27,23 @@ from langchain_cohere import ChatCohere
 load_dotenv()
 cohere_api_key = os.getenv("COHERE_API_KEY")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #### Setting up model
 # llm = ChatCohere(
 #     cohere_api_key=cohere_api_key,
 #     model='command-r-08-2024',
 # )
-llm = None
 
-##### Playing with model API integration with pickle
-# result = llm.invoke("Hi!")
-# print(result)
-# with open('output.pkl', 'wb') as file:
-#     pickle.dump(result, file)
-# with open('output.pkl', 'rb') as file:
-#     res = pickle.load(file)
-# print(res)
-# print(res.content)
+### Creating custom function
+    #Used to replace some placeholders and leave others untouched
+class FormatDict(dict):
+    def __missing__(self, key):
+        return '{' + key + '}'
 
-
-
-
-
-
-
+# template = "Hello {name}, today is {day}. Your score is {score}."
+# data = FormatDict(name="Alice", day="Monday")
+# result = template.format_map(data)
+# # print(result)    
+# new_result = result.format(score="ten")
 
 
 
@@ -86,7 +63,7 @@ llm = None
 
 
 ##### Creating system prompts
-#### Mini agents
+#### Mini section agents
 mini_section_prompts = {}   #Used to store prompts in one place
 COVER_SECTION = """\
 Cover letter section, with the following:
@@ -223,12 +200,6 @@ Organizational background section, with the following:
 """
 mini_section_prompts['organizational_background'] = BACKGROUND_SECTION
 
-# for prompt in mini_section_prompts:
-#     print(prompt)
-#     print('\n'*2)
-
-
-
 
 #### Mini summarizer agents
 summarizer_section_prompts = {}
@@ -264,8 +235,11 @@ summarizer_section_prompts['second_half'] = SECTIONS_TWO
 
 
 
+
+
+
 ##### Configuring general system prompt
-#### For Mini agents
+#### For Section agents
 GENERAL_MINI_PROMPTS = """\
 You are a senior grant writing expert for non-profit organizations. \
 You're role in the grant's writing process will focus on {mini_section}.
@@ -329,78 +303,13 @@ The grant doners have the following requirements: {requirements}. \
 
 
 
-##### Playing with prompt formatting
-#### Regular substitution with ".format"
-general_prompt = GENERAL_MINI_PROMPTS.format(
-    mini_section = 'ONE',
-    theme = 'TWO',
-    requirements = 'THREE',
-    plan = 'FOUR',
-)
-# print(general_prompt)
-
-####REg susbtitution with '.format' and dictionary
-replacements = {
-    'mini_section': 'UNO',
-    'theme': "DOS",
-    'requirements': 'TRES',
-    'plan': 'CUATRO',
-}
-gen_prompt = GENERAL_MINI_PROMPTS.format(**replacements)
-# print(gen_prompt)
-
-
-#### Trying to replace some placeholders and leave others untouchec
-    # Doesn't work, requires a custom function
-# print(GENERAL_MINI_PROMPTS)
-# mini_main_prompts = []
-# for prompt in mini_section_prompts:
-#     formatted = GENERAL_MINI_PROMPTS.format(
-#         mini_section = prompt,
-#         theme = 'Educational projects',
-#         requirements = 'None',
-#         # plan = 'FOUR',
-#     )
-#     mini_main_prompts.append(formatted)
-
-# for prompt in mini_main_prompts:
-#     print(prompt)
-#     print('\n' * 2)
-
-
-#### Creating custom function
-    #Used to replace some placeholders and leave others untouched
-class FormatDict(dict):
-    def __missing__(self, key):
-        return '{' + key + '}'
-
-### Using custom function
-template = "Hello {name}, today is {day}. Your score is {score}."
-data = FormatDict(name="Alice", day="Monday")
-result = template.format_map(data)
-# print(result)    
-
-### Replacing untouched placeholder in another run
-    # Outcome: it works
-new_result = result.format(score="ten")
-# print(new_result)
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-##### Replaceing general prompt placeholders
+##### Replacing general prompt placeholders
 #### Using custom fcn to replace section prompts
 mini_main_prompts = []
 for prompt in mini_section_prompts:
@@ -412,10 +321,6 @@ for prompt in mini_section_prompts:
     )
     formatted = GENERAL_MINI_PROMPTS.format_map(formats)
     mini_main_prompts.append(formatted)
-
-# for prompt in mini_main_prompts:
-#     print(prompt)
-#     print('\n'*2)
 
 
 #### Using custom fcn to replace summarizer prompts
@@ -429,42 +334,6 @@ for prompt in summarizer_section_prompts:
     formatted = GENERAL_SUMMARIZER_PROMPT.format_map(formats)
     summarizer_main_prompts.append(formatted)
 
-# for prompt in summarizer_main_prompts:
-#     print(prompt)
-#     print('\n'*2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##### Creating agents
-#### Gathering their names into a list
-sections_names = []
-sections_names.append('cover')
-sections_names.append('executive')
-sections_names.append('need')
-sections_names.append('goals')
-sections_names.append('methods')
-sections_names.append('evaluation')
-sections_names.append('budget')
-sections_names.append('background')
-
-
-agent_names = []
-for i, name in enumerate(sections_names):
-    exec(f"agent_names.append('{name}_agent')")
-    # print(samples[i])
-    # exec(f"{name}_agent = {i}; sample[{i}] = {name}_agent")
 
 
 
@@ -484,41 +353,11 @@ for i, name in enumerate(sections_names):
 
 
 
-
-
-##### Creating Agent Class
-#### USing (role, content) tuples
-# class MiniAgent:
-#     def __init__(self, system_prompt: str = '', replacements: dict = {}):
-#         self.system = system_prompt.format(**replacements)
-#         # print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
-#         self.messages = []
-#         if self.system:
-#             self.messages.append({
-#                 "role": "system",
-#                 "content": self.system,
-#             })
-#     def __call__(self):    #def __call__(self, message):
-#         self.messages.append({
-#             "role": "user",
-#             "content": 'Execute your task.',
-#         })
-#         result = self.execute()
-#         self.messages.append({
-#             "role": "assistant",
-#             "content": result,
-#         })
-#         return result
-#     def execute(self):
-#         completion = llm.invoke(self.messages)
-#         return completion
-
-#### USing "Message" types
-    # This is better, since LG intenrally does the conversion ANYWAYS
+##### Creating classes
+#### Creating 'MiniAgent' class
 class MiniAgent:
     def __init__(self, system_prompt: str = '', replacements: dict = {}):
         self.system = system_prompt.format(**replacements)
-        # print(f'BEFORE:\n{system_prompt}\n\nAFTER:\n{self.system}\n' + '=' * 70)
         self.messages = []
         if self.system:
             self.messages.append(
@@ -536,61 +375,26 @@ class MiniAgent:
         return completion
 
 
-
-
-
-##### Creating class for system prompts
-class SystemPrompts:
-    # I need to find a way to gather ALL agents into one class
-        # mini and sumamriezers
-    # BUT I also need to find a way to leave them SEMI-UNINITIALIZED
-        #So that I can integrate the main agent's plan into the mini agents
-            #I.e., replace the missing placeholders
-    # def __init__(self, section_plan_list):
-        #I dont think i need a custom init
+#### Creating class for system prompts
+class SystemPrompts:   
+    def __init__(self):
+        pass 
     
     def create_prompts(self) -> dict:
         syst_prompts = {}
         for section, prompt in mini_section_prompts.items():
             formats = FormatDict(
                 mini_section = prompt,
-                # theme = 'Educational projects',
-                # requirements = 'None',
-                # plan = 'FOUR',
             )
             formatted = GENERAL_MINI_PROMPTS.format_map(formats)
             syst_prompts[section] = formatted
         for half, prompt in summarizer_section_prompts.items():
             formats = FormatDict(
-                # theme = 'Educational projects',
-                # requirements = 'None',
                 summarizer_sections = prompt
             )
             formatted = GENERAL_SUMMARIZER_PROMPT.format_map(formats)
             syst_prompts[half] = formatted
-            # print(f'prompt for {half}:\n{syst_prompts[half]}' + '\n' * 3)
         return syst_prompts
-
-# sys_prompts = SystemPrompts().create_prompts()
-# for k,v in sys_prompts.items():
-#     print(k)
-#     print(v)
-#     print('\n'*2)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

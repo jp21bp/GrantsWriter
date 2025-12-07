@@ -215,7 +215,7 @@ class Storage():
 
 ##### General Utilities
     # This class will contain all the fcns necessary for general usage
-class Utilities():
+class Analyzer():
     def __init__(self):
         self.finializer = '\n' + '=' * 50 + '\n'
             #For fomatting purposes
