@@ -413,29 +413,29 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
+from langchain_cohere import ChatCohere
 ### Utilities library
 from utilities_clean import *
 import pprint
 
 #### Setting up environment
 load_dotenv()
-google_api_key = os.getenv("GOOGLE_API_KEY")
+cohere_api_key = os.getenv("COHERE_API_KEY")
 jina_api_key = os.getenv("JINA_API_KEY")
 
-# ### Setting up models
-# ## LLM model
-#     # Web: https://aistudio.google.com/welcome
-# llm = ChatGoogleGenerativeAI(
-#     api_key=google_api_key,
-#     model="gemini-2.5-flash-lite",
-#     # max_tokens=128
-# )
-# ## Embedding model
-#     # Web: https://jina.ai/
-# embedding_model = JinaEmbeddings(
-#     api_token=jina_api_key,
-#     model="jina-embeddings-v2-base-es"
-# )
+#### Setting up models
+### LLM model
+    # Web: https://aistudio.google.com/welcome
+llm = ChatCohere(
+    cohere_api_key=cohere_api_key,
+    model='command-r-08-2024',
+)
+## Embedding model
+    # Web: https://jina.ai/
+embedding_model = JinaEmbeddings(
+    api_token=jina_api_key,
+    model="jina-embeddings-v2-base-es"
+)
 
 # llm = None
 # embedding_model = None
@@ -588,16 +588,16 @@ translator_model = llm.with_structured_output(Translator, include_raw=True)
 #### Setup translator chain
 translation_chain = prompt | translator_model
 
-#### Checking out chain output
-### First invocation
-# result_chain_one = translation_chain.invoke(
-#     "What are current educational project?"
-# )
-# print('CHAIN ONE')
-# print(type(result_chain_one))
-# print(result_chain_one)
+### Checking out chain output
+## First invocation
+result_chain_one = translation_chain.invoke(
+    "What are current educational project?"
+)
+print('CHAIN ONE')
+print(type(result_chain_one))
+print(result_chain_one)
 
-# DATA_ID = storage.save_data(result_chain_one, 2)
+DATA_ID = storage.save_data(result_chain_one, 1)
 
 ## Data retrieved
 # first_chain_data = storage.retrieve_data(1)
@@ -745,74 +745,71 @@ translation_chain = prompt | translator_model
 
 
 
+# ##### Here
 
+# ##### Creating second chain - spanish processing
+# #### Create RunnableLambda
+#     #In order to have chain get the run similar search on translated query
+# inputs = RunnableLambda(
+#     lambda x: retriever.invoke(x['entrada'])
+# )
+#     # Returns a LIST of docs (see line 132)
 
-##### Creating second chain - spanish processing
-#### Create RunnableLambda
-    #In order to have chain get the run similar search on translated query
-inputs = RunnableLambda(
-    lambda x: retriever.invoke(x['entrada'])
-)
-    # Returns a LIST of docs (see line 132)
+# #### Extracting the contents from the retrieved docs
+# extract = RunnableLambda(
+#     lambda x: [{"ingreso": doc.page_content} for doc in x]
+#     # lambda x: [doc.page_content for doc in x]
+#     # lambda x: [{"ingreso": doc.page_content} for doc in x]
+# )
 
-#### Extracting the contents from the retrieved docs
-extract = RunnableLambda(
-    lambda x: [{"ingreso": doc.page_content} for doc in x]
-    # lambda x: [doc.page_content for doc in x]
-    # lambda x: [{"ingreso": doc.page_content} for doc in x]
-)
+# #### Create prompt
+# SYST_PROMPT = """\
+# Eres un experto en traduciendo entre Espanol a Ingles. \
+# Tu rol es traduccir informacion del Espanol al Ingles. \
+# Traducce la informacion sin agregar contexto no encontrado \
+# en la informacion que se te de.
+# """
 
-#### Create prompt
-SYST_PROMPT = """\
-Eres un experto en traduciendo entre Espanol a Ingles. \
-Tu rol es traduccir informacion del Espanol al Ingles. \
-Traducce la informacion sin agregar contexto no encontrado \
-en la informacion que se te de.
-"""
+# prompt = ChatPromptTemplate.from_messages([
+#     ("system", SYST_PROMPT),
+#     ("user", "{ingreso}")
+#     # ("user", "la informacion es: ")
+# ])
 
-prompt = ChatPromptTemplate.from_messages([
-    ("system", SYST_PROMPT),
-    ("user", "{ingreso}")
-    # ("user", "la informacion es: ")
-])
+# #### Create model
+# modelo_espanol = llm
 
-#### Create model
-modelo_espanol = llm
+# #### Create output parser
+# # output = StrOutputParser()
+#     #No lo voy a usar para sacar el "AIMessage" completo
 
-#### Create output parser
-# output = StrOutputParser()
-    #No lo voy a usar para sacar el "AIMessage" completo
+# #### Creating chain
+# mini_cadena = prompt | modelo_espanol 
+# cadena_espanol = inputs | extract | mini_cadena.map()
+#     # IMPORTANT: Returns a LIST of translated docs
 
-#### Creating chain
-mini_cadena = prompt | modelo_espanol 
-cadena_espanol = inputs | extract | mini_cadena.map()
-    # IMPORTANT: Returns a LIST of translated docs
+# #### Using the chain
+# # results = cadena_espanol.invoke({
+# #     'entrada' : 'proyectos educacionales'
+# # })
 
-#### Using the chain
-# results = cadena_espanol.invoke({
-#     'entrada' : 'proyectos educacionales'
-# })
+# # storage.save_data(results, 3)
 
-# storage.save_data(results, 3)
+# # print('DONE')
 
-# print('DONE')
+# #### Exploring chain results
 
-#### Exploring chain results
+# # results = storage.retrieve_data(3)
+# # print(results)
+# # utilities.disect(results[0])
+#     # Recall: results is a LIST, as mentioned in linbe 785
 
-# results = storage.retrieve_data(3)
-# print(results)
-# utilities.disect(results[0])
-    # Recall: results is a LIST, as mentioned in linbe 785
-
-#### Metrics analysis
-# print('Metrics analysis')
-# extract = metrics.extract_tokens_used(results[0], 'aimsg2')
-# print(extract)
-# hist = metrics.aggregate(extract)
-# print(hist.history)
-
-
-
+# #### Metrics analysis
+# # print('Metrics analysis')
+# # extract = metrics.extract_tokens_used(results[0], 'aimsg2')
+# # print(extract)
+# # hist = metrics.aggregate(extract)
+# # print(hist.history)
 
 
 
@@ -824,99 +821,102 @@ cadena_espanol = inputs | extract | mini_cadena.map()
 
 
 
-##### Main pipeline
-#### Putting it all together
-### Create DB Storage class
-    #Reason for intializing outside RAG class:
-        # It connects to a DB
-            # Thus, it might fails/ be timely
-            # But if we leave it outside, it wouldn't corrupt RAG class
-### Recreate DB table for final invocation check
-DB_NAME = 'output.db'
-TABLE_NAME = 'rag_table'
-DATA_ID = 1
-storage = Storage(DB_NAME, TABLE_NAME)
 
-### Create the RAG class
-class RAG():
-    def __init__(self, data_id:int):
-        self.data_id = data_id
-        self.metrics = Metrics()
 
-    def invoke(self, user_input: str) -> str:
-        ### Running the first chain
-        name = 'first_chain'
-        translation_results = translation_chain.invoke({
-            "query": user_input
-        })  # Returns an AI Message
+
+# ##### Main pipeline
+# #### Putting it all together
+# ### Create DB Storage class
+#     #Reason for intializing outside RAG class:
+#         # It connects to a DB
+#             # Thus, it might fails/ be timely
+#             # But if we leave it outside, it wouldn't corrupt RAG class
+# ### Recreate DB table for final invocation check
+# DB_NAME = 'output.db'
+# TABLE_NAME = 'rag_table'
+# DATA_ID = 1
+# storage = Storage(DB_NAME, TABLE_NAME)
+
+# ### Create the RAG class
+# class RAG():
+#     def __init__(self, data_id:int):
+#         self.data_id = data_id
+#         self.metrics = Metrics()
+
+#     def invoke(self, user_input: str) -> str:
+#         ### Running the first chain
+#         name = 'first_chain'
+#         translation_results = translation_chain.invoke({
+#             "query": user_input
+#         })  # Returns an AI Message
         
-        # Saving the first chain
-        self.data_id = storage.save_data(translation_results, self.data_id, name)
+#         # Saving the first chain
+#         self.data_id = storage.save_data(translation_results, self.data_id, name)
         
         
 
-        # ### ALTERNATIVE
-        # translation_results = storage.retrieve_data(1)
-        # print(translation_results)
-        # print('=' * 50)
+#         # ### ALTERNATIVE
+#         # translation_results = storage.retrieve_data(1)
+#         # print(translation_results)
+#         # print('=' * 50)
 
 
 
-        # Analyze metrics
-        extract = metrics.extract_tokens_used(translation_results['raw'], name)
-        self.metrics = metrics.aggregate(extract)
+#         # Analyze metrics
+#         extract = metrics.extract_tokens_used(translation_results['raw'], name)
+#         self.metrics = metrics.aggregate(extract)
 
-        # Get the pydantic results
-        py_model = translation_results['parsed']
-        original = py_model.original
-        translation = py_model.translation
-
-
-
-        ### Running the second chain
-        context_spanish = cadena_espanol.invoke({
-            "entrada": translation
-        })
-            #Returns list of strings
-                # These strings are translated versions of the original doc
-
-        #Save and metric the results of the second chain
-        spanish_context_string = []
-        for i, item in enumerate(context_spanish):
-            name = f'second_chain_{i}'
-            self.data_id = storage.save_data(item, self.data_id, name)
-            extract = metrics.extract_tokens_used(item, name)
-            self.metrics = metrics.aggregate(extract)
-            spanish_context_string.append(item.content)
+#         # Get the pydantic results
+#         py_model = translation_results['parsed']
+#         original = py_model.original
+#         translation = py_model.translation
 
 
 
-        # #### Alternative #####
-        # context_spanish = storage.retrieve_data(2)
-        # print(context_spanish)
-        # print('=' * 50)
-        # extract = metrics.extract_tokens_used(context_spanish, name)
-        # self.metrics = metrics.aggregate(extract)
-        # spanish_context_string = [context_spanish.content]
+#         ### Running the second chain
+#         context_spanish = cadena_espanol.invoke({
+#             "entrada": translation
+#         })
+#             #Returns list of strings
+#                 # These strings are translated versions of the original doc
+
+#         #Save and metric the results of the second chain
+#         spanish_context_string = []
+#         for i, item in enumerate(context_spanish):
+#             name = f'second_chain_{i}'
+#             self.data_id = storage.save_data(item, self.data_id, name)
+#             extract = metrics.extract_tokens_used(item, name)
+#             self.metrics = metrics.aggregate(extract)
+#             spanish_context_string.append(item.content)
 
 
 
-        ### Running similarity search on original query
-        context_english = retriever.invoke(original)
-        context_english = [x.page_content for x in context_english]
+#         # #### Alternative #####
+#         # context_spanish = storage.retrieve_data(2)
+#         # print(context_spanish)
+#         # print('=' * 50)
+#         # extract = metrics.extract_tokens_used(context_spanish, name)
+#         # self.metrics = metrics.aggregate(extract)
+#         # spanish_context_string = [context_spanish.content]
 
-        ### Combining all info together
-        final_context = "\n\n\n".join(context_english + spanish_context_string)
-        self.data_id = storage.save_data(final_context, self.data_id, 'final_rag_context')
-        return final_context, self.data_id
 
-# rag = RAG(DATA_ID)
-# final_context, last_id = rag.invoke("What are current educational projects?")
-# print(final_context)
-# print('='*50)
-# print(last_id)
-# print('='*50)
-# print(rag.metrics.history)
+
+#         ### Running similarity search on original query
+#         context_english = retriever.invoke(original)
+#         context_english = [x.page_content for x in context_english]
+
+#         ### Combining all info together
+#         final_context = "\n\n\n".join(context_english + spanish_context_string)
+#         self.data_id = storage.save_data(final_context, self.data_id, 'final_rag_context')
+#         return final_context, self.data_id
+
+# # rag = RAG(DATA_ID)
+# # final_context, last_id = rag.invoke("What are current educational projects?")
+# # print(final_context)
+# # print('='*50)
+# # print(last_id)
+# # print('='*50)
+# # print(rag.metrics.history)
 
 
 

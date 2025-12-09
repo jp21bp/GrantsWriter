@@ -27,6 +27,7 @@ from langchain_core.output_parsers.string import StrOutputParser
 ### Model libraries
 from langchain_community.embeddings import JinaEmbeddings
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_cohere import ChatCohere
 ### Embedding libraries
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -42,16 +43,16 @@ jina_api_key = os.getenv("JINA_API_KEY")
 #### Setting up models
 ### LLM model
     # Web: https://aistudio.google.com/welcome
-# llm = ChatGoogleGenerativeAI(
-#     api_key=google_api_key,
-#     model="gemini-2.5-flash-lite",
-# )
+llm = ChatGoogleGenerativeAI(
+    api_key=google_api_key,
+    model="gemini-2.5-flash",
+)
 ### Embedding model
     # Web: https://jina.ai/
-# embedding_model = JinaEmbeddings(
-#     api_token=jina_api_key,
-#     model="jina-embeddings-v2-base-es"
-# )
+embedding_model = JinaEmbeddings(
+    api_token=jina_api_key,
+    model="jina-embeddings-v2-base-es"
+)
 
 
 
@@ -288,7 +289,7 @@ TABLE_NAME = 'main'
 DATA_ID = 1
 storage = Storage(DB_NAME, TABLE_NAME)
 
-utilities = Analyzer()
+# utilities = Analyzer()
 ### Create the RAG class
 class RAG():
     def __init__(self):

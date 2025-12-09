@@ -1,0 +1,1196 @@
+
+==================================================
+
+config
+	{'configurable': {'thread_id': '1', 'checkpoint_ns': '', 'checkpoint_id': '1f0d4f0e-a4fc-6ddd-8008-7664fcd61bea'}}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+count
+	<built-in method count of StateSnapshot object at 0x7b77a41faff0>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+created_at
+	2025-12-09T11:19:23.682309+00:00
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+index
+	<built-in method index of StateSnapshot object at 0x7b77a41faff0>
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+interrupts
+	()
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+metadata
+	{'source': 'loop', 'step': 8, 'parents': {}}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+next
+	()
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+parent_config
+	{'configurable': {'thread_id': '1', 'checkpoint_ns': '', 'checkpoint_id': '1f0d4f0e-72bc-6ed1-8007-adb23930efef'}}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+tasks
+	()
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+values
+
+
+theme:
+
+	educational projects
+
+doner_requirements:
+
+	final proposal needs to be one page long
+
+num_revisions:
+
+	2
+
+max_revisions:
+
+	2
+
+plan:
+
+	cover_letter="Dear [Donor's Name],\n\nI am writing to formally submit our grant proposal for your consideration. Our organization, [Your Organization's Name], is dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We believe that access to formal education and personal development opportunities is crucial for the holistic growth of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which include scholarship funding, professional development support for tutors, and various workshops to meet the basic needs of our beneficiaries. We are confident that our projects align with your organization's goals and will make a significant impact on the lives of the children and young people we serve.\n\nThank you for considering our proposal. We look forward to the possibility of working together to create a brighter future for the beneficiaries of our educational projects.\n\nSincerely,\n[Your Name]\n[Your Position]\n[Your Organization's Name]" executive_summary="Our organization, [Your Organization's Name], is seeking a grant to support our educational projects in Peru. Our quality education program focuses on providing access to formal education and fostering the personal and professional development of orphaned and vulnerable children and young people. Through scholarship funding, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\n\nWith this grant, we plan to expand our reach and enhance the quality of our educational projects. Our goal is to ensure that every child and young person in our partner organizations has access to a safe learning environment, quality education, and the support they need to thrive. We believe that our projects align with the donor's requirements and will make a significant difference in the lives of our beneficiaries." statement_of_need="In Peru, many orphaned and vulnerable children and young people lack access to formal education and the support they need to develop their cognitive abilities and technical skills. This lack of access to quality education perpetuates cycles of poverty and limits opportunities for personal and professional growth. Our organization, [Your Organization's Name], aims to address this need by providing educational scholarships, improving the quality of tutoring through professional development, and offering workshops to meet the basic physical, emotional, and social needs of our beneficiaries.\n\nBy investing in the education and development of these individuals, we can create a sustainable impact in their communities and help break the cycle of poverty. We believe that every child and young person deserves access to quality education and the support they need to reach their full potential." goals_and_objective='Our goals and objectives for this grant proposal are as follows:\n\n1. Provide educational scholarships to orphaned and vulnerable children and young people in Peru, ensuring their access to formal learning environments.\n2. Improve the quality of tutoring by offering professional development support to tutors, enhancing their teaching skills and abilities.\n3. Identify and meet the basic physical, emotional, and social needs of our beneficiaries through various workshops, such as financial education and health-related initiatives.\n4. Expand our reach and enhance the quality of our educational projects, creating a sustainable impact in the communities we serve.\n5. Foster a safe and supportive learning environment that promotes the personal and professional development of our beneficiaries, equipping them with essential tools for life.' methods_and_strategies='To achieve our goals and objectives, we will implement the following methods and strategies:\n\n1. Partner with local organizations to identify and enroll eligible children and young people in our educational scholarship program.\n2. Develop and deliver professional development workshops for tutors, focusing on effective teaching strategies, classroom management, and student engagement.\n3. Organize and facilitate workshops addressing the basic needs of our beneficiaries, such as financial education, health and wellness, and life skills.\n4. Monitor and evaluate the progress of our beneficiaries, providing additional support and resources as needed to ensure their success.\n5. Collaborate with local communities and stakeholders to create a sustainable impact and promote long-term change.' plan_of_evaluation="To evaluate the effectiveness of our educational projects, we will implement the following plan:\n\n1. Conduct regular assessments of our beneficiaries' academic progress and personal development, using both quantitative and qualitative measures.\n2. Gather feedback from tutors and workshop facilitators to assess the impact of our professional development support and workshops.\n3. Monitor and track the attendance and participation of our beneficiaries in our educational scholarship program and workshops.\n4. Conduct surveys and interviews with our beneficiaries, their families, and community members to assess the overall impact of our projects on their lives and communities.\n5. Analyze and report on the data collected, using the findings to inform our strategies and improve the quality of our educational projects." budget_information='The budget for our educational projects is as follows:\n\n1. Educational Scholarships: $50,000\n   - Tuition fees: $30,000\n   - School supplies and materials: $10,000\n   - Transportation and meals: $10,000\n2. Professional Development Support for Tutors: $20,000\n   - Workshop facilitation and materials: $10,000\n   - Tutor stipends: $10,000\n3. Workshops Addressing Basic Needs: $20,000\n   - Workshop facilitation and materials: $10,000\n   - Guest speakers and experts: $5,000\n   - Participant transportation and meals: $5,000\n4. Program Coordination and Management: $10,000\n   - Staff salaries and benefits: $7,000\n   - Program-related expenses: $3,000\n\nTotal Budget: $100,000' organizational_background="Our organization, [Your Organization's Name], is a non-profit dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We have been working in this field for over a decade, partnering with local organizations to identify and meet the needs of our beneficiaries.\n\nOur quality education program focuses on providing access to formal education and fostering the personal and professional development of our beneficiaries. Through educational scholarships, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\n\nWe are proud of the work we have accomplished so far, but we know that there is still much to be done. With the support of donors like you, we can continue to make a difference in the lives of the children and young people we serve and create a brighter future for all."
+
+summarizer_sections:
+
+	first_half:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "first_half -- Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal, which seeks to expand our educational initiatives in Peru and make a profound impact on the lives of orphaned and vulnerable children and young people. At LAFF, we are dedicated to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n## Executive Summary:\n\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our vision is to empower these children through quality education and personal development, ensuring they have the tools to thrive academically and personally. This project will provide increased access to formal education, enhance personal growth, and improve learning environments. \n\nOur immediate action is necessary to intervene and offer support, as these children are at risk without intervention. We are confident in our ability to execute this project effectively, given our established partnerships and expertise in educational projects. \n\n## Statement of Need:\n\nIn Peru, orphaned and vulnerable children face a significant challenge: limited access to education and support for their cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their growth and future prospects. \n\nOur project aims to support 50 orphaned and vulnerable children over 12 months by providing educational scholarships and professional development for tutors. We will also organize workshops to address their basic needs, creating a holistic approach to their development. \n\nWithin the first six months, we will focus on establishing a strong educational foundation, followed by our workshop series. By the end of the year, we aim to improve their educational outcomes and empower them to pursue further opportunities. \n\n## Goals and Objectives:\n\n- **Educational Scholarships:** We will provide financial support to ensure access to formal education, breaking the cycle of vulnerability.\n- **Tutor Professional Development:** We invest in tutor growth to enhance teaching quality and the overall learning experience.\n- **Addressing Basic Needs:** We organize workshops on financial literacy, health, and emotional well-being to support holistic development.\n- **Expanding Reach:** We aim to partner with local organizations to enhance our impact and sustainability.\n- **Creating a Supportive Environment:** We foster a safe and nurturing learning space, encouraging personal growth and confidence.\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity. \n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that this draft combines the key elements of your provided sections to create a concise and compelling introduction to your grant proposal. It highlights the problem, the vision, and the impact of your educational projects, while also outlining the goals and objectives.",
+  "additional_kwargs": {
+    "id": "62338d16-0990-4d48-ba5e-a27a0f7704ac",
+    "finish_reason": "COMPLETE",
+    "content": "Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal, which seeks to expand our educational initiatives in Peru and make a profound impact on the lives of orphaned and vulnerable children and young people. At LAFF, we are dedicated to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n## Executive Summary:\n\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our vision is to empower these children through quality education and personal development, ensuring they have the tools to thrive academically and personally. This project will provide increased access to formal education, enhance personal growth, and improve learning environments. \n\nOur immediate action is necessary to intervene and offer support, as these children are at risk without intervention. We are confident in our ability to execute this project effectively, given our established partnerships and expertise in educational projects. \n\n## Statement of Need:\n\nIn Peru, orphaned and vulnerable children face a significant challenge: limited access to education and support for their cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their growth and future prospects. \n\nOur project aims to support 50 orphaned and vulnerable children over 12 months by providing educational scholarships and professional development for tutors. We will also organize workshops to address their basic needs, creating a holistic approach to their development. \n\nWithin the first six months, we will focus on establishing a strong educational foundation, followed by our workshop series. By the end of the year, we aim to improve their educational outcomes and empower them to pursue further opportunities. \n\n## Goals and Objectives:\n\n- **Educational Scholarships:** We will provide financial support to ensure access to formal education, breaking the cycle of vulnerability.\n- **Tutor Professional Development:** We invest in tutor growth to enhance teaching quality and the overall learning experience.\n- **Addressing Basic Needs:** We organize workshops on financial literacy, health, and emotional well-being to support holistic development.\n- **Expanding Reach:** We aim to partner with local organizations to enhance our impact and sustainability.\n- **Creating a Supportive Environment:** We foster a safe and nurturing learning space, encouraging personal growth and confidence.\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity. \n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that this draft combines the key elements of your provided sections to create a concise and compelling introduction to your grant proposal. It highlights the problem, the vision, and the impact of your educational projects, while also outlining the goals and objectives.",
+    "token_count": {
+      "input_tokens": 1927.0,
+      "output_tokens": 570.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ffe70330-4ff3-48ab-ab7b-7989034af9e8-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 1927,
+    "output_tokens": 570,
+    "total_tokens": 2497
+  }
+}
+
+	second_half:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "second_half -- # LAFF's Educational Project: Empowering Youth through Quality Education\n\n## Organizational Background\n\nLAFF, a non-profit organization with a decade-long commitment, strives to empower orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries, ensuring a holistic approach to their development.\n\nOur quality education program is our flagship initiative, offering educational scholarships and comprehensive support. We believe that access to formal education is a powerful tool for change, and our program aims to ensure that every child has the opportunity to pursue their academic dreams. By investing in professional development for tutors and organizing workshops on various life skills, we create an enriching learning environment.\n\n## Methods and Strategies\n\nTo achieve our goals, we employ a range of comprehensive methods and strategies:\n\n- **Community Collaboration and Enrollment**: We actively engage with local communities, schools, and leaders to identify and enroll eligible children. This partnership approach ensures a diverse and inclusive participant pool, reaching those who need our support the most.\n\n- **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we invest in workshops to enhance teaching skills, classroom management, and student engagement strategies. Empowered tutors create a positive and impactful learning experience.\n\n- **Comprehensive Workshop Series**: Beyond academics, we address holistic needs. Our workshops cover financial literacy, health and wellness, and essential life skills. By providing this comprehensive support, we aim to empower beneficiaries to make informed choices.\n\n- **Progress Monitoring and Evaluation**: We track progress through a robust system, identifying areas for improvement. Regular assessments ensure we make a meaningful difference in the lives of our participants.\n\n- **Sustainable Community Impact**: Our vision extends beyond immediate benefits. We collaborate with local communities to create long-lasting change, ensuring that the skills and knowledge gained are passed on for future generations.\n\n## Plan of Evaluation\n\nOur evaluation plan measures academic and personal development:\n\n- **Academic Progress**: We aim for a 20% improvement in academic performance within a year. This will be measured through pre- and post-project standardized tests, with quarterly assessments to track progress.\n\n- **Personal Development**: We aim to enhance personal development skills by 15% within a year. This will be assessed through surveys and interviews, focusing on confidence levels and soft skills. Annual surveys capture long-term impact.\n\n## Budget Information\n\nOur budget is designed for phased spending:\n\n- **Startup**: Educational Scholarships ($50,000) - Covers initial scholarship costs, including tuition, supplies, and transportation/meals.\n\n- **Implementation**: Professional Development Support ($20,000) - Invests in tutor workshops and stipends.\n\n- **Scale**: Workshops Addressing Basic Needs ($20,000) - Funds workshops for community needs, including transportation and meals.\n\n- **Closeout**: Program Coordination ($10,000) - Ensures smooth project closure, covering staff salaries and benefits.\n\nWe have identified success criteria and funding goals:\n\n- **Success Metrics**: Number of students supported, tutor performance, and workshop reach.\n\n- **Funding Goals**: Short-term bridge grants for launch, followed by multi-year sustainability grants.\n\nThis proposal outlines our commitment to empowering youth through quality education, with a focus on community collaboration and holistic support. We believe in the transformative power of education and are dedicated to making a lasting impact.",
+  "additional_kwargs": {
+    "id": "4c02200a-56bb-4d42-b216-f1747c9c48d5",
+    "finish_reason": "COMPLETE",
+    "content": "# LAFF's Educational Project: Empowering Youth through Quality Education\n\n## Organizational Background\n\nLAFF, a non-profit organization with a decade-long commitment, strives to empower orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries, ensuring a holistic approach to their development.\n\nOur quality education program is our flagship initiative, offering educational scholarships and comprehensive support. We believe that access to formal education is a powerful tool for change, and our program aims to ensure that every child has the opportunity to pursue their academic dreams. By investing in professional development for tutors and organizing workshops on various life skills, we create an enriching learning environment.\n\n## Methods and Strategies\n\nTo achieve our goals, we employ a range of comprehensive methods and strategies:\n\n- **Community Collaboration and Enrollment**: We actively engage with local communities, schools, and leaders to identify and enroll eligible children. This partnership approach ensures a diverse and inclusive participant pool, reaching those who need our support the most.\n\n- **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we invest in workshops to enhance teaching skills, classroom management, and student engagement strategies. Empowered tutors create a positive and impactful learning experience.\n\n- **Comprehensive Workshop Series**: Beyond academics, we address holistic needs. Our workshops cover financial literacy, health and wellness, and essential life skills. By providing this comprehensive support, we aim to empower beneficiaries to make informed choices.\n\n- **Progress Monitoring and Evaluation**: We track progress through a robust system, identifying areas for improvement. Regular assessments ensure we make a meaningful difference in the lives of our participants.\n\n- **Sustainable Community Impact**: Our vision extends beyond immediate benefits. We collaborate with local communities to create long-lasting change, ensuring that the skills and knowledge gained are passed on for future generations.\n\n## Plan of Evaluation\n\nOur evaluation plan measures academic and personal development:\n\n- **Academic Progress**: We aim for a 20% improvement in academic performance within a year. This will be measured through pre- and post-project standardized tests, with quarterly assessments to track progress.\n\n- **Personal Development**: We aim to enhance personal development skills by 15% within a year. This will be assessed through surveys and interviews, focusing on confidence levels and soft skills. Annual surveys capture long-term impact.\n\n## Budget Information\n\nOur budget is designed for phased spending:\n\n- **Startup**: Educational Scholarships ($50,000) - Covers initial scholarship costs, including tuition, supplies, and transportation/meals.\n\n- **Implementation**: Professional Development Support ($20,000) - Invests in tutor workshops and stipends.\n\n- **Scale**: Workshops Addressing Basic Needs ($20,000) - Funds workshops for community needs, including transportation and meals.\n\n- **Closeout**: Program Coordination ($10,000) - Ensures smooth project closure, covering staff salaries and benefits.\n\nWe have identified success criteria and funding goals:\n\n- **Success Metrics**: Number of students supported, tutor performance, and workshop reach.\n\n- **Funding Goals**: Short-term bridge grants for launch, followed by multi-year sustainability grants.\n\nThis proposal outlines our commitment to empowering youth through quality education, with a focus on community collaboration and holistic support. We believe in the transformative power of education and are dedicated to making a lasting impact.",
+    "token_count": {
+      "input_tokens": 2053.0,
+      "output_tokens": 744.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--271f1754-557f-419f-a879-34859fe46a53-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 2053,
+    "output_tokens": 744,
+    "total_tokens": 2797
+  }
+}
+
+mini_sections_first_half:
+
+	section_one:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "cover_letter -- Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal to you, seeking support for our educational initiatives aimed at benefiting orphaned and vulnerable children and young people in Peru. At LAFF, we are deeply committed to providing quality education and comprehensive support to ensure the holistic development of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which are meticulously designed to address the unique needs of our beneficiaries. Our projects encompass scholarship funding, empowering our young scholars to pursue their academic dreams, professional development support for our dedicated tutors, and a range of workshops tailored to meet the basic needs of our students. We firmly believe that these initiatives will not only enhance their educational journey but also empower them to become active contributors to their communities.\n\nYour organization's commitment to making a positive impact aligns perfectly with our mission, and we are confident that our projects will resonate with your goals. We are eager to showcase how your support can make a significant difference in the lives of these children and young people, offering them a brighter and more promising future.\n\nThank you for considering our proposal. We are excited about the potential partnership and the opportunity to create a lasting impact together.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that I have kept the tone professional and enthusiastic, highlighting the organization's dedication and the potential impact of the grant. Feel free to provide any additional details or adjustments to ensure it aligns perfectly with your vision and the donor's requirements.",
+  "additional_kwargs": {
+    "id": "0e643db2-621d-4dc0-87e7-4e6951b2e8ba",
+    "finish_reason": "COMPLETE",
+    "content": "Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal to you, seeking support for our educational initiatives aimed at benefiting orphaned and vulnerable children and young people in Peru. At LAFF, we are deeply committed to providing quality education and comprehensive support to ensure the holistic development of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which are meticulously designed to address the unique needs of our beneficiaries. Our projects encompass scholarship funding, empowering our young scholars to pursue their academic dreams, professional development support for our dedicated tutors, and a range of workshops tailored to meet the basic needs of our students. We firmly believe that these initiatives will not only enhance their educational journey but also empower them to become active contributors to their communities.\n\nYour organization's commitment to making a positive impact aligns perfectly with our mission, and we are confident that our projects will resonate with your goals. We are eager to showcase how your support can make a significant difference in the lives of these children and young people, offering them a brighter and more promising future.\n\nThank you for considering our proposal. We are excited about the potential partnership and the opportunity to create a lasting impact together.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that I have kept the tone professional and enthusiastic, highlighting the organization's dedication and the potential impact of the grant. Feel free to provide any additional details or adjustments to ensure it aligns perfectly with your vision and the donor's requirements.",
+    "token_count": {
+      "input_tokens": 537.0,
+      "output_tokens": 314.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--06aaab7f-b948-4da9-8d8d-45bf518cac2c-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 537,
+    "output_tokens": 314,
+    "total_tokens": 851
+  }
+}
+
+	section_two:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "executive_summary -- # Executive Summary\n\n## Project Summary, Problem, and Purpose\n\nLAFF seeks a grant to expand its educational projects in Peru, aiming to provide quality education and personal development opportunities to orphaned and vulnerable children and youth. The problem we address is the lack of access to formal education and support systems for these children, which can lead to a cycle of poverty and limited opportunities. \n\nOur vision is to break this cycle by ensuring these children have the tools and resources to succeed academically and personally. We believe that education is a powerful catalyst for change, empowering individuals to overcome adversity and create a better future for themselves and their communities. \n\nThe specific outcomes of this project include: \n\n- Increased access to formal education for orphaned and vulnerable children.\n- Enhanced personal and professional development through tailored support and workshops.\n- Improved learning environments and educational resources for partner organizations.\n- Sustainable impact through the development of long-term support systems and community engagement.\n\n## Impact and Rationale\n\nThis project will directly benefit the orphaned and vulnerable children and youth in our partner organizations, providing them with the education and skills necessary to thrive. By offering scholarship funding and professional development support for tutors, we aim to create a supportive learning environment that fosters academic excellence and personal growth. \n\nOur stakeholders, including the children, their families, and the wider community, will experience the positive impact of improved educational opportunities. The immediate action is necessary to address the urgent need for quality education and support systems, as these children are at risk of falling further behind without intervention. \n\nLAFF is uniquely qualified to execute this project due to our established relationships with partner organizations and our expertise in educational projects. Our team has a proven track record of successful implementations, and we are committed to ensuring the long-term sustainability of our initiatives. \n\n## Plan, Timeline, and Resources\n\nOur high-level implementation steps include: \n\n- Identifying and partnering with additional organizations to expand our reach.\n- Developing tailored educational programs and workshops based on the needs of the children.\n- Providing scholarship funding and professional development support for tutors.\n- Implementing a sustainable funding model to ensure long-term project viability.\n\nWe aim to achieve measurable results within a year, with a focus on increasing the number of children accessing quality education and improving their academic performance. Our top-line budget for this project is $[amount], which will cover the costs of educational resources, tutor support, and administrative expenses. \n\nOur organizational strengths include our experienced team, established partnerships, and a proven commitment to community development. We are confident in our ability to execute this project effectively and create a lasting impact on the lives of orphaned and vulnerable children in Peru.",
+  "additional_kwargs": {
+    "id": "da48a09d-78bf-43fc-b072-a6f64bd96a00",
+    "finish_reason": "COMPLETE",
+    "content": "# Executive Summary\n\n## Project Summary, Problem, and Purpose\n\nLAFF seeks a grant to expand its educational projects in Peru, aiming to provide quality education and personal development opportunities to orphaned and vulnerable children and youth. The problem we address is the lack of access to formal education and support systems for these children, which can lead to a cycle of poverty and limited opportunities. \n\nOur vision is to break this cycle by ensuring these children have the tools and resources to succeed academically and personally. We believe that education is a powerful catalyst for change, empowering individuals to overcome adversity and create a better future for themselves and their communities. \n\nThe specific outcomes of this project include: \n\n- Increased access to formal education for orphaned and vulnerable children.\n- Enhanced personal and professional development through tailored support and workshops.\n- Improved learning environments and educational resources for partner organizations.\n- Sustainable impact through the development of long-term support systems and community engagement.\n\n## Impact and Rationale\n\nThis project will directly benefit the orphaned and vulnerable children and youth in our partner organizations, providing them with the education and skills necessary to thrive. By offering scholarship funding and professional development support for tutors, we aim to create a supportive learning environment that fosters academic excellence and personal growth. \n\nOur stakeholders, including the children, their families, and the wider community, will experience the positive impact of improved educational opportunities. The immediate action is necessary to address the urgent need for quality education and support systems, as these children are at risk of falling further behind without intervention. \n\nLAFF is uniquely qualified to execute this project due to our established relationships with partner organizations and our expertise in educational projects. Our team has a proven track record of successful implementations, and we are committed to ensuring the long-term sustainability of our initiatives. \n\n## Plan, Timeline, and Resources\n\nOur high-level implementation steps include: \n\n- Identifying and partnering with additional organizations to expand our reach.\n- Developing tailored educational programs and workshops based on the needs of the children.\n- Providing scholarship funding and professional development support for tutors.\n- Implementing a sustainable funding model to ensure long-term project viability.\n\nWe aim to achieve measurable results within a year, with a focus on increasing the number of children accessing quality education and improving their academic performance. Our top-line budget for this project is $[amount], which will cover the costs of educational resources, tutor support, and administrative expenses. \n\nOur organizational strengths include our experienced team, established partnerships, and a proven commitment to community development. We are confident in our ability to execute this project effectively and create a lasting impact on the lives of orphaned and vulnerable children in Peru.",
+    "token_count": {
+      "input_tokens": 557.0,
+      "output_tokens": 549.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--333b0778-75d2-4d84-8134-a223636c2aa3-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 557,
+    "output_tokens": 549,
+    "total_tokens": 1106
+  }
+}
+
+	section_four:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "goals_and_objective -- Our goals and objectives for this grant proposal are designed to create a holistic and sustainable impact on the lives of orphaned and vulnerable children and young people in Peru. Here's an overview:\n\n1. Educational Scholarships: We aim to provide financial support to ensure these children and young adults can access formal education. By covering their educational expenses, we empower them to pursue their academic goals and break the cycle of vulnerability. \n\n2. Tutor Professional Development: Recognizing the importance of quality education, we will invest in the professional growth of our tutors. Through workshops and training programs, we will enhance their teaching methodologies, ensuring our beneficiaries receive the best possible education. \n\n3. Addressing Basic Needs: Beyond academics, we understand the importance of holistic development. We plan to organize workshops focused on financial literacy, health education, and emotional well-being. By addressing these fundamental needs, we aim to create a supportive environment for our beneficiaries to thrive. \n\n4. Expanding Reach and Impact: Our vision is to expand our educational projects to reach more communities in need. By partnering with local organizations and institutions, we can leverage their expertise and resources to enhance the quality and sustainability of our initiatives. \n\n5. Creating a Supportive Environment: At the heart of our mission is the creation of a safe and nurturing learning space. We believe that by fostering a supportive environment, we can encourage personal growth, build confidence, and equip our beneficiaries with the skills and mindset needed to succeed in their personal and professional lives. \n\nWith this grant, we aim to empower these vulnerable youth, providing them with the tools and opportunities to build a brighter future for themselves and their communities.",
+  "additional_kwargs": {
+    "id": "c7bcbd63-0eae-4751-b273-7ef4ac2c97fe",
+    "finish_reason": "COMPLETE",
+    "content": "Our goals and objectives for this grant proposal are designed to create a holistic and sustainable impact on the lives of orphaned and vulnerable children and young people in Peru. Here's an overview:\n\n1. Educational Scholarships: We aim to provide financial support to ensure these children and young adults can access formal education. By covering their educational expenses, we empower them to pursue their academic goals and break the cycle of vulnerability. \n\n2. Tutor Professional Development: Recognizing the importance of quality education, we will invest in the professional growth of our tutors. Through workshops and training programs, we will enhance their teaching methodologies, ensuring our beneficiaries receive the best possible education. \n\n3. Addressing Basic Needs: Beyond academics, we understand the importance of holistic development. We plan to organize workshops focused on financial literacy, health education, and emotional well-being. By addressing these fundamental needs, we aim to create a supportive environment for our beneficiaries to thrive. \n\n4. Expanding Reach and Impact: Our vision is to expand our educational projects to reach more communities in need. By partnering with local organizations and institutions, we can leverage their expertise and resources to enhance the quality and sustainability of our initiatives. \n\n5. Creating a Supportive Environment: At the heart of our mission is the creation of a safe and nurturing learning space. We believe that by fostering a supportive environment, we can encourage personal growth, build confidence, and equip our beneficiaries with the skills and mindset needed to succeed in their personal and professional lives. \n\nWith this grant, we aim to empower these vulnerable youth, providing them with the tools and opportunities to build a brighter future for themselves and their communities.",
+    "token_count": {
+      "input_tokens": 486.0,
+      "output_tokens": 330.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ec153922-9a3b-4e15-b237-1adfe6b3b0d9-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 486,
+    "output_tokens": 330,
+    "total_tokens": 816
+  }
+}
+
+	section_three:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "statement_of_need -- ## Statement of Need: Breaking the Cycle of Poverty through Education\n\n### Define the Problem:\nIn Peru, orphaned and vulnerable children face a critical challenge: limited access to formal education and the necessary support for cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their personal growth and future prospects. \n\n### Show Impact with Evidence:\nOur organization aims to address this issue by providing comprehensive support to 50 orphaned and vulnerable children over a period of 12 months. Through educational scholarships, we will ensure these children have the means to access quality education. Additionally, we will invest in professional development for tutors, enhancing the quality of their teaching and the overall learning experience. \n\nTo meet the basic needs of our beneficiaries, we will organize regular workshops focused on physical, emotional, and social well-being. By addressing these fundamental needs, we can create an environment conducive to learning and personal development. \n\n### Outline a Clear, Concise Plan:\nOur project will deliver lasting value by empowering these children with the tools they need to break free from the cycle of poverty. By investing in their education and overall development, we can create a sustainable impact that extends beyond the individual to their families and communities. \n\nWithin the first six months, we will focus on establishing a strong foundation by providing educational scholarships and professional development for tutors. This will be followed by the implementation of our workshop series, addressing the holistic needs of our beneficiaries. \n\nBy the end of the 12-month period, we aim to have not only improved the educational outcomes of these children but also equipped them with the skills and confidence to pursue further education and professional opportunities. \n\nThis project is a critical step towards creating a brighter future for orphaned and vulnerable children in Peru, and we believe it deserves your support and investment.",
+  "additional_kwargs": {
+    "id": "aea62037-0f86-4c09-9952-49cd6fd2f9ea",
+    "finish_reason": "COMPLETE",
+    "content": "## Statement of Need: Breaking the Cycle of Poverty through Education\n\n### Define the Problem:\nIn Peru, orphaned and vulnerable children face a critical challenge: limited access to formal education and the necessary support for cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their personal growth and future prospects. \n\n### Show Impact with Evidence:\nOur organization aims to address this issue by providing comprehensive support to 50 orphaned and vulnerable children over a period of 12 months. Through educational scholarships, we will ensure these children have the means to access quality education. Additionally, we will invest in professional development for tutors, enhancing the quality of their teaching and the overall learning experience. \n\nTo meet the basic needs of our beneficiaries, we will organize regular workshops focused on physical, emotional, and social well-being. By addressing these fundamental needs, we can create an environment conducive to learning and personal development. \n\n### Outline a Clear, Concise Plan:\nOur project will deliver lasting value by empowering these children with the tools they need to break free from the cycle of poverty. By investing in their education and overall development, we can create a sustainable impact that extends beyond the individual to their families and communities. \n\nWithin the first six months, we will focus on establishing a strong foundation by providing educational scholarships and professional development for tutors. This will be followed by the implementation of our workshop series, addressing the holistic needs of our beneficiaries. \n\nBy the end of the 12-month period, we aim to have not only improved the educational outcomes of these children but also equipped them with the skills and confidence to pursue further education and professional opportunities. \n\nThis project is a critical step towards creating a brighter future for orphaned and vulnerable children in Peru, and we believe it deserves your support and investment.",
+    "token_count": {
+      "input_tokens": 547.0,
+      "output_tokens": 372.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--38dcc8dc-3b36-4edb-936c-eed16ad99cbc-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 547,
+    "output_tokens": 372,
+    "total_tokens": 919
+  }
+}
+
+mini_sections_second_half:
+
+	section_four:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "organizational_background -- Our organization, LAFF, is a non-profit with a dedicated mission to empower orphaned and vulnerable children and young people in Peru through quality education and support. Established over a decade ago, we have partnered with local organizations to identify and address the unique needs of our beneficiaries, fostering their personal and professional growth.\n\nLAFF's quality education program is at the heart of our work. We provide access to formal education, offering educational scholarships to ensure our beneficiaries can pursue their academic goals. Additionally, we support tutors with professional development opportunities, ensuring they are equipped with the latest teaching methodologies. Our workshops further enhance the learning experience, covering a range of topics to develop essential life skills.\n\nWe are proud of the progress we have made so far, but we recognize that our work is far from complete. With your support, we can continue to make a lasting impact on the lives of these children and young people, providing them with the tools they need to thrive and contribute positively to their communities. Together, we can create a brighter and more sustainable future for all.",
+  "additional_kwargs": {
+    "id": "248ed761-efdd-464d-a250-8e0f4688ae92",
+    "finish_reason": "COMPLETE",
+    "content": "Our organization, LAFF, is a non-profit with a dedicated mission to empower orphaned and vulnerable children and young people in Peru through quality education and support. Established over a decade ago, we have partnered with local organizations to identify and address the unique needs of our beneficiaries, fostering their personal and professional growth.\n\nLAFF's quality education program is at the heart of our work. We provide access to formal education, offering educational scholarships to ensure our beneficiaries can pursue their academic goals. Additionally, we support tutors with professional development opportunities, ensuring they are equipped with the latest teaching methodologies. Our workshops further enhance the learning experience, covering a range of topics to develop essential life skills.\n\nWe are proud of the progress we have made so far, but we recognize that our work is far from complete. With your support, we can continue to make a lasting impact on the lives of these children and young people, providing them with the tools they need to thrive and contribute positively to their communities. Together, we can create a brighter and more sustainable future for all.",
+    "token_count": {
+      "input_tokens": 514.0,
+      "output_tokens": 214.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--2b06f00f-cb7c-4b4f-b23b-0c42448e3181-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 514,
+    "output_tokens": 214,
+    "total_tokens": 728
+  }
+}
+
+	section_three:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "budget_information -- Here is a draft of the budget information section for your grant application, tailored to the one-page requirement: \n\n## Budget Information: \n\n### Phased Spending Timeline: \n\n- Startup: Educational Scholarships ($50,000) - This phase will cover the initial costs of providing scholarships to students, including tuition fees, school supplies, and transportation/meals. \n\n- Implementation: Professional Development Support for Tutors ($20,000) - During this phase, we will invest in the professional growth of our tutors through workshops and stipends, ensuring they are equipped to provide quality education. \n\n- Scale: Workshops Addressing Basic Needs ($20,000) - As the project progresses, we will allocate funds to organize workshops that address the basic needs of our community, including participant transportation and meals. \n\n- Closeout: Program Coordination and Management ($10,000) - This phase will ensure the smooth closure of the project, covering staff salaries and benefits, and any remaining program-related expenses. \n\n### Adaptive Forecasting and Fundraising Impact: \n\n- Best-Case Scenario: If fundraising exceeds expectations, we will allocate additional funds to enhance our educational scholarships, allowing more students to benefit. \n\n- Expected Scenario: With the proposed budget, we anticipate a successful implementation of our educational projects, meeting our core objectives. \n\n- Worst-Case Scenario: In the event of underperforming fundraising, we have identified areas where we can adjust our spending, such as reducing workshop frequencies or seeking alternative, more cost-effective methods for basic needs workshops. \n\n### Success Criteria and Long-Term Funding: \n\n- Success Metrics: Our success will be measured by the number of students supported through scholarships, the impact of professional development on tutor performance, and the reach of our basic needs workshops. \n\n- Funding Goals: We aim to secure short-term bridge grants to launch our projects and then seek multi-year sustainability grants to ensure the long-term viability of our educational initiatives. \n\n### End-to-End Budget: \n\n- Educational Scholarships: $50,000 \n- Professional Development Support: $20,000 \n- Workshops Addressing Basic Needs: $20,000 \n- Program Coordination: $10,000 \n\nTotal Budget: $100,000 \n\nThis budget outlines a comprehensive plan for the successful implementation and sustainability of our educational projects, ensuring we can make a meaningful impact on our community.",
+  "additional_kwargs": {
+    "id": "9d21f17b-3714-4162-843e-c0881382ea71",
+    "finish_reason": "COMPLETE",
+    "content": "Here is a draft of the budget information section for your grant application, tailored to the one-page requirement: \n\n## Budget Information: \n\n### Phased Spending Timeline: \n\n- Startup: Educational Scholarships ($50,000) - This phase will cover the initial costs of providing scholarships to students, including tuition fees, school supplies, and transportation/meals. \n\n- Implementation: Professional Development Support for Tutors ($20,000) - During this phase, we will invest in the professional growth of our tutors through workshops and stipends, ensuring they are equipped to provide quality education. \n\n- Scale: Workshops Addressing Basic Needs ($20,000) - As the project progresses, we will allocate funds to organize workshops that address the basic needs of our community, including participant transportation and meals. \n\n- Closeout: Program Coordination and Management ($10,000) - This phase will ensure the smooth closure of the project, covering staff salaries and benefits, and any remaining program-related expenses. \n\n### Adaptive Forecasting and Fundraising Impact: \n\n- Best-Case Scenario: If fundraising exceeds expectations, we will allocate additional funds to enhance our educational scholarships, allowing more students to benefit. \n\n- Expected Scenario: With the proposed budget, we anticipate a successful implementation of our educational projects, meeting our core objectives. \n\n- Worst-Case Scenario: In the event of underperforming fundraising, we have identified areas where we can adjust our spending, such as reducing workshop frequencies or seeking alternative, more cost-effective methods for basic needs workshops. \n\n### Success Criteria and Long-Term Funding: \n\n- Success Metrics: Our success will be measured by the number of students supported through scholarships, the impact of professional development on tutor performance, and the reach of our basic needs workshops. \n\n- Funding Goals: We aim to secure short-term bridge grants to launch our projects and then seek multi-year sustainability grants to ensure the long-term viability of our educational initiatives. \n\n### End-to-End Budget: \n\n- Educational Scholarships: $50,000 \n- Professional Development Support: $20,000 \n- Workshops Addressing Basic Needs: $20,000 \n- Program Coordination: $10,000 \n\nTotal Budget: $100,000 \n\nThis budget outlines a comprehensive plan for the successful implementation and sustainability of our educational projects, ensuring we can make a meaningful impact on our community.",
+    "token_count": {
+      "input_tokens": 666.0,
+      "output_tokens": 527.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--7f00bcad-7349-49c5-958f-c2c2dbec6b1d-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 666,
+    "output_tokens": 527,
+    "total_tokens": 1193
+  }
+}
+
+	section_two:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "plan_of_evaluation -- # Plan of Evaluation\n\n## Measurable Plan\n\nOur educational projects aim to enhance academic performance and personal growth among our beneficiaries. To measure the success of these projects, we will employ a combination of quantitative and qualitative assessments. \n\n### Academic Progress:\n- Goal: Improve academic performance by 20% among our beneficiaries within one year.\n- Success Metric: Increase in average grades or test scores.\n- Measurement Method: Administer pre- and post-project standardized tests, and compare the results. \n\n### Personal Development:\n- Goal: Enhance personal development skills, such as leadership, communication, and problem-solving, by 15% within one year.\n- Success Metric: Increase in self-reported confidence levels and improvement in soft skills.\n- Measurement Method: Conduct surveys and interviews with beneficiaries, focusing on their perceived growth and development. \n\n## Monitoring and Timing\n\n### Frequency:\n- Academic Progress: Assessments will be conducted quarterly to track progress and make necessary adjustments. \n- Personal Development: Surveys and interviews will be conducted annually to capture long-term impact and beneficiary feedback. \n\n### Sample Size:\n- Academic Progress: A sample of 50 beneficiaries will be randomly selected for each assessment to ensure statistical significance. \n- Personal Development: All beneficiaries will be encouraged to participate in the surveys and interviews to gather comprehensive feedback. \n\n### Evaluation Dates:\n- Academic Progress: Assessments will be conducted in January, April, July, and October of each year. \n- Personal Development: Surveys and interviews will be conducted annually in December, with results analyzed and reported in January of the following year. \n\n## Governance and Resources\n\n### Sign-Off:\n- Academic Progress: Sign-off will be required from the project manager and the educational director after each assessment, with results presented to the board of directors. \n- Personal Development: Sign-off will be required from the project manager and the community engagement director, with results presented to the board of directors. \n\n### Resource Allocation:\n- Academic Progress: Resources will be provided by the educational director, including test materials, analysis tools, and staff time for assessment administration. \n- Personal Development: Resources will be provided by the community engagement director, including survey design, interview protocols, and staff time for data collection and analysis. \n\nBy implementing this evaluation plan, we aim to ensure the effectiveness and impact of our educational projects, allowing us to make informed decisions and continuously improve our initiatives.",
+  "additional_kwargs": {
+    "id": "d08a4766-c6d9-4a86-bba2-2755568aa104",
+    "finish_reason": "COMPLETE",
+    "content": "# Plan of Evaluation\n\n## Measurable Plan\n\nOur educational projects aim to enhance academic performance and personal growth among our beneficiaries. To measure the success of these projects, we will employ a combination of quantitative and qualitative assessments. \n\n### Academic Progress:\n- Goal: Improve academic performance by 20% among our beneficiaries within one year.\n- Success Metric: Increase in average grades or test scores.\n- Measurement Method: Administer pre- and post-project standardized tests, and compare the results. \n\n### Personal Development:\n- Goal: Enhance personal development skills, such as leadership, communication, and problem-solving, by 15% within one year.\n- Success Metric: Increase in self-reported confidence levels and improvement in soft skills.\n- Measurement Method: Conduct surveys and interviews with beneficiaries, focusing on their perceived growth and development. \n\n## Monitoring and Timing\n\n### Frequency:\n- Academic Progress: Assessments will be conducted quarterly to track progress and make necessary adjustments. \n- Personal Development: Surveys and interviews will be conducted annually to capture long-term impact and beneficiary feedback. \n\n### Sample Size:\n- Academic Progress: A sample of 50 beneficiaries will be randomly selected for each assessment to ensure statistical significance. \n- Personal Development: All beneficiaries will be encouraged to participate in the surveys and interviews to gather comprehensive feedback. \n\n### Evaluation Dates:\n- Academic Progress: Assessments will be conducted in January, April, July, and October of each year. \n- Personal Development: Surveys and interviews will be conducted annually in December, with results analyzed and reported in January of the following year. \n\n## Governance and Resources\n\n### Sign-Off:\n- Academic Progress: Sign-off will be required from the project manager and the educational director after each assessment, with results presented to the board of directors. \n- Personal Development: Sign-off will be required from the project manager and the community engagement director, with results presented to the board of directors. \n\n### Resource Allocation:\n- Academic Progress: Resources will be provided by the educational director, including test materials, analysis tools, and staff time for assessment administration. \n- Personal Development: Resources will be provided by the community engagement director, including survey design, interview protocols, and staff time for data collection and analysis. \n\nBy implementing this evaluation plan, we aim to ensure the effectiveness and impact of our educational projects, allowing us to make informed decisions and continuously improve our initiatives.",
+    "token_count": {
+      "input_tokens": 518.0,
+      "output_tokens": 517.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--86404aea-3985-4317-bba6-4683125a3123-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 518,
+    "output_tokens": 517,
+    "total_tokens": 1035
+  }
+}
+
+	section_one:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "methods_and_strategies -- ## Methods and Strategies:\n\nTo ensure the success of our educational project and achieve our goals, we will employ the following comprehensive methods and strategies:\n\n1. **Community Collaboration and Enrollment**: We will actively engage with local organizations, schools, and community leaders to identify and enroll eligible children and young people who can benefit from our scholarship program. By partnering with these entities, we aim to reach a wider audience and ensure a diverse and inclusive participant pool. \n\n2. **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we will invest in professional development workshops tailored to our tutors. These workshops will focus on enhancing teaching methodologies, classroom management techniques, and strategies to engage and motivate students. By empowering our tutors with these skills, we aim to create a positive and impactful learning environment. \n\n3. **Comprehensive Workshop Series**: In addition to academic support, we understand the holistic needs of our beneficiaries. Thus, we will organize and facilitate a series of workshops addressing various aspects of their lives. These workshops will cover financial literacy, health and wellness education, and essential life skills. By providing this comprehensive support, we aim to empower our beneficiaries to make informed decisions and lead healthier, more prosperous lives. \n\n4. **Progress Monitoring and Evaluation**: We are committed to tracking the progress and success of our beneficiaries. To achieve this, we will implement a robust monitoring and evaluation system. This system will allow us to identify areas of improvement and provide additional support and resources where needed. By regularly assessing our impact, we can ensure that our educational project is making a meaningful difference in the lives of our participants. \n\n5. **Sustainable Community Impact**: Our vision extends beyond the immediate benefits of our educational project. We aim to create a sustainable impact by collaborating with local communities and stakeholders. Through these partnerships, we can promote long-term change, ensuring that the skills and knowledge gained by our beneficiaries are passed on and benefit future generations. \n\nBy implementing these methods and strategies, we are confident that our educational project will not only provide immediate support but also create a lasting, positive change in the lives of the children and young people we serve.",
+  "additional_kwargs": {
+    "id": "ba145ed9-db59-4f74-969e-5f7c25292480",
+    "finish_reason": "COMPLETE",
+    "content": "## Methods and Strategies:\n\nTo ensure the success of our educational project and achieve our goals, we will employ the following comprehensive methods and strategies:\n\n1. **Community Collaboration and Enrollment**: We will actively engage with local organizations, schools, and community leaders to identify and enroll eligible children and young people who can benefit from our scholarship program. By partnering with these entities, we aim to reach a wider audience and ensure a diverse and inclusive participant pool. \n\n2. **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we will invest in professional development workshops tailored to our tutors. These workshops will focus on enhancing teaching methodologies, classroom management techniques, and strategies to engage and motivate students. By empowering our tutors with these skills, we aim to create a positive and impactful learning environment. \n\n3. **Comprehensive Workshop Series**: In addition to academic support, we understand the holistic needs of our beneficiaries. Thus, we will organize and facilitate a series of workshops addressing various aspects of their lives. These workshops will cover financial literacy, health and wellness education, and essential life skills. By providing this comprehensive support, we aim to empower our beneficiaries to make informed decisions and lead healthier, more prosperous lives. \n\n4. **Progress Monitoring and Evaluation**: We are committed to tracking the progress and success of our beneficiaries. To achieve this, we will implement a robust monitoring and evaluation system. This system will allow us to identify areas of improvement and provide additional support and resources where needed. By regularly assessing our impact, we can ensure that our educational project is making a meaningful difference in the lives of our participants. \n\n5. **Sustainable Community Impact**: Our vision extends beyond the immediate benefits of our educational project. We aim to create a sustainable impact by collaborating with local communities and stakeholders. Through these partnerships, we can promote long-term change, ensuring that the skills and knowledge gained by our beneficiaries are passed on and benefit future generations. \n\nBy implementing these methods and strategies, we are confident that our educational project will not only provide immediate support but also create a lasting, positive change in the lives of the children and young people we serve.",
+    "token_count": {
+      "input_tokens": 505.0,
+      "output_tokens": 432.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--26e548bd-4ee5-4999-8156-b10694fa10dc-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 505,
+    "output_tokens": 432,
+    "total_tokens": 937
+  }
+}
+
+id_counter:
+
+	22
+
+metrics:
+
+	sum:
+
+		input_tokens:
+
+			16899
+
+		output_tokens:
+
+			12592
+
+		total_tokens:
+
+			29491
+
+	rag_node_rag_first_chain:
+
+		input_tokens:
+
+			207
+
+		output_tokens:
+
+			112
+
+		total_tokens:
+
+			319
+
+	rag_node_rag_second_chain_0:
+
+		input_tokens:
+
+			307
+
+		output_tokens:
+
+			842
+
+		total_tokens:
+
+			1149
+
+	plan_node:
+
+		input_tokens:
+
+			844
+
+		output_tokens:
+
+			1435
+
+		total_tokens:
+
+			2279
+
+	organizational_background:
+
+		input_tokens:
+
+			514
+
+		output_tokens:
+
+			214
+
+		total_tokens:
+
+			728
+
+	cover_letter:
+
+		input_tokens:
+
+			537
+
+		output_tokens:
+
+			314
+
+		total_tokens:
+
+			851
+
+	goals_and_objective:
+
+		input_tokens:
+
+			486
+
+		output_tokens:
+
+			330
+
+		total_tokens:
+
+			816
+
+	statement_of_need:
+
+		input_tokens:
+
+			547
+
+		output_tokens:
+
+			372
+
+		total_tokens:
+
+			919
+
+	methods_and_strategies:
+
+		input_tokens:
+
+			505
+
+		output_tokens:
+
+			432
+
+		total_tokens:
+
+			937
+
+	budget_information:
+
+		input_tokens:
+
+			666
+
+		output_tokens:
+
+			527
+
+		total_tokens:
+
+			1193
+
+	plan_of_evaluation:
+
+		input_tokens:
+
+			518
+
+		output_tokens:
+
+			517
+
+		total_tokens:
+
+			1035
+
+	executive_summary:
+
+		input_tokens:
+
+			557
+
+		output_tokens:
+
+			549
+
+		total_tokens:
+
+			1106
+
+	first_half:
+
+		input_tokens:
+
+			1927
+
+		output_tokens:
+
+			570
+
+		total_tokens:
+
+			2497
+
+	second_half:
+
+		input_tokens:
+
+			2053
+
+		output_tokens:
+
+			744
+
+		total_tokens:
+
+			2797
+
+	draft_0:
+
+		input_tokens:
+
+			1844
+
+		output_tokens:
+
+			448
+
+		total_tokens:
+
+			2292
+
+	critique_1:
+
+		input_tokens:
+
+			521
+
+		output_tokens:
+
+			921
+
+		total_tokens:
+
+			1442
+
+	investigation_1_new_rag_prompt:
+
+		input_tokens:
+
+			1468
+
+		output_tokens:
+
+			704
+
+		total_tokens:
+
+			2172
+
+	investigation_1_new_rag_context_rag_first_chain:
+
+		input_tokens:
+
+			936
+
+		output_tokens:
+
+			1848
+
+		total_tokens:
+
+			2784
+
+	investigation_1_new_rag_context_rag_second_chain_0:
+
+		input_tokens:
+
+			279
+
+		output_tokens:
+
+			1205
+
+		total_tokens:
+
+			1484
+
+	draft_1:
+
+		input_tokens:
+
+			2183
+
+		output_tokens:
+
+			508
+
+		total_tokens:
+
+			2691
+
+messages:
+
+<class 'langchain_core.messages.human.HumanMessage'>
+{
+  "content": "what are current educational projects?",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "type": "human",
+  "name": null,
+  "id": null
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "Initial RAG",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": null,
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": null
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "",
+  "additional_kwargs": {
+    "tool_calls": [
+      {
+        "id": "864xd1Cex",
+        "function": {
+          "name": "SectionOutlines",
+          "arguments": "{\"cover_letter\": \"Dear [Donor's Name],\\n\\nI am writing to formally submit our grant proposal for your consideration. Our organization, [Your Organization's Name], is dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We believe that access to formal education and personal development opportunities is crucial for the holistic growth of these individuals.\\n\\nThrough this proposal, we aim to secure funding for our educational projects, which include scholarship funding, professional development support for tutors, and various workshops to meet the basic needs of our beneficiaries. We are confident that our projects align with your organization's goals and will make a significant impact on the lives of the children and young people we serve.\\n\\nThank you for considering our proposal. We look forward to the possibility of working together to create a brighter future for the beneficiaries of our educational projects.\\n\\nSincerely,\\n[Your Name]\\n[Your Position]\\n[Your Organization's Name]\", \"executive_summary\": \"Our organization, [Your Organization's Name], is seeking a grant to support our educational projects in Peru. Our quality education program focuses on providing access to formal education and fostering the personal and professional development of orphaned and vulnerable children and young people. Through scholarship funding, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\\n\\nWith this grant, we plan to expand our reach and enhance the quality of our educational projects. Our goal is to ensure that every child and young person in our partner organizations has access to a safe learning environment, quality education, and the support they need to thrive. We believe that our projects align with the donor's requirements and will make a significant difference in the lives of our beneficiaries.\", \"statement_of_need\": \"In Peru, many orphaned and vulnerable children and young people lack access to formal education and the support they need to develop their cognitive abilities and technical skills. This lack of access to quality education perpetuates cycles of poverty and limits opportunities for personal and professional growth. Our organization, [Your Organization's Name], aims to address this need by providing educational scholarships, improving the quality of tutoring through professional development, and offering workshops to meet the basic physical, emotional, and social needs of our beneficiaries.\\n\\nBy investing in the education and development of these individuals, we can create a sustainable impact in their communities and help break the cycle of poverty. We believe that every child and young person deserves access to quality education and the support they need to reach their full potential.\", \"goals_and_objective\": \"Our goals and objectives for this grant proposal are as follows:\\n\\n1. Provide educational scholarships to orphaned and vulnerable children and young people in Peru, ensuring their access to formal learning environments.\\n2. Improve the quality of tutoring by offering professional development support to tutors, enhancing their teaching skills and abilities.\\n3. Identify and meet the basic physical, emotional, and social needs of our beneficiaries through various workshops, such as financial education and health-related initiatives.\\n4. Expand our reach and enhance the quality of our educational projects, creating a sustainable impact in the communities we serve.\\n5. Foster a safe and supportive learning environment that promotes the personal and professional development of our beneficiaries, equipping them with essential tools for life.\", \"methods_and_strategies\": \"To achieve our goals and objectives, we will implement the following methods and strategies:\\n\\n1. Partner with local organizations to identify and enroll eligible children and young people in our educational scholarship program.\\n2. Develop and deliver professional development workshops for tutors, focusing on effective teaching strategies, classroom management, and student engagement.\\n3. Organize and facilitate workshops addressing the basic needs of our beneficiaries, such as financial education, health and wellness, and life skills.\\n4. Monitor and evaluate the progress of our beneficiaries, providing additional support and resources as needed to ensure their success.\\n5. Collaborate with local communities and stakeholders to create a sustainable impact and promote long-term change.\", \"plan_of_evaluation\": \"To evaluate the effectiveness of our educational projects, we will implement the following plan:\\n\\n1. Conduct regular assessments of our beneficiaries' academic progress and personal development, using both quantitative and qualitative measures.\\n2. Gather feedback from tutors and workshop facilitators to assess the impact of our professional development support and workshops.\\n3. Monitor and track the attendance and participation of our beneficiaries in our educational scholarship program and workshops.\\n4. Conduct surveys and interviews with our beneficiaries, their families, and community members to assess the overall impact of our projects on their lives and communities.\\n5. Analyze and report on the data collected, using the findings to inform our strategies and improve the quality of our educational projects.\", \"budget_information\": \"The budget for our educational projects is as follows:\\n\\n1. Educational Scholarships: $50,000\\n   - Tuition fees: $30,000\\n   - School supplies and materials: $10,000\\n   - Transportation and meals: $10,000\\n2. Professional Development Support for Tutors: $20,000\\n   - Workshop facilitation and materials: $10,000\\n   - Tutor stipends: $10,000\\n3. Workshops Addressing Basic Needs: $20,000\\n   - Workshop facilitation and materials: $10,000\\n   - Guest speakers and experts: $5,000\\n   - Participant transportation and meals: $5,000\\n4. Program Coordination and Management: $10,000\\n   - Staff salaries and benefits: $7,000\\n   - Program-related expenses: $3,000\\n\\nTotal Budget: $100,000\", \"organizational_background\": \"Our organization, [Your Organization's Name], is a non-profit dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We have been working in this field for over a decade, partnering with local organizations to identify and meet the needs of our beneficiaries.\\n\\nOur quality education program focuses on providing access to formal education and fostering the personal and professional development of our beneficiaries. Through educational scholarships, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\\n\\nWe are proud of the work we have accomplished so far, but we know that there is still much to be done. With the support of donors like you, we can continue to make a difference in the lives of the children and young people we serve and create a brighter future for all.\"}"
+        },
+        "index": 0
+      }
+    ]
+  },
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 844,
+      "total_tokens": 2279,
+      "completion_tokens": 1435
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "tool_calls",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--d10b78ca-28c1-488d-8b98-a6f0aa230762-0",
+  "tool_calls": [
+    {
+      "name": "SectionOutlines",
+      "args": {
+        "cover_letter": "Dear [Donor's Name],\n\nI am writing to formally submit our grant proposal for your consideration. Our organization, [Your Organization's Name], is dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We believe that access to formal education and personal development opportunities is crucial for the holistic growth of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which include scholarship funding, professional development support for tutors, and various workshops to meet the basic needs of our beneficiaries. We are confident that our projects align with your organization's goals and will make a significant impact on the lives of the children and young people we serve.\n\nThank you for considering our proposal. We look forward to the possibility of working together to create a brighter future for the beneficiaries of our educational projects.\n\nSincerely,\n[Your Name]\n[Your Position]\n[Your Organization's Name]",
+        "executive_summary": "Our organization, [Your Organization's Name], is seeking a grant to support our educational projects in Peru. Our quality education program focuses on providing access to formal education and fostering the personal and professional development of orphaned and vulnerable children and young people. Through scholarship funding, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\n\nWith this grant, we plan to expand our reach and enhance the quality of our educational projects. Our goal is to ensure that every child and young person in our partner organizations has access to a safe learning environment, quality education, and the support they need to thrive. We believe that our projects align with the donor's requirements and will make a significant difference in the lives of our beneficiaries.",
+        "statement_of_need": "In Peru, many orphaned and vulnerable children and young people lack access to formal education and the support they need to develop their cognitive abilities and technical skills. This lack of access to quality education perpetuates cycles of poverty and limits opportunities for personal and professional growth. Our organization, [Your Organization's Name], aims to address this need by providing educational scholarships, improving the quality of tutoring through professional development, and offering workshops to meet the basic physical, emotional, and social needs of our beneficiaries.\n\nBy investing in the education and development of these individuals, we can create a sustainable impact in their communities and help break the cycle of poverty. We believe that every child and young person deserves access to quality education and the support they need to reach their full potential.",
+        "goals_and_objective": "Our goals and objectives for this grant proposal are as follows:\n\n1. Provide educational scholarships to orphaned and vulnerable children and young people in Peru, ensuring their access to formal learning environments.\n2. Improve the quality of tutoring by offering professional development support to tutors, enhancing their teaching skills and abilities.\n3. Identify and meet the basic physical, emotional, and social needs of our beneficiaries through various workshops, such as financial education and health-related initiatives.\n4. Expand our reach and enhance the quality of our educational projects, creating a sustainable impact in the communities we serve.\n5. Foster a safe and supportive learning environment that promotes the personal and professional development of our beneficiaries, equipping them with essential tools for life.",
+        "methods_and_strategies": "To achieve our goals and objectives, we will implement the following methods and strategies:\n\n1. Partner with local organizations to identify and enroll eligible children and young people in our educational scholarship program.\n2. Develop and deliver professional development workshops for tutors, focusing on effective teaching strategies, classroom management, and student engagement.\n3. Organize and facilitate workshops addressing the basic needs of our beneficiaries, such as financial education, health and wellness, and life skills.\n4. Monitor and evaluate the progress of our beneficiaries, providing additional support and resources as needed to ensure their success.\n5. Collaborate with local communities and stakeholders to create a sustainable impact and promote long-term change.",
+        "plan_of_evaluation": "To evaluate the effectiveness of our educational projects, we will implement the following plan:\n\n1. Conduct regular assessments of our beneficiaries' academic progress and personal development, using both quantitative and qualitative measures.\n2. Gather feedback from tutors and workshop facilitators to assess the impact of our professional development support and workshops.\n3. Monitor and track the attendance and participation of our beneficiaries in our educational scholarship program and workshops.\n4. Conduct surveys and interviews with our beneficiaries, their families, and community members to assess the overall impact of our projects on their lives and communities.\n5. Analyze and report on the data collected, using the findings to inform our strategies and improve the quality of our educational projects.",
+        "budget_information": "The budget for our educational projects is as follows:\n\n1. Educational Scholarships: $50,000\n   - Tuition fees: $30,000\n   - School supplies and materials: $10,000\n   - Transportation and meals: $10,000\n2. Professional Development Support for Tutors: $20,000\n   - Workshop facilitation and materials: $10,000\n   - Tutor stipends: $10,000\n3. Workshops Addressing Basic Needs: $20,000\n   - Workshop facilitation and materials: $10,000\n   - Guest speakers and experts: $5,000\n   - Participant transportation and meals: $5,000\n4. Program Coordination and Management: $10,000\n   - Staff salaries and benefits: $7,000\n   - Program-related expenses: $3,000\n\nTotal Budget: $100,000",
+        "organizational_background": "Our organization, [Your Organization's Name], is a non-profit dedicated to providing quality education and support to orphaned and vulnerable children and young people in Peru. We have been working in this field for over a decade, partnering with local organizations to identify and meet the needs of our beneficiaries.\n\nOur quality education program focuses on providing access to formal education and fostering the personal and professional development of our beneficiaries. Through educational scholarships, professional development support for tutors, and various workshops, we aim to equip our beneficiaries with the essential tools for life and create a sustainable impact in their communities.\n\nWe are proud of the work we have accomplished so far, but we know that there is still much to be done. With the support of donors like you, we can continue to make a difference in the lives of the children and young people we serve and create a brighter future for all."
+      },
+      "id": "864xd1Cex",
+      "type": "tool_call"
+    }
+  ],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 844,
+    "output_tokens": 1435,
+    "total_tokens": 2279
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "organizational_background -- Our organization, LAFF, is a non-profit with a dedicated mission to empower orphaned and vulnerable children and young people in Peru through quality education and support. Established over a decade ago, we have partnered with local organizations to identify and address the unique needs of our beneficiaries, fostering their personal and professional growth.\n\nLAFF's quality education program is at the heart of our work. We provide access to formal education, offering educational scholarships to ensure our beneficiaries can pursue their academic goals. Additionally, we support tutors with professional development opportunities, ensuring they are equipped with the latest teaching methodologies. Our workshops further enhance the learning experience, covering a range of topics to develop essential life skills.\n\nWe are proud of the progress we have made so far, but we recognize that our work is far from complete. With your support, we can continue to make a lasting impact on the lives of these children and young people, providing them with the tools they need to thrive and contribute positively to their communities. Together, we can create a brighter and more sustainable future for all.",
+  "additional_kwargs": {
+    "id": "248ed761-efdd-464d-a250-8e0f4688ae92",
+    "finish_reason": "COMPLETE",
+    "content": "Our organization, LAFF, is a non-profit with a dedicated mission to empower orphaned and vulnerable children and young people in Peru through quality education and support. Established over a decade ago, we have partnered with local organizations to identify and address the unique needs of our beneficiaries, fostering their personal and professional growth.\n\nLAFF's quality education program is at the heart of our work. We provide access to formal education, offering educational scholarships to ensure our beneficiaries can pursue their academic goals. Additionally, we support tutors with professional development opportunities, ensuring they are equipped with the latest teaching methodologies. Our workshops further enhance the learning experience, covering a range of topics to develop essential life skills.\n\nWe are proud of the progress we have made so far, but we recognize that our work is far from complete. With your support, we can continue to make a lasting impact on the lives of these children and young people, providing them with the tools they need to thrive and contribute positively to their communities. Together, we can create a brighter and more sustainable future for all.",
+    "token_count": {
+      "input_tokens": 514.0,
+      "output_tokens": 214.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--2b06f00f-cb7c-4b4f-b23b-0c42448e3181-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 514,
+    "output_tokens": 214,
+    "total_tokens": 728
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "budget_information -- Here is a draft of the budget information section for your grant application, tailored to the one-page requirement: \n\n## Budget Information: \n\n### Phased Spending Timeline: \n\n- Startup: Educational Scholarships ($50,000) - This phase will cover the initial costs of providing scholarships to students, including tuition fees, school supplies, and transportation/meals. \n\n- Implementation: Professional Development Support for Tutors ($20,000) - During this phase, we will invest in the professional growth of our tutors through workshops and stipends, ensuring they are equipped to provide quality education. \n\n- Scale: Workshops Addressing Basic Needs ($20,000) - As the project progresses, we will allocate funds to organize workshops that address the basic needs of our community, including participant transportation and meals. \n\n- Closeout: Program Coordination and Management ($10,000) - This phase will ensure the smooth closure of the project, covering staff salaries and benefits, and any remaining program-related expenses. \n\n### Adaptive Forecasting and Fundraising Impact: \n\n- Best-Case Scenario: If fundraising exceeds expectations, we will allocate additional funds to enhance our educational scholarships, allowing more students to benefit. \n\n- Expected Scenario: With the proposed budget, we anticipate a successful implementation of our educational projects, meeting our core objectives. \n\n- Worst-Case Scenario: In the event of underperforming fundraising, we have identified areas where we can adjust our spending, such as reducing workshop frequencies or seeking alternative, more cost-effective methods for basic needs workshops. \n\n### Success Criteria and Long-Term Funding: \n\n- Success Metrics: Our success will be measured by the number of students supported through scholarships, the impact of professional development on tutor performance, and the reach of our basic needs workshops. \n\n- Funding Goals: We aim to secure short-term bridge grants to launch our projects and then seek multi-year sustainability grants to ensure the long-term viability of our educational initiatives. \n\n### End-to-End Budget: \n\n- Educational Scholarships: $50,000 \n- Professional Development Support: $20,000 \n- Workshops Addressing Basic Needs: $20,000 \n- Program Coordination: $10,000 \n\nTotal Budget: $100,000 \n\nThis budget outlines a comprehensive plan for the successful implementation and sustainability of our educational projects, ensuring we can make a meaningful impact on our community.",
+  "additional_kwargs": {
+    "id": "9d21f17b-3714-4162-843e-c0881382ea71",
+    "finish_reason": "COMPLETE",
+    "content": "Here is a draft of the budget information section for your grant application, tailored to the one-page requirement: \n\n## Budget Information: \n\n### Phased Spending Timeline: \n\n- Startup: Educational Scholarships ($50,000) - This phase will cover the initial costs of providing scholarships to students, including tuition fees, school supplies, and transportation/meals. \n\n- Implementation: Professional Development Support for Tutors ($20,000) - During this phase, we will invest in the professional growth of our tutors through workshops and stipends, ensuring they are equipped to provide quality education. \n\n- Scale: Workshops Addressing Basic Needs ($20,000) - As the project progresses, we will allocate funds to organize workshops that address the basic needs of our community, including participant transportation and meals. \n\n- Closeout: Program Coordination and Management ($10,000) - This phase will ensure the smooth closure of the project, covering staff salaries and benefits, and any remaining program-related expenses. \n\n### Adaptive Forecasting and Fundraising Impact: \n\n- Best-Case Scenario: If fundraising exceeds expectations, we will allocate additional funds to enhance our educational scholarships, allowing more students to benefit. \n\n- Expected Scenario: With the proposed budget, we anticipate a successful implementation of our educational projects, meeting our core objectives. \n\n- Worst-Case Scenario: In the event of underperforming fundraising, we have identified areas where we can adjust our spending, such as reducing workshop frequencies or seeking alternative, more cost-effective methods for basic needs workshops. \n\n### Success Criteria and Long-Term Funding: \n\n- Success Metrics: Our success will be measured by the number of students supported through scholarships, the impact of professional development on tutor performance, and the reach of our basic needs workshops. \n\n- Funding Goals: We aim to secure short-term bridge grants to launch our projects and then seek multi-year sustainability grants to ensure the long-term viability of our educational initiatives. \n\n### End-to-End Budget: \n\n- Educational Scholarships: $50,000 \n- Professional Development Support: $20,000 \n- Workshops Addressing Basic Needs: $20,000 \n- Program Coordination: $10,000 \n\nTotal Budget: $100,000 \n\nThis budget outlines a comprehensive plan for the successful implementation and sustainability of our educational projects, ensuring we can make a meaningful impact on our community.",
+    "token_count": {
+      "input_tokens": 666.0,
+      "output_tokens": 527.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--7f00bcad-7349-49c5-958f-c2c2dbec6b1d-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 666,
+    "output_tokens": 527,
+    "total_tokens": 1193
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "cover_letter -- Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal to you, seeking support for our educational initiatives aimed at benefiting orphaned and vulnerable children and young people in Peru. At LAFF, we are deeply committed to providing quality education and comprehensive support to ensure the holistic development of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which are meticulously designed to address the unique needs of our beneficiaries. Our projects encompass scholarship funding, empowering our young scholars to pursue their academic dreams, professional development support for our dedicated tutors, and a range of workshops tailored to meet the basic needs of our students. We firmly believe that these initiatives will not only enhance their educational journey but also empower them to become active contributors to their communities.\n\nYour organization's commitment to making a positive impact aligns perfectly with our mission, and we are confident that our projects will resonate with your goals. We are eager to showcase how your support can make a significant difference in the lives of these children and young people, offering them a brighter and more promising future.\n\nThank you for considering our proposal. We are excited about the potential partnership and the opportunity to create a lasting impact together.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that I have kept the tone professional and enthusiastic, highlighting the organization's dedication and the potential impact of the grant. Feel free to provide any additional details or adjustments to ensure it aligns perfectly with your vision and the donor's requirements.",
+  "additional_kwargs": {
+    "id": "0e643db2-621d-4dc0-87e7-4e6951b2e8ba",
+    "finish_reason": "COMPLETE",
+    "content": "Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal to you, seeking support for our educational initiatives aimed at benefiting orphaned and vulnerable children and young people in Peru. At LAFF, we are deeply committed to providing quality education and comprehensive support to ensure the holistic development of these individuals.\n\nThrough this proposal, we aim to secure funding for our educational projects, which are meticulously designed to address the unique needs of our beneficiaries. Our projects encompass scholarship funding, empowering our young scholars to pursue their academic dreams, professional development support for our dedicated tutors, and a range of workshops tailored to meet the basic needs of our students. We firmly believe that these initiatives will not only enhance their educational journey but also empower them to become active contributors to their communities.\n\nYour organization's commitment to making a positive impact aligns perfectly with our mission, and we are confident that our projects will resonate with your goals. We are eager to showcase how your support can make a significant difference in the lives of these children and young people, offering them a brighter and more promising future.\n\nThank you for considering our proposal. We are excited about the potential partnership and the opportunity to create a lasting impact together.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that I have kept the tone professional and enthusiastic, highlighting the organization's dedication and the potential impact of the grant. Feel free to provide any additional details or adjustments to ensure it aligns perfectly with your vision and the donor's requirements.",
+    "token_count": {
+      "input_tokens": 537.0,
+      "output_tokens": 314.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--06aaab7f-b948-4da9-8d8d-45bf518cac2c-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 537,
+    "output_tokens": 314,
+    "total_tokens": 851
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "plan_of_evaluation -- # Plan of Evaluation\n\n## Measurable Plan\n\nOur educational projects aim to enhance academic performance and personal growth among our beneficiaries. To measure the success of these projects, we will employ a combination of quantitative and qualitative assessments. \n\n### Academic Progress:\n- Goal: Improve academic performance by 20% among our beneficiaries within one year.\n- Success Metric: Increase in average grades or test scores.\n- Measurement Method: Administer pre- and post-project standardized tests, and compare the results. \n\n### Personal Development:\n- Goal: Enhance personal development skills, such as leadership, communication, and problem-solving, by 15% within one year.\n- Success Metric: Increase in self-reported confidence levels and improvement in soft skills.\n- Measurement Method: Conduct surveys and interviews with beneficiaries, focusing on their perceived growth and development. \n\n## Monitoring and Timing\n\n### Frequency:\n- Academic Progress: Assessments will be conducted quarterly to track progress and make necessary adjustments. \n- Personal Development: Surveys and interviews will be conducted annually to capture long-term impact and beneficiary feedback. \n\n### Sample Size:\n- Academic Progress: A sample of 50 beneficiaries will be randomly selected for each assessment to ensure statistical significance. \n- Personal Development: All beneficiaries will be encouraged to participate in the surveys and interviews to gather comprehensive feedback. \n\n### Evaluation Dates:\n- Academic Progress: Assessments will be conducted in January, April, July, and October of each year. \n- Personal Development: Surveys and interviews will be conducted annually in December, with results analyzed and reported in January of the following year. \n\n## Governance and Resources\n\n### Sign-Off:\n- Academic Progress: Sign-off will be required from the project manager and the educational director after each assessment, with results presented to the board of directors. \n- Personal Development: Sign-off will be required from the project manager and the community engagement director, with results presented to the board of directors. \n\n### Resource Allocation:\n- Academic Progress: Resources will be provided by the educational director, including test materials, analysis tools, and staff time for assessment administration. \n- Personal Development: Resources will be provided by the community engagement director, including survey design, interview protocols, and staff time for data collection and analysis. \n\nBy implementing this evaluation plan, we aim to ensure the effectiveness and impact of our educational projects, allowing us to make informed decisions and continuously improve our initiatives.",
+  "additional_kwargs": {
+    "id": "d08a4766-c6d9-4a86-bba2-2755568aa104",
+    "finish_reason": "COMPLETE",
+    "content": "# Plan of Evaluation\n\n## Measurable Plan\n\nOur educational projects aim to enhance academic performance and personal growth among our beneficiaries. To measure the success of these projects, we will employ a combination of quantitative and qualitative assessments. \n\n### Academic Progress:\n- Goal: Improve academic performance by 20% among our beneficiaries within one year.\n- Success Metric: Increase in average grades or test scores.\n- Measurement Method: Administer pre- and post-project standardized tests, and compare the results. \n\n### Personal Development:\n- Goal: Enhance personal development skills, such as leadership, communication, and problem-solving, by 15% within one year.\n- Success Metric: Increase in self-reported confidence levels and improvement in soft skills.\n- Measurement Method: Conduct surveys and interviews with beneficiaries, focusing on their perceived growth and development. \n\n## Monitoring and Timing\n\n### Frequency:\n- Academic Progress: Assessments will be conducted quarterly to track progress and make necessary adjustments. \n- Personal Development: Surveys and interviews will be conducted annually to capture long-term impact and beneficiary feedback. \n\n### Sample Size:\n- Academic Progress: A sample of 50 beneficiaries will be randomly selected for each assessment to ensure statistical significance. \n- Personal Development: All beneficiaries will be encouraged to participate in the surveys and interviews to gather comprehensive feedback. \n\n### Evaluation Dates:\n- Academic Progress: Assessments will be conducted in January, April, July, and October of each year. \n- Personal Development: Surveys and interviews will be conducted annually in December, with results analyzed and reported in January of the following year. \n\n## Governance and Resources\n\n### Sign-Off:\n- Academic Progress: Sign-off will be required from the project manager and the educational director after each assessment, with results presented to the board of directors. \n- Personal Development: Sign-off will be required from the project manager and the community engagement director, with results presented to the board of directors. \n\n### Resource Allocation:\n- Academic Progress: Resources will be provided by the educational director, including test materials, analysis tools, and staff time for assessment administration. \n- Personal Development: Resources will be provided by the community engagement director, including survey design, interview protocols, and staff time for data collection and analysis. \n\nBy implementing this evaluation plan, we aim to ensure the effectiveness and impact of our educational projects, allowing us to make informed decisions and continuously improve our initiatives.",
+    "token_count": {
+      "input_tokens": 518.0,
+      "output_tokens": 517.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--86404aea-3985-4317-bba6-4683125a3123-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 518,
+    "output_tokens": 517,
+    "total_tokens": 1035
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "executive_summary -- # Executive Summary\n\n## Project Summary, Problem, and Purpose\n\nLAFF seeks a grant to expand its educational projects in Peru, aiming to provide quality education and personal development opportunities to orphaned and vulnerable children and youth. The problem we address is the lack of access to formal education and support systems for these children, which can lead to a cycle of poverty and limited opportunities. \n\nOur vision is to break this cycle by ensuring these children have the tools and resources to succeed academically and personally. We believe that education is a powerful catalyst for change, empowering individuals to overcome adversity and create a better future for themselves and their communities. \n\nThe specific outcomes of this project include: \n\n- Increased access to formal education for orphaned and vulnerable children.\n- Enhanced personal and professional development through tailored support and workshops.\n- Improved learning environments and educational resources for partner organizations.\n- Sustainable impact through the development of long-term support systems and community engagement.\n\n## Impact and Rationale\n\nThis project will directly benefit the orphaned and vulnerable children and youth in our partner organizations, providing them with the education and skills necessary to thrive. By offering scholarship funding and professional development support for tutors, we aim to create a supportive learning environment that fosters academic excellence and personal growth. \n\nOur stakeholders, including the children, their families, and the wider community, will experience the positive impact of improved educational opportunities. The immediate action is necessary to address the urgent need for quality education and support systems, as these children are at risk of falling further behind without intervention. \n\nLAFF is uniquely qualified to execute this project due to our established relationships with partner organizations and our expertise in educational projects. Our team has a proven track record of successful implementations, and we are committed to ensuring the long-term sustainability of our initiatives. \n\n## Plan, Timeline, and Resources\n\nOur high-level implementation steps include: \n\n- Identifying and partnering with additional organizations to expand our reach.\n- Developing tailored educational programs and workshops based on the needs of the children.\n- Providing scholarship funding and professional development support for tutors.\n- Implementing a sustainable funding model to ensure long-term project viability.\n\nWe aim to achieve measurable results within a year, with a focus on increasing the number of children accessing quality education and improving their academic performance. Our top-line budget for this project is $[amount], which will cover the costs of educational resources, tutor support, and administrative expenses. \n\nOur organizational strengths include our experienced team, established partnerships, and a proven commitment to community development. We are confident in our ability to execute this project effectively and create a lasting impact on the lives of orphaned and vulnerable children in Peru.",
+  "additional_kwargs": {
+    "id": "da48a09d-78bf-43fc-b072-a6f64bd96a00",
+    "finish_reason": "COMPLETE",
+    "content": "# Executive Summary\n\n## Project Summary, Problem, and Purpose\n\nLAFF seeks a grant to expand its educational projects in Peru, aiming to provide quality education and personal development opportunities to orphaned and vulnerable children and youth. The problem we address is the lack of access to formal education and support systems for these children, which can lead to a cycle of poverty and limited opportunities. \n\nOur vision is to break this cycle by ensuring these children have the tools and resources to succeed academically and personally. We believe that education is a powerful catalyst for change, empowering individuals to overcome adversity and create a better future for themselves and their communities. \n\nThe specific outcomes of this project include: \n\n- Increased access to formal education for orphaned and vulnerable children.\n- Enhanced personal and professional development through tailored support and workshops.\n- Improved learning environments and educational resources for partner organizations.\n- Sustainable impact through the development of long-term support systems and community engagement.\n\n## Impact and Rationale\n\nThis project will directly benefit the orphaned and vulnerable children and youth in our partner organizations, providing them with the education and skills necessary to thrive. By offering scholarship funding and professional development support for tutors, we aim to create a supportive learning environment that fosters academic excellence and personal growth. \n\nOur stakeholders, including the children, their families, and the wider community, will experience the positive impact of improved educational opportunities. The immediate action is necessary to address the urgent need for quality education and support systems, as these children are at risk of falling further behind without intervention. \n\nLAFF is uniquely qualified to execute this project due to our established relationships with partner organizations and our expertise in educational projects. Our team has a proven track record of successful implementations, and we are committed to ensuring the long-term sustainability of our initiatives. \n\n## Plan, Timeline, and Resources\n\nOur high-level implementation steps include: \n\n- Identifying and partnering with additional organizations to expand our reach.\n- Developing tailored educational programs and workshops based on the needs of the children.\n- Providing scholarship funding and professional development support for tutors.\n- Implementing a sustainable funding model to ensure long-term project viability.\n\nWe aim to achieve measurable results within a year, with a focus on increasing the number of children accessing quality education and improving their academic performance. Our top-line budget for this project is $[amount], which will cover the costs of educational resources, tutor support, and administrative expenses. \n\nOur organizational strengths include our experienced team, established partnerships, and a proven commitment to community development. We are confident in our ability to execute this project effectively and create a lasting impact on the lives of orphaned and vulnerable children in Peru.",
+    "token_count": {
+      "input_tokens": 557.0,
+      "output_tokens": 549.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--333b0778-75d2-4d84-8134-a223636c2aa3-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 557,
+    "output_tokens": 549,
+    "total_tokens": 1106
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "goals_and_objective -- Our goals and objectives for this grant proposal are designed to create a holistic and sustainable impact on the lives of orphaned and vulnerable children and young people in Peru. Here's an overview:\n\n1. Educational Scholarships: We aim to provide financial support to ensure these children and young adults can access formal education. By covering their educational expenses, we empower them to pursue their academic goals and break the cycle of vulnerability. \n\n2. Tutor Professional Development: Recognizing the importance of quality education, we will invest in the professional growth of our tutors. Through workshops and training programs, we will enhance their teaching methodologies, ensuring our beneficiaries receive the best possible education. \n\n3. Addressing Basic Needs: Beyond academics, we understand the importance of holistic development. We plan to organize workshops focused on financial literacy, health education, and emotional well-being. By addressing these fundamental needs, we aim to create a supportive environment for our beneficiaries to thrive. \n\n4. Expanding Reach and Impact: Our vision is to expand our educational projects to reach more communities in need. By partnering with local organizations and institutions, we can leverage their expertise and resources to enhance the quality and sustainability of our initiatives. \n\n5. Creating a Supportive Environment: At the heart of our mission is the creation of a safe and nurturing learning space. We believe that by fostering a supportive environment, we can encourage personal growth, build confidence, and equip our beneficiaries with the skills and mindset needed to succeed in their personal and professional lives. \n\nWith this grant, we aim to empower these vulnerable youth, providing them with the tools and opportunities to build a brighter future for themselves and their communities.",
+  "additional_kwargs": {
+    "id": "c7bcbd63-0eae-4751-b273-7ef4ac2c97fe",
+    "finish_reason": "COMPLETE",
+    "content": "Our goals and objectives for this grant proposal are designed to create a holistic and sustainable impact on the lives of orphaned and vulnerable children and young people in Peru. Here's an overview:\n\n1. Educational Scholarships: We aim to provide financial support to ensure these children and young adults can access formal education. By covering their educational expenses, we empower them to pursue their academic goals and break the cycle of vulnerability. \n\n2. Tutor Professional Development: Recognizing the importance of quality education, we will invest in the professional growth of our tutors. Through workshops and training programs, we will enhance their teaching methodologies, ensuring our beneficiaries receive the best possible education. \n\n3. Addressing Basic Needs: Beyond academics, we understand the importance of holistic development. We plan to organize workshops focused on financial literacy, health education, and emotional well-being. By addressing these fundamental needs, we aim to create a supportive environment for our beneficiaries to thrive. \n\n4. Expanding Reach and Impact: Our vision is to expand our educational projects to reach more communities in need. By partnering with local organizations and institutions, we can leverage their expertise and resources to enhance the quality and sustainability of our initiatives. \n\n5. Creating a Supportive Environment: At the heart of our mission is the creation of a safe and nurturing learning space. We believe that by fostering a supportive environment, we can encourage personal growth, build confidence, and equip our beneficiaries with the skills and mindset needed to succeed in their personal and professional lives. \n\nWith this grant, we aim to empower these vulnerable youth, providing them with the tools and opportunities to build a brighter future for themselves and their communities.",
+    "token_count": {
+      "input_tokens": 486.0,
+      "output_tokens": 330.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ec153922-9a3b-4e15-b237-1adfe6b3b0d9-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 486,
+    "output_tokens": 330,
+    "total_tokens": 816
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "methods_and_strategies -- ## Methods and Strategies:\n\nTo ensure the success of our educational project and achieve our goals, we will employ the following comprehensive methods and strategies:\n\n1. **Community Collaboration and Enrollment**: We will actively engage with local organizations, schools, and community leaders to identify and enroll eligible children and young people who can benefit from our scholarship program. By partnering with these entities, we aim to reach a wider audience and ensure a diverse and inclusive participant pool. \n\n2. **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we will invest in professional development workshops tailored to our tutors. These workshops will focus on enhancing teaching methodologies, classroom management techniques, and strategies to engage and motivate students. By empowering our tutors with these skills, we aim to create a positive and impactful learning environment. \n\n3. **Comprehensive Workshop Series**: In addition to academic support, we understand the holistic needs of our beneficiaries. Thus, we will organize and facilitate a series of workshops addressing various aspects of their lives. These workshops will cover financial literacy, health and wellness education, and essential life skills. By providing this comprehensive support, we aim to empower our beneficiaries to make informed decisions and lead healthier, more prosperous lives. \n\n4. **Progress Monitoring and Evaluation**: We are committed to tracking the progress and success of our beneficiaries. To achieve this, we will implement a robust monitoring and evaluation system. This system will allow us to identify areas of improvement and provide additional support and resources where needed. By regularly assessing our impact, we can ensure that our educational project is making a meaningful difference in the lives of our participants. \n\n5. **Sustainable Community Impact**: Our vision extends beyond the immediate benefits of our educational project. We aim to create a sustainable impact by collaborating with local communities and stakeholders. Through these partnerships, we can promote long-term change, ensuring that the skills and knowledge gained by our beneficiaries are passed on and benefit future generations. \n\nBy implementing these methods and strategies, we are confident that our educational project will not only provide immediate support but also create a lasting, positive change in the lives of the children and young people we serve.",
+  "additional_kwargs": {
+    "id": "ba145ed9-db59-4f74-969e-5f7c25292480",
+    "finish_reason": "COMPLETE",
+    "content": "## Methods and Strategies:\n\nTo ensure the success of our educational project and achieve our goals, we will employ the following comprehensive methods and strategies:\n\n1. **Community Collaboration and Enrollment**: We will actively engage with local organizations, schools, and community leaders to identify and enroll eligible children and young people who can benefit from our scholarship program. By partnering with these entities, we aim to reach a wider audience and ensure a diverse and inclusive participant pool. \n\n2. **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we will invest in professional development workshops tailored to our tutors. These workshops will focus on enhancing teaching methodologies, classroom management techniques, and strategies to engage and motivate students. By empowering our tutors with these skills, we aim to create a positive and impactful learning environment. \n\n3. **Comprehensive Workshop Series**: In addition to academic support, we understand the holistic needs of our beneficiaries. Thus, we will organize and facilitate a series of workshops addressing various aspects of their lives. These workshops will cover financial literacy, health and wellness education, and essential life skills. By providing this comprehensive support, we aim to empower our beneficiaries to make informed decisions and lead healthier, more prosperous lives. \n\n4. **Progress Monitoring and Evaluation**: We are committed to tracking the progress and success of our beneficiaries. To achieve this, we will implement a robust monitoring and evaluation system. This system will allow us to identify areas of improvement and provide additional support and resources where needed. By regularly assessing our impact, we can ensure that our educational project is making a meaningful difference in the lives of our participants. \n\n5. **Sustainable Community Impact**: Our vision extends beyond the immediate benefits of our educational project. We aim to create a sustainable impact by collaborating with local communities and stakeholders. Through these partnerships, we can promote long-term change, ensuring that the skills and knowledge gained by our beneficiaries are passed on and benefit future generations. \n\nBy implementing these methods and strategies, we are confident that our educational project will not only provide immediate support but also create a lasting, positive change in the lives of the children and young people we serve.",
+    "token_count": {
+      "input_tokens": 505.0,
+      "output_tokens": 432.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--26e548bd-4ee5-4999-8156-b10694fa10dc-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 505,
+    "output_tokens": 432,
+    "total_tokens": 937
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "statement_of_need -- ## Statement of Need: Breaking the Cycle of Poverty through Education\n\n### Define the Problem:\nIn Peru, orphaned and vulnerable children face a critical challenge: limited access to formal education and the necessary support for cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their personal growth and future prospects. \n\n### Show Impact with Evidence:\nOur organization aims to address this issue by providing comprehensive support to 50 orphaned and vulnerable children over a period of 12 months. Through educational scholarships, we will ensure these children have the means to access quality education. Additionally, we will invest in professional development for tutors, enhancing the quality of their teaching and the overall learning experience. \n\nTo meet the basic needs of our beneficiaries, we will organize regular workshops focused on physical, emotional, and social well-being. By addressing these fundamental needs, we can create an environment conducive to learning and personal development. \n\n### Outline a Clear, Concise Plan:\nOur project will deliver lasting value by empowering these children with the tools they need to break free from the cycle of poverty. By investing in their education and overall development, we can create a sustainable impact that extends beyond the individual to their families and communities. \n\nWithin the first six months, we will focus on establishing a strong foundation by providing educational scholarships and professional development for tutors. This will be followed by the implementation of our workshop series, addressing the holistic needs of our beneficiaries. \n\nBy the end of the 12-month period, we aim to have not only improved the educational outcomes of these children but also equipped them with the skills and confidence to pursue further education and professional opportunities. \n\nThis project is a critical step towards creating a brighter future for orphaned and vulnerable children in Peru, and we believe it deserves your support and investment.",
+  "additional_kwargs": {
+    "id": "aea62037-0f86-4c09-9952-49cd6fd2f9ea",
+    "finish_reason": "COMPLETE",
+    "content": "## Statement of Need: Breaking the Cycle of Poverty through Education\n\n### Define the Problem:\nIn Peru, orphaned and vulnerable children face a critical challenge: limited access to formal education and the necessary support for cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their personal growth and future prospects. \n\n### Show Impact with Evidence:\nOur organization aims to address this issue by providing comprehensive support to 50 orphaned and vulnerable children over a period of 12 months. Through educational scholarships, we will ensure these children have the means to access quality education. Additionally, we will invest in professional development for tutors, enhancing the quality of their teaching and the overall learning experience. \n\nTo meet the basic needs of our beneficiaries, we will organize regular workshops focused on physical, emotional, and social well-being. By addressing these fundamental needs, we can create an environment conducive to learning and personal development. \n\n### Outline a Clear, Concise Plan:\nOur project will deliver lasting value by empowering these children with the tools they need to break free from the cycle of poverty. By investing in their education and overall development, we can create a sustainable impact that extends beyond the individual to their families and communities. \n\nWithin the first six months, we will focus on establishing a strong foundation by providing educational scholarships and professional development for tutors. This will be followed by the implementation of our workshop series, addressing the holistic needs of our beneficiaries. \n\nBy the end of the 12-month period, we aim to have not only improved the educational outcomes of these children but also equipped them with the skills and confidence to pursue further education and professional opportunities. \n\nThis project is a critical step towards creating a brighter future for orphaned and vulnerable children in Peru, and we believe it deserves your support and investment.",
+    "token_count": {
+      "input_tokens": 547.0,
+      "output_tokens": 372.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--38dcc8dc-3b36-4edb-936c-eed16ad99cbc-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 547,
+    "output_tokens": 372,
+    "total_tokens": 919
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "first_half -- Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal, which seeks to expand our educational initiatives in Peru and make a profound impact on the lives of orphaned and vulnerable children and young people. At LAFF, we are dedicated to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n## Executive Summary:\n\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our vision is to empower these children through quality education and personal development, ensuring they have the tools to thrive academically and personally. This project will provide increased access to formal education, enhance personal growth, and improve learning environments. \n\nOur immediate action is necessary to intervene and offer support, as these children are at risk without intervention. We are confident in our ability to execute this project effectively, given our established partnerships and expertise in educational projects. \n\n## Statement of Need:\n\nIn Peru, orphaned and vulnerable children face a significant challenge: limited access to education and support for their cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their growth and future prospects. \n\nOur project aims to support 50 orphaned and vulnerable children over 12 months by providing educational scholarships and professional development for tutors. We will also organize workshops to address their basic needs, creating a holistic approach to their development. \n\nWithin the first six months, we will focus on establishing a strong educational foundation, followed by our workshop series. By the end of the year, we aim to improve their educational outcomes and empower them to pursue further opportunities. \n\n## Goals and Objectives:\n\n- **Educational Scholarships:** We will provide financial support to ensure access to formal education, breaking the cycle of vulnerability.\n- **Tutor Professional Development:** We invest in tutor growth to enhance teaching quality and the overall learning experience.\n- **Addressing Basic Needs:** We organize workshops on financial literacy, health, and emotional well-being to support holistic development.\n- **Expanding Reach:** We aim to partner with local organizations to enhance our impact and sustainability.\n- **Creating a Supportive Environment:** We foster a safe and nurturing learning space, encouraging personal growth and confidence.\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity. \n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that this draft combines the key elements of your provided sections to create a concise and compelling introduction to your grant proposal. It highlights the problem, the vision, and the impact of your educational projects, while also outlining the goals and objectives.",
+  "additional_kwargs": {
+    "id": "62338d16-0990-4d48-ba5e-a27a0f7704ac",
+    "finish_reason": "COMPLETE",
+    "content": "Dear [Donor's Name],\n\nI am thrilled to formally present our grant proposal, which seeks to expand our educational initiatives in Peru and make a profound impact on the lives of orphaned and vulnerable children and young people. At LAFF, we are dedicated to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n## Executive Summary:\n\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our vision is to empower these children through quality education and personal development, ensuring they have the tools to thrive academically and personally. This project will provide increased access to formal education, enhance personal growth, and improve learning environments. \n\nOur immediate action is necessary to intervene and offer support, as these children are at risk without intervention. We are confident in our ability to execute this project effectively, given our established partnerships and expertise in educational projects. \n\n## Statement of Need:\n\nIn Peru, orphaned and vulnerable children face a significant challenge: limited access to education and support for their cognitive and skill development. This lack of opportunity perpetuates a cycle of poverty, hindering their growth and future prospects. \n\nOur project aims to support 50 orphaned and vulnerable children over 12 months by providing educational scholarships and professional development for tutors. We will also organize workshops to address their basic needs, creating a holistic approach to their development. \n\nWithin the first six months, we will focus on establishing a strong educational foundation, followed by our workshop series. By the end of the year, we aim to improve their educational outcomes and empower them to pursue further opportunities. \n\n## Goals and Objectives:\n\n- **Educational Scholarships:** We will provide financial support to ensure access to formal education, breaking the cycle of vulnerability.\n- **Tutor Professional Development:** We invest in tutor growth to enhance teaching quality and the overall learning experience.\n- **Addressing Basic Needs:** We organize workshops on financial literacy, health, and emotional well-being to support holistic development.\n- **Expanding Reach:** We aim to partner with local organizations to enhance our impact and sustainability.\n- **Creating a Supportive Environment:** We foster a safe and nurturing learning space, encouraging personal growth and confidence.\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity. \n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF\n\nPlease note that this draft combines the key elements of your provided sections to create a concise and compelling introduction to your grant proposal. It highlights the problem, the vision, and the impact of your educational projects, while also outlining the goals and objectives.",
+    "token_count": {
+      "input_tokens": 1927.0,
+      "output_tokens": 570.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ffe70330-4ff3-48ab-ab7b-7989034af9e8-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 1927,
+    "output_tokens": 570,
+    "total_tokens": 2497
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "second_half -- # LAFF's Educational Project: Empowering Youth through Quality Education\n\n## Organizational Background\n\nLAFF, a non-profit organization with a decade-long commitment, strives to empower orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries, ensuring a holistic approach to their development.\n\nOur quality education program is our flagship initiative, offering educational scholarships and comprehensive support. We believe that access to formal education is a powerful tool for change, and our program aims to ensure that every child has the opportunity to pursue their academic dreams. By investing in professional development for tutors and organizing workshops on various life skills, we create an enriching learning environment.\n\n## Methods and Strategies\n\nTo achieve our goals, we employ a range of comprehensive methods and strategies:\n\n- **Community Collaboration and Enrollment**: We actively engage with local communities, schools, and leaders to identify and enroll eligible children. This partnership approach ensures a diverse and inclusive participant pool, reaching those who need our support the most.\n\n- **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we invest in workshops to enhance teaching skills, classroom management, and student engagement strategies. Empowered tutors create a positive and impactful learning experience.\n\n- **Comprehensive Workshop Series**: Beyond academics, we address holistic needs. Our workshops cover financial literacy, health and wellness, and essential life skills. By providing this comprehensive support, we aim to empower beneficiaries to make informed choices.\n\n- **Progress Monitoring and Evaluation**: We track progress through a robust system, identifying areas for improvement. Regular assessments ensure we make a meaningful difference in the lives of our participants.\n\n- **Sustainable Community Impact**: Our vision extends beyond immediate benefits. We collaborate with local communities to create long-lasting change, ensuring that the skills and knowledge gained are passed on for future generations.\n\n## Plan of Evaluation\n\nOur evaluation plan measures academic and personal development:\n\n- **Academic Progress**: We aim for a 20% improvement in academic performance within a year. This will be measured through pre- and post-project standardized tests, with quarterly assessments to track progress.\n\n- **Personal Development**: We aim to enhance personal development skills by 15% within a year. This will be assessed through surveys and interviews, focusing on confidence levels and soft skills. Annual surveys capture long-term impact.\n\n## Budget Information\n\nOur budget is designed for phased spending:\n\n- **Startup**: Educational Scholarships ($50,000) - Covers initial scholarship costs, including tuition, supplies, and transportation/meals.\n\n- **Implementation**: Professional Development Support ($20,000) - Invests in tutor workshops and stipends.\n\n- **Scale**: Workshops Addressing Basic Needs ($20,000) - Funds workshops for community needs, including transportation and meals.\n\n- **Closeout**: Program Coordination ($10,000) - Ensures smooth project closure, covering staff salaries and benefits.\n\nWe have identified success criteria and funding goals:\n\n- **Success Metrics**: Number of students supported, tutor performance, and workshop reach.\n\n- **Funding Goals**: Short-term bridge grants for launch, followed by multi-year sustainability grants.\n\nThis proposal outlines our commitment to empowering youth through quality education, with a focus on community collaboration and holistic support. We believe in the transformative power of education and are dedicated to making a lasting impact.",
+  "additional_kwargs": {
+    "id": "4c02200a-56bb-4d42-b216-f1747c9c48d5",
+    "finish_reason": "COMPLETE",
+    "content": "# LAFF's Educational Project: Empowering Youth through Quality Education\n\n## Organizational Background\n\nLAFF, a non-profit organization with a decade-long commitment, strives to empower orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries, ensuring a holistic approach to their development.\n\nOur quality education program is our flagship initiative, offering educational scholarships and comprehensive support. We believe that access to formal education is a powerful tool for change, and our program aims to ensure that every child has the opportunity to pursue their academic dreams. By investing in professional development for tutors and organizing workshops on various life skills, we create an enriching learning environment.\n\n## Methods and Strategies\n\nTo achieve our goals, we employ a range of comprehensive methods and strategies:\n\n- **Community Collaboration and Enrollment**: We actively engage with local communities, schools, and leaders to identify and enroll eligible children. This partnership approach ensures a diverse and inclusive participant pool, reaching those who need our support the most.\n\n- **Professional Development for Tutors**: Recognizing the importance of tutor expertise, we invest in workshops to enhance teaching skills, classroom management, and student engagement strategies. Empowered tutors create a positive and impactful learning experience.\n\n- **Comprehensive Workshop Series**: Beyond academics, we address holistic needs. Our workshops cover financial literacy, health and wellness, and essential life skills. By providing this comprehensive support, we aim to empower beneficiaries to make informed choices.\n\n- **Progress Monitoring and Evaluation**: We track progress through a robust system, identifying areas for improvement. Regular assessments ensure we make a meaningful difference in the lives of our participants.\n\n- **Sustainable Community Impact**: Our vision extends beyond immediate benefits. We collaborate with local communities to create long-lasting change, ensuring that the skills and knowledge gained are passed on for future generations.\n\n## Plan of Evaluation\n\nOur evaluation plan measures academic and personal development:\n\n- **Academic Progress**: We aim for a 20% improvement in academic performance within a year. This will be measured through pre- and post-project standardized tests, with quarterly assessments to track progress.\n\n- **Personal Development**: We aim to enhance personal development skills by 15% within a year. This will be assessed through surveys and interviews, focusing on confidence levels and soft skills. Annual surveys capture long-term impact.\n\n## Budget Information\n\nOur budget is designed for phased spending:\n\n- **Startup**: Educational Scholarships ($50,000) - Covers initial scholarship costs, including tuition, supplies, and transportation/meals.\n\n- **Implementation**: Professional Development Support ($20,000) - Invests in tutor workshops and stipends.\n\n- **Scale**: Workshops Addressing Basic Needs ($20,000) - Funds workshops for community needs, including transportation and meals.\n\n- **Closeout**: Program Coordination ($10,000) - Ensures smooth project closure, covering staff salaries and benefits.\n\nWe have identified success criteria and funding goals:\n\n- **Success Metrics**: Number of students supported, tutor performance, and workshop reach.\n\n- **Funding Goals**: Short-term bridge grants for launch, followed by multi-year sustainability grants.\n\nThis proposal outlines our commitment to empowering youth through quality education, with a focus on community collaboration and holistic support. We believe in the transformative power of education and are dedicated to making a lasting impact.",
+    "token_count": {
+      "input_tokens": 2053.0,
+      "output_tokens": 744.0
+    }
+  },
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--271f1754-557f-419f-a879-34859fe46a53-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 2053,
+    "output_tokens": 744,
+    "total_tokens": 2797
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal: Empowering Orphaned and Vulnerable Children through Education in Peru**\n\n**Dear [Donor's Name],**\n\nLAFF seeks your support to expand our educational initiatives in Peru, empowering orphaned and vulnerable children through quality education and holistic development. With your partnership, we can break the cycle of poverty and create brighter futures.\n\n**Project Overview:**\nLAFF will support 50 children over 12 months, providing educational scholarships, tutor professional development, and workshops addressing basic needs. Our community-collaborative approach ensures inclusivity and sustainability.\n\n**Goals and Objectives:**\n- Provide educational scholarships to ensure access to formal education.\n- Enhance tutor expertise through professional development workshops.\n- Organize workshops on financial literacy, health, and emotional well-being.\n- Partner with local organizations to expand reach and impact.\n- Foster a safe and nurturing learning environment.\n\n**Methods and Strategies:**\n- Community collaboration for diverse and inclusive participant enrollment.\n- Invest in tutor professional development to improve teaching quality.\n- Comprehensive workshop series addressing holistic needs.\n- Robust progress monitoring and evaluation system.\n- Sustainable community impact through local partnerships.\n\n**Evaluation Plan:**\n- Academic progress: 20% improvement in academic performance within a year.\n- Personal development: 15% enhancement in personal development skills within a year.\n\n**Budget Information:**\n- Educational Scholarships: $50,000 (tuition, supplies, transportation/meals)\n- Professional Development Support: $20,000 (tutor workshops and stipends)\n- Workshops Addressing Basic Needs: $20,000 (community needs, transportation, meals)\n- Program Coordination: $10,000 (staff salaries and benefits)\n\n**Success Metrics:**\n- Number of students supported\n- Tutor performance\n- Workshop reach\n\n**Funding Goals:**\n- Short-term bridge grants for launch\n- Multi-year sustainability grants\n\nWith your support, LAFF can empower orphaned and vulnerable children in Peru, offering them a future filled with promise and opportunity. Together, we can make a lasting difference.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 1844,
+      "total_tokens": 2292,
+      "completion_tokens": 448
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--20e8fd68-008a-434d-a1e9-99a5b7dfc21d-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 1844,
+    "output_tokens": 448,
+    "total_tokens": 2292
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal Critique and Recommendations**\n\n**Overall Impression:**\nThe proposal is a good start, but it lacks depth, specificity, and compelling storytelling. It needs to be expanded to meet the expectations of a comprehensive grant proposal. Below are detailed recommendations to strengthen the submission.\n\n**1. Executive Summary (Add this section):**\n- Add a concise executive summary (1-2 paragraphs) that highlights the most critical aspects of the proposal, including the problem, solution, and expected impact. This should be placed at the beginning, after the salutation.\n\n**2. Introduction/Organization Background (Expand this section):**\n- Provide a brief background of LAFF, including its mission, vision, and history. Highlight past successes and any relevant experience in Peru or similar contexts.\n- Explain why LAFF is the best organization to implement this project.\n\n**3. Problem Statement (Expand this section):**\n- Clearly define the problem. Use data and statistics to illustrate the educational challenges faced by orphaned and vulnerable children in Peru.\n- Describe the root causes of these challenges and their impact on the children's lives.\n\n**4. Project Description (Expand and clarify this section):**\n- **Goals and Objectives:** Make the objectives SMART (Specific, Measurable, Achievable, Relevant, Time-bound). The current objectives lack specificity and measurability.\n  - Example: Instead of \"Enhance tutor expertise through professional development workshops,\" consider: \"Increase tutor expertise by conducting 10 professional development workshops, with 80% of tutors demonstrating improved teaching skills as measured by pre- and post-workshop assessments.\"\n- **Methods and Strategies:** Provide more details about the strategies. How will you ensure community collaboration? What specific topics will the workshops cover? How will you monitor progress and evaluate the project?\n- **Project Timeline:** Add a timeline or Gantt chart to illustrate the project's phases and milestones.\n\n**5. Needs Assessment (Add this section):**\n- Describe the process used to identify the needs of the target population. Include any assessments, surveys, or community consultations conducted.\n\n**6. Target Population (Expand this section):**\n- Provide a detailed description of the target population, including demographics, educational background, and specific challenges they face.\n- Explain how the project will reach and benefit this population.\n\n**7. Sustainability (Expand this section):**\n- Discuss how the project will be sustained after the grant period ends. How will LAFF ensure the long-term impact of the project?\n\n**8. Evaluation Plan (Expand and clarify this section):**\n- The evaluation plan is too vague. Clearly outline the evaluation methods, tools, and indicators. Explain how you will collect, analyze, and use the data.\n- Consider adding both process and outcome evaluation components.\n- The success metrics are too broad. Break them down into specific, measurable indicators.\n\n**9. Budget Information (Expand and justify this section):**\n- Provide a detailed budget breakdown, including unit costs and justifications for each expense.\n- Explain how the budget was calculated and ensure it aligns with the project's goals and activities.\n- Consider adding a budget narrative to provide further context.\n\n**10. Monitoring and Reporting (Add this section):**\n- Describe how you will monitor the project's progress and report to the donor. Include the frequency and format of reports.\n\n**11. Risk Management (Add this section):**\n- Identify potential risks and challenges that may arise during the project and explain how you will mitigate them.\n\n**12. Conclusion (Add this section):**\n- Summarize the proposal and reiterate the project's importance and potential impact.\n\n**13. Style and Length:**\n- The proposal is currently too brief and lacks detail. Aim for 5-10 pages, depending on the donor's requirements.\n- Use clear, concise, and persuasive language. Avoid jargon and acronyms.\n- Use headings, subheadings, and bullet points to improve readability.\n- Ensure consistent and professional formatting throughout the proposal.\n\n**14. Additional Materials (Add as needed):**\n- Consider including letters of support from community partners, testimonials from beneficiaries, or any other relevant documents that strengthen the proposal.\n\n**15. Proofreading:**\n- Ensure the proposal is free of spelling, grammar, and punctuation errors. Consider having someone else review it for clarity and coherence.\n\nBy incorporating these recommendations, the proposal will be more compelling, detailed, and likely to secure funding. Good luck!",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 521,
+      "total_tokens": 1442,
+      "completion_tokens": 921
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ac8aae7b-1233-416a-bc17-e9dba9c76f88-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 521,
+    "output_tokens": 921,
+    "total_tokens": 1442
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "Based on the critique, here's a RAG (Retrieve, Analyze, Generate) prompt designed to help retrieve relevant documents from the organization's website to improve the grant proposal:\n\n---\n\n**RAG Prompt:**\n\n**Task:** Retrieve relevant documents and information from LAFF's organizational website to enhance the grant proposal for the \"Empowering Orphaned and Vulnerable Children through Education in Peru\" project.\n\n**Context:**\nThe current grant proposal lacks depth, specificity, and compelling storytelling. To address the critique, we need to gather more detailed information about LAFF's background, past successes, needs assessment, target population, sustainability plans, evaluation methods, budget details, and risk management strategies.\n\n**Specific Information to Retrieve:**\n\n1. **Organization Background:**\n   - LAFF's mission, vision, and history.\n   - Past successes and relevant experience in Peru or similar contexts.\n   - Why LAFF is the best organization to implement this project.\n\n2. **Problem Statement:**\n   - Data and statistics illustrating the educational challenges faced by orphaned and vulnerable children in Peru.\n   - Root causes of these challenges and their impact on the children's lives.\n\n3. **Project Description:**\n   - Detailed goals and objectives (SMART criteria).\n   - Specific methods and strategies, including community collaboration, workshop topics, and progress monitoring.\n   - Project timeline or Gantt chart.\n\n4. **Needs Assessment:**\n   - Process used to identify the needs of the target population.\n   - Assessments, surveys, or community consultations conducted.\n\n5. **Target Population:**\n   - Detailed description of the target population, including demographics, educational background, and specific challenges.\n   - How the project will reach and benefit this population.\n\n6. **Sustainability:**\n   - Plans for sustaining the project after the grant period ends.\n   - Strategies to ensure the long-term impact of the project.\n\n7. **Evaluation Plan:**\n   - Detailed evaluation methods, tools, and indicators.\n   - Process and outcome evaluation components.\n   - Specific, measurable success metrics.\n\n8. **Budget Information:**\n   - Detailed budget breakdown, including unit costs and justifications for each expense.\n   - Explanation of how the budget was calculated and its alignment with project goals and activities.\n   - Budget narrative for further context.\n\n9. **Monitoring and Reporting:**\n   - How the project's progress will be monitored and reported to the donor.\n   - Frequency and format of reports.\n\n10. **Risk Management:**\n    - Potential risks and challenges that may arise during the project.\n    - Strategies to mitigate these risks.\n\n11. **Additional Materials:**\n    - Letters of support from community partners.\n    - Testimonials from beneficiaries.\n    - Any other relevant documents that strengthen the proposal.\n\n**Instructions:**\n- Retrieve documents and information that directly address the above points.\n- Prioritize recent and relevant documents (e.g., annual reports, project reports, case studies, testimonials, and financial documents).\n- Ensure the retrieved information is accurate, detailed, and aligned with the project's goals.\n\n**Output:**\n- A compiled list of retrieved documents and information, organized by the specific sections of the grant proposal they pertain to.\n- Highlight key points and quotes from the documents that can be directly incorporated into the proposal to enhance its depth and specificity.\n\n---\n\nThis RAG prompt will guide the retrieval of relevant documents and information from LAFF's website, helping to create a more compelling and detailed grant proposal.",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 1468,
+      "total_tokens": 2172,
+      "completion_tokens": 704
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--12b5a692-4253-464a-b0d9-92d0bcc13b80-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 1468,
+    "output_tokens": 704,
+    "total_tokens": 2172
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "investigation_1_new_rag_context",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "type": "ai",
+  "name": null,
+  "id": null,
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": null
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal: Empowering Youth through Quality Education in Peru**\n\n**Dear [Donor's Name],**\n\nLAFF is thrilled to present our grant proposal, seeking to expand our educational initiatives in Peru and transform the lives of orphaned and vulnerable children and young people. We are committed to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n**Project Overview:**\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our project will support 50 children over 12 months by providing educational scholarships, professional development for tutors, and workshops addressing basic needs. We will create a holistic approach to their development, focusing on academic progress and personal growth.\n\n**Organizational Background:**\nLAFF, a non-profit organization with a decade-long commitment, empowers orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries.\n\n**Methods and Strategies:**\n- **Community Collaboration and Enrollment:** Engage with local communities, schools, and leaders to identify and enroll eligible children.\n- **Professional Development for Tutors:** Invest in workshops to enhance teaching skills and classroom management.\n- **Comprehensive Workshop Series:** Address holistic needs through workshops on financial literacy, health, and essential life skills.\n- **Progress Monitoring and Evaluation:** Track progress through a robust system, identifying areas for improvement.\n\n**Evaluation Plan:**\n- **Academic Progress:** Aim for a 20% improvement in academic performance within a year, measured through standardized tests.\n- **Personal Development:** Aim to enhance personal development skills by 15% within a year, assessed through surveys and interviews.\n\n**Budget Information:**\n- **Startup:** Educational Scholarships ($50,000)\n- **Implementation:** Professional Development Support ($20,000)\n- **Scale:** Workshops Addressing Basic Needs ($20,000)\n- **Closeout:** Program Coordination ($10,000)\n\n**Success Metrics:**\n- Number of students supported\n- Tutor performance\n- Workshop reach\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 2183,
+      "total_tokens": 2691,
+      "completion_tokens": 508
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--a8909538-43be-4cf8-be6a-a53695170c41-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 2183,
+    "output_tokens": 508,
+    "total_tokens": 2691
+  }
+}
+
+draft:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal: Empowering Orphaned and Vulnerable Children through Education in Peru**\n\n**Dear [Donor's Name],**\n\nLAFF seeks your support to expand our educational initiatives in Peru, empowering orphaned and vulnerable children through quality education and holistic development. With your partnership, we can break the cycle of poverty and create brighter futures.\n\n**Project Overview:**\nLAFF will support 50 children over 12 months, providing educational scholarships, tutor professional development, and workshops addressing basic needs. Our community-collaborative approach ensures inclusivity and sustainability.\n\n**Goals and Objectives:**\n- Provide educational scholarships to ensure access to formal education.\n- Enhance tutor expertise through professional development workshops.\n- Organize workshops on financial literacy, health, and emotional well-being.\n- Partner with local organizations to expand reach and impact.\n- Foster a safe and nurturing learning environment.\n\n**Methods and Strategies:**\n- Community collaboration for diverse and inclusive participant enrollment.\n- Invest in tutor professional development to improve teaching quality.\n- Comprehensive workshop series addressing holistic needs.\n- Robust progress monitoring and evaluation system.\n- Sustainable community impact through local partnerships.\n\n**Evaluation Plan:**\n- Academic progress: 20% improvement in academic performance within a year.\n- Personal development: 15% enhancement in personal development skills within a year.\n\n**Budget Information:**\n- Educational Scholarships: $50,000 (tuition, supplies, transportation/meals)\n- Professional Development Support: $20,000 (tutor workshops and stipends)\n- Workshops Addressing Basic Needs: $20,000 (community needs, transportation, meals)\n- Program Coordination: $10,000 (staff salaries and benefits)\n\n**Success Metrics:**\n- Number of students supported\n- Tutor performance\n- Workshop reach\n\n**Funding Goals:**\n- Short-term bridge grants for launch\n- Multi-year sustainability grants\n\nWith your support, LAFF can empower orphaned and vulnerable children in Peru, offering them a future filled with promise and opportunity. Together, we can make a lasting difference.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 1844,
+      "total_tokens": 2292,
+      "completion_tokens": 448
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--20e8fd68-008a-434d-a1e9-99a5b7dfc21d-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 1844,
+    "output_tokens": 448,
+    "total_tokens": 2292
+  }
+}
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal: Empowering Youth through Quality Education in Peru**\n\n**Dear [Donor's Name],**\n\nLAFF is thrilled to present our grant proposal, seeking to expand our educational initiatives in Peru and transform the lives of orphaned and vulnerable children and young people. We are committed to providing quality education and comprehensive support, believing that education is a powerful tool to break the cycle of poverty and create a brighter future.\n\n**Project Overview:**\nLAFF aims to address the critical issue of limited access to education for orphaned and vulnerable children in Peru. Our project will support 50 children over 12 months by providing educational scholarships, professional development for tutors, and workshops addressing basic needs. We will create a holistic approach to their development, focusing on academic progress and personal growth.\n\n**Organizational Background:**\nLAFF, a non-profit organization with a decade-long commitment, empowers orphaned and vulnerable children and young people in Peru. Our mission is to provide quality education and support, fostering their personal and professional growth. Through partnerships with local organizations, we identify and address the unique needs of our beneficiaries.\n\n**Methods and Strategies:**\n- **Community Collaboration and Enrollment:** Engage with local communities, schools, and leaders to identify and enroll eligible children.\n- **Professional Development for Tutors:** Invest in workshops to enhance teaching skills and classroom management.\n- **Comprehensive Workshop Series:** Address holistic needs through workshops on financial literacy, health, and essential life skills.\n- **Progress Monitoring and Evaluation:** Track progress through a robust system, identifying areas for improvement.\n\n**Evaluation Plan:**\n- **Academic Progress:** Aim for a 20% improvement in academic performance within a year, measured through standardized tests.\n- **Personal Development:** Aim to enhance personal development skills by 15% within a year, assessed through surveys and interviews.\n\n**Budget Information:**\n- **Startup:** Educational Scholarships ($50,000)\n- **Implementation:** Professional Development Support ($20,000)\n- **Scale:** Workshops Addressing Basic Needs ($20,000)\n- **Closeout:** Program Coordination ($10,000)\n\n**Success Metrics:**\n- Number of students supported\n- Tutor performance\n- Workshop reach\n\nWith your support, we can make a lasting difference in the lives of these children, offering them a future filled with promise and opportunity.\n\nSincerely,\n[Your Name]\n[Your Position]\nLAFF",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 2183,
+      "total_tokens": 2691,
+      "completion_tokens": 508
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--a8909538-43be-4cf8-be6a-a53695170c41-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 2183,
+    "output_tokens": 508,
+    "total_tokens": 2691
+  }
+}
+
+critique:
+
+<class 'langchain_core.messages.ai.AIMessage'>
+{
+  "content": "**Grant Proposal Critique and Recommendations**\n\n**Overall Impression:**\nThe proposal is a good start, but it lacks depth, specificity, and compelling storytelling. It needs to be expanded to meet the expectations of a comprehensive grant proposal. Below are detailed recommendations to strengthen the submission.\n\n**1. Executive Summary (Add this section):**\n- Add a concise executive summary (1-2 paragraphs) that highlights the most critical aspects of the proposal, including the problem, solution, and expected impact. This should be placed at the beginning, after the salutation.\n\n**2. Introduction/Organization Background (Expand this section):**\n- Provide a brief background of LAFF, including its mission, vision, and history. Highlight past successes and any relevant experience in Peru or similar contexts.\n- Explain why LAFF is the best organization to implement this project.\n\n**3. Problem Statement (Expand this section):**\n- Clearly define the problem. Use data and statistics to illustrate the educational challenges faced by orphaned and vulnerable children in Peru.\n- Describe the root causes of these challenges and their impact on the children's lives.\n\n**4. Project Description (Expand and clarify this section):**\n- **Goals and Objectives:** Make the objectives SMART (Specific, Measurable, Achievable, Relevant, Time-bound). The current objectives lack specificity and measurability.\n  - Example: Instead of \"Enhance tutor expertise through professional development workshops,\" consider: \"Increase tutor expertise by conducting 10 professional development workshops, with 80% of tutors demonstrating improved teaching skills as measured by pre- and post-workshop assessments.\"\n- **Methods and Strategies:** Provide more details about the strategies. How will you ensure community collaboration? What specific topics will the workshops cover? How will you monitor progress and evaluate the project?\n- **Project Timeline:** Add a timeline or Gantt chart to illustrate the project's phases and milestones.\n\n**5. Needs Assessment (Add this section):**\n- Describe the process used to identify the needs of the target population. Include any assessments, surveys, or community consultations conducted.\n\n**6. Target Population (Expand this section):**\n- Provide a detailed description of the target population, including demographics, educational background, and specific challenges they face.\n- Explain how the project will reach and benefit this population.\n\n**7. Sustainability (Expand this section):**\n- Discuss how the project will be sustained after the grant period ends. How will LAFF ensure the long-term impact of the project?\n\n**8. Evaluation Plan (Expand and clarify this section):**\n- The evaluation plan is too vague. Clearly outline the evaluation methods, tools, and indicators. Explain how you will collect, analyze, and use the data.\n- Consider adding both process and outcome evaluation components.\n- The success metrics are too broad. Break them down into specific, measurable indicators.\n\n**9. Budget Information (Expand and justify this section):**\n- Provide a detailed budget breakdown, including unit costs and justifications for each expense.\n- Explain how the budget was calculated and ensure it aligns with the project's goals and activities.\n- Consider adding a budget narrative to provide further context.\n\n**10. Monitoring and Reporting (Add this section):**\n- Describe how you will monitor the project's progress and report to the donor. Include the frequency and format of reports.\n\n**11. Risk Management (Add this section):**\n- Identify potential risks and challenges that may arise during the project and explain how you will mitigate them.\n\n**12. Conclusion (Add this section):**\n- Summarize the proposal and reiterate the project's importance and potential impact.\n\n**13. Style and Length:**\n- The proposal is currently too brief and lacks detail. Aim for 5-10 pages, depending on the donor's requirements.\n- Use clear, concise, and persuasive language. Avoid jargon and acronyms.\n- Use headings, subheadings, and bullet points to improve readability.\n- Ensure consistent and professional formatting throughout the proposal.\n\n**14. Additional Materials (Add as needed):**\n- Consider including letters of support from community partners, testimonials from beneficiaries, or any other relevant documents that strengthen the proposal.\n\n**15. Proofreading:**\n- Ensure the proposal is free of spelling, grammar, and punctuation errors. Consider having someone else review it for clarity and coherence.\n\nBy incorporating these recommendations, the proposal will be more compelling, detailed, and likely to secure funding. Good luck!",
+  "additional_kwargs": {},
+  "response_metadata": {
+    "token_usage": {
+      "prompt_tokens": 521,
+      "total_tokens": 1442,
+      "completion_tokens": 921
+    },
+    "model_name": "mistral-small",
+    "model": "mistral-small",
+    "finish_reason": "stop",
+    "model_provider": "mistralai"
+  },
+  "type": "ai",
+  "name": null,
+  "id": "lc_run--ac8aae7b-1233-416a-bc17-e9dba9c76f88-0",
+  "tool_calls": [],
+  "invalid_tool_calls": [],
+  "usage_metadata": {
+    "input_tokens": 521,
+    "output_tokens": 921,
+    "total_tokens": 1442
+  }
+}
+
+rag_context:
+
+		Quality Education	Our quality education programme focuses on giving the beneficiaries at our partner organisations access to formal education and encouraging their personal and professional development.	Our goals are to:	Ensure that orphaned and vulnerable children and young people in Peru have access to formal learning environments and additional support that fosters and develops their cognitive abilities and technical skills. We provide educational scholarship funding, improve the quality of tutoring by providing professional development support, and more!	h	Work with our local partner organisations to identify and meet the basic physical, emotional, and social needs of their beneficiaries, equipping them with essential tools for life. We provide projects including (but are not limited to) facilitating financial education workshops and providing funding for dentist visits.	Click on the buttons below to see how LAFF’s Quality Education programme helps our partner organisations.	Mosqoy	Sacred Valley Project	Casa Mantay	Personal Development Workshops	For many years now, LAFF has been
+
+Our Projects admin 2025-05-12T23:21:22+00:00 In Qallariy, every project is a fundamental piece in our commitment to transform lives. Over the years, we have developed initiatives that range from social support to education and culture, always with the aim of providing hope and opportunities to those who need them most. Mantay Shelter Home Mantay Shelter Home is a home full of love and guidance, where young mothers between 12 and 18 years old find a safe refuge. Here, adolescent mothers and their children receive attention and care in various service areas, such as the nursery, educational reinforcement, cooking, and laundry. Every corner of the house tells a story of hope and resilience, and every day new hopes and futures are woven. learn more Mantay Arts and Crafts The Mantay Arts and Crafts training school was created to provide mothers with technical training that allows them to support themselves upon reaching adulthood. Its dual function combines morning training and afternoon production, supporting the sustainability of
+
+		==============================
+Capacity Building
+Capacity Building	Our capacity building programme focuses on improving the organisational capacity and financial sustainability of our partners in Peru.	Our goals are to:	Help local Peruvian nonprofit organisations improve their organisational capacities in the areas of governance, monitoring and evaluation, communications, and management. We provide technical support to improve Monitoring and Evaluation systems, volunteer recruitment strategies, and more!	h	Help local Peruvian nonprofit organizations improve their capacities in the areas of fundraising, financial planning and management. We provide support in funding diversification and long-term funding strategies.	Click on the buttons below to see how LAFF’s capacity building programme helps our partner organisations.	Mosqoy	Sacred Valley Project	Casa Mantay
+==============================
+About Us
+
+for all programs (including communications, public relations, meetings, conferences, acknowledgments, updates, financial reports, etc.).
+Photo documentation, student interviews, collection of regular program updates, etc.
+Financial management; creation and maintenance of the entire Mosqoy Youth Program budget.
+Coordination of exchanges, activities, and events at Casa Mosqoy that are opportunities for fundraising and/or to get to know the program and the youth.
+Creation and maintenance of the alumni network.
+Monitoring and evaluation of the Youth Program.
+Support to the Casa Mosqoy Advisor with the annual selection of new students.
+Support to the Casa Mosqoy Advisor with the recruitment of volunteers for the Youth Program.
+Other responsibilities:
+Please note that this job description is not designed to cover or contain a comprehensive list of activities, duties, or responsibilities that are required of the employee for this job. Duties, responsibilities, and activities may change in
+
+None
+
+==================================================
+
+None

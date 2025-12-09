@@ -28,11 +28,11 @@ load_dotenv()
 cohere_api_key = os.getenv("COHERE_API_KEY")
 
 #### Setting up model
-# llm = ChatCohere(
-#     cohere_api_key=cohere_api_key,
-#     model='command-r-08-2024',
-# )
 
+llm = ChatCohere(
+    cohere_api_key=cohere_api_key,
+    model='command-r-08-2024',
+)
 ### Creating custom function
     #Used to replace some placeholders and leave others untouched
 class FormatDict(dict):
