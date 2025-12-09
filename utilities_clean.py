@@ -5,7 +5,7 @@
 
 
 #### General libraries
-from langchain_core.messages import AnyMessage
+from langchain_core.messages import AnyMessage, BaseMessage
 from copy import deepcopy
 import pickle, sqlite3, json
 
@@ -219,19 +219,78 @@ class Analyzer():
     def __init__(self):
         self.finializer = '\n' + '=' * 50 + '\n'
             #For fomatting purposes
-    def disect(self, message: AnyMessage, indent: int = 2, finish: bool = True):
+    def analyze_message(self, message: AnyMessage, indent: int = 2, finish: bool = True):
         # Will printout "message" in a nice JSON format
-        print(f'JSON disection of LC Message' + '\n')
         # First: turn the AIMEsage into a dicationary
         msg_dict = dict(message)
         # Second: turn the dict into json
         json_str = json.dumps(msg_dict, indent=indent)
         # Third: print json string with desired indentation
-        print(json_str)
+        output = f'{type(message)}\n' + json_str + '\n'
+        print(output)
         if finish: print(self.finializer)
 
+    def unpack_nests(
+        self, 
+        variable, 
+        separator: str = '\t',
+        indent: int = 0
+    ):
+        if isinstance(variable,BaseMessage):
+            self.analyze_message(variable, finish=False)
+        elif isinstance(variable, dict):        
+            for key, value in variable.items():
+                print(f"{separator * indent}{key}:\n")
+                self.unpack_nests(value, separator, indent + 1)
+        elif isinstance(variable, list):
+            for item in variable:
+                self.unpack_nests(item, separator, indent + 1)
+        else:
+            print(f"{separator * (indent)}{variable}\n")
 
-    def analyze_attrs(self, variable, num_spaces : int = 1, finish: bool = True):
+        # for key, value in variable.items():
+        #     print(f"{separator * indent}{key}:\n")
+        #     # print(f"{separator * (indent + 1)}{value}\n")
+        #     if isinstance(value, dict):
+        #         self.nested_dicts(value, separator, indent + 1)
+        #     elif isinstance(value, list):
+        #         for mini_value in value:
+        #             if isinstance(mini_value, BaseMessage): self.analyze_message(mini_value, finish=False)
+        #             else: print(f"{separator * (indent + 1)}{mini_value}\n")
+
+        #     else:
+        #         print(f"{separator * (indent + 1)}{value}\n")
+
+    def analyze_snapshot(
+        self, 
+        variable, 
+        separator: str = '\t', 
+        indentation: int = 1,
+        finish: bool = True,
+    ):
+        for field in dir(variable):
+            if field.startswith("_"): continue
+            if field == 'values':
+                print(field + '\n' * 2)
+                field_dict = variable.__getattribute__(field)
+                # Use the recursive "nested_dicts" instead
+                # for key, value in field_dict.items():
+                #     print(key)
+                #     print(f'{separator * indentation}{value}')
+                #     print('\n' + '+' * 15 + '\n')
+                print(self.unpack_nests(field_dict))
+            else: 
+                print(field)
+                print(f'{separator * indentation}{variable.__getattribute__(field)}')
+                print('\n' + '~' * 40 + '\n')
+        if finish: print(self.finializer)
+
+    def analyze_attributes(
+        self, 
+        variable, 
+        num_spaces : int = 1, 
+        finish: bool = True
+    ):
         print(f'Analyzing attributes of {variable}' + '\n\n')
         for attr in dir(variable):
             if attr.startswith("_"): continue
@@ -242,7 +301,12 @@ class Analyzer():
             print('\n'* num_spaces)
         if finish: print(self.finializer)
 
-    def analyze_mro(self, variable, num_spaces: int = 1, finish: bool = True):
+    def analyze_mro(
+        self, 
+        variable, 
+        num_spaces: int = 1, 
+        finish: bool = True
+    ):
         print(f'Analyzing MRO of {variable}' + '\n\n')
         print(f"Data Type: {type(variable)}")
         for clase in type(variable).mro():
@@ -251,9 +315,13 @@ class Analyzer():
             print('\n'*num_spaces)
         if finish: print(self.finializer)
 
-    def multi_analysis(self, variable, num_spaces: int = 1):
+    def multi_analysis(
+        self, 
+        variable, 
+        num_spaces: int = 1
+    ):
         print(f'Full analysis on {variable}')
-        self.analyze_attrs(variable, num_spaces, False)
+        self.analyze_attributes(variable, num_spaces, False)
         self.analyze_mro(variable, num_spaces, False)
         print(self.finializer)
 
