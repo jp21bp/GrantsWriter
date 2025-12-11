@@ -245,6 +245,8 @@ class Analyzer():
         elif isinstance(variable, list):
             for item in variable:
                 self.unpack_nests(item, separator, indent + 1)
+        elif isinstance(variable, tuple):
+            print("this is TUPLE")
         else:
             print(f"{separator * (indent)}{variable}\n")
 
@@ -284,6 +286,15 @@ class Analyzer():
                 print(f'{separator * indentation}{variable.__getattribute__(field)}')
                 print('\n' + '~' * 40 + '\n')
         if finish: print(self.finializer)
+
+    def analyze_history(
+        self,
+        variable, 
+        separator: str = '\t', 
+        indentation: int = 1,
+        finish: bool = True,
+    ):
+        return
 
     def analyze_attributes(
         self, 

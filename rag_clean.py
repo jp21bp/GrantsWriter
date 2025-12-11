@@ -286,7 +286,6 @@ cadena_espanol = inputs | extract | mini_cadena.map()
 ### Setting up Utilities class for working with data
 DB_NAME = 'output.db'
 TABLE_NAME = 'main'
-DATA_ID = 1
 storage = Storage(DB_NAME, TABLE_NAME)
 
 # utilities = Analyzer()

@@ -38,6 +38,10 @@ from langchain_mistralai.chat_models import ChatMistralAI
 from rag_clean import RAG
 from mini_agents_clean import MiniAgent, SystemPrompts
 from utilities_clean import *
+### Display libraries
+from IPython.display import Image, display
+from PIL import Image as PImage
+import io
 
 #### Setting up environment
 load_dotenv()
@@ -764,8 +768,15 @@ sys_prompts_mini = SystemPrompts().create_prompts()
 agent = Agent(llm, rag, sys_prompts_mini)
 
 #### Visualize agent
+### Using ASCII
 # print(agent.graph.get_graph().draw_ascii())
-print('\n' + '=' * 50 + '\n')
+# print('\n' + '=' * 50 + '\n')
+### Using PIL and Image
+img2 = Image(agent.graph.get_graph(xray=True).draw_mermaid_png())
+pimg = PImage.open(io.BytesIO(img2.data))
+# pimg.show()
+pimg.save('agent_graph.jpg')
+
 
 #### Creating AgentState starting point
 user_query = [HumanMessage(content="what are current educational projects?")]
@@ -798,9 +809,26 @@ config = {
 
 ### Checking StateSnapshot history
 analyzer = Analyzer()
-latest_state_snapshot = agent.graph.get_state(config)
-print(analyzer.analyze_snapshot(latest_state_snapshot))
+
+# latest_state_snapshot = agent.graph.get_state(config)
+# print(analyzer.analyze_snapshot(latest_state_snapshot))
 # print(latest_state_snapshot)
+
+
+#### graph.get_state_history
+# hist = agent.graph.get_state_history(config)
+# # for snapshot in hist:
+# #     print(analyzer.analyze_snapshot(list(hist)))
+
+# hist_list = list(hist)
+# # print(analyzer.analyze_snapshot(hist_list[-2]))
+# tpl = hist_list[-2].tasks
+# print(type(tpl))
+# print(isinstance(tpl, tuple))
+# print(isinstance(tpl, list))
+# print(isinstance(tpl, dict))
+# print(tpl)
+# # print(dir(tpl))
 
 
 
