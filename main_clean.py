@@ -771,11 +771,14 @@ agent = Agent(llm, rag, sys_prompts_mini)
 ### Using ASCII
 # print(agent.graph.get_graph().draw_ascii())
 # print('\n' + '=' * 50 + '\n')
+
+
 ### Using PIL and Image
-img2 = Image(agent.graph.get_graph(xray=True).draw_mermaid_png())
-pimg = PImage.open(io.BytesIO(img2.data))
+# img2 = Image(agent.graph.get_graph(xray=True).draw_mermaid_png())
+    # NOTE: this requires internet connection
+# pimg = PImage.open(io.BytesIO(img2.data))
 # pimg.show()
-pimg.save('agent_graph.jpg')
+# pimg.save('agent_graph.jpg')
 
 
 #### Creating AgentState starting point
@@ -809,26 +812,28 @@ config = {
 
 ### Checking StateSnapshot history
 analyzer = Analyzer()
+important_fields = {
+    "config",
+    "parent_config",
+    "values",
+}
 
+### Last snapshot
 # latest_state_snapshot = agent.graph.get_state(config)
-# print(analyzer.analyze_snapshot(latest_state_snapshot))
-# print(latest_state_snapshot)
+# print(analyzer.analyze_snapshot(latest_state_snapshot, important_fields))
+
 
 
 #### graph.get_state_history
-# hist = agent.graph.get_state_history(config)
-# # for snapshot in hist:
-# #     print(analyzer.analyze_snapshot(list(hist)))
+hist = agent.graph.get_state_history(config)
+hist_list = list(hist)
+# print(analyzer.analyze_history(hist_list, important_fields))
 
-# hist_list = list(hist)
-# # print(analyzer.analyze_snapshot(hist_list[-2]))
-# tpl = hist_list[-2].tasks
-# print(type(tpl))
-# print(isinstance(tpl, tuple))
-# print(isinstance(tpl, list))
-# print(isinstance(tpl, dict))
-# print(tpl)
-# # print(dir(tpl))
+
+print(analyzer.analyze_snapshot(hist_list[-2], important_fields))
+
+
+
 
 
 

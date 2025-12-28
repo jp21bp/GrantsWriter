@@ -1,0 +1,64 @@
+config
+	{'configurable': {'thread_id': '1', 'checkpoint_ns': '', 'checkpoint_id': '1f0d4f0b-1ea7-6721-8000-6d7d1d46cd54'}}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+parent_config
+	{'configurable': {'thread_id': '1', 'checkpoint_ns': '', 'checkpoint_id': '1f0d4f0b-1ea5-6391-bfff-6afe1a269372'}}
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+values
+
+
+theme - <class 'str'>:
+
+	educational projects
+
+doner_requirements - <class 'str'>:
+
+	final proposal needs to be one page long
+
+num_revisions - <class 'int'>:
+
+	0
+
+max_revisions - <class 'int'>:
+
+	2
+
+summarizer_sections - <class 'dict'>:
+
+mini_sections_first_half - <class 'dict'>:
+
+mini_sections_second_half - <class 'dict'>:
+
+id_counter - <class 'int'>:
+
+	1
+
+metrics - <class 'dict'>:
+
+messages - <class 'list'>:
+
+Message type: <class 'langchain_core.messages.human.HumanMessage'>
+{
+  "content": "what are current educational projects?",
+  "additional_kwargs": {},
+  "response_metadata": {},
+  "type": "human",
+  "name": null,
+  "id": null
+}
+
+draft - <class 'list'>:
+
+critique - <class 'list'>:
+
+rag_context - <class 'list'>:
+
+None
+
+==================================================
+
+None

@@ -226,7 +226,7 @@ class Analyzer():
         # Second: turn the dict into json
         json_str = json.dumps(msg_dict, indent=indent)
         # Third: print json string with desired indentation
-        output = f'{type(message)}\n' + json_str + '\n'
+        output = f'Message type: {type(message)}\n' + json_str + '\n'
         print(output)
         if finish: print(self.finializer)
 
@@ -240,7 +240,7 @@ class Analyzer():
             self.analyze_message(variable, finish=False)
         elif isinstance(variable, dict):        
             for key, value in variable.items():
-                print(f"{separator * indent}{key}:\n")
+                print(f"{separator * indent}{key} - {type(value)}:\n")
                 self.unpack_nests(value, separator, indent + 1)
         elif isinstance(variable, list):
             for item in variable:
@@ -266,12 +266,15 @@ class Analyzer():
     def analyze_snapshot(
         self, 
         variable, 
+        display_fields: set,
         separator: str = '\t', 
         indentation: int = 1,
         finish: bool = True,
     ):
+        
         for field in dir(variable):
             if field.startswith("_"): continue
+            if field not in display_fields: continue
             if field == 'values':
                 print(field + '\n' * 2)
                 field_dict = variable.__getattribute__(field)
@@ -289,11 +292,18 @@ class Analyzer():
 
     def analyze_history(
         self,
-        variable, 
+        variable : list, 
+        display_fields: set,
         separator: str = '\t', 
         indentation: int = 1,
         finish: bool = True,
     ):
+        # I am only going to take into consideration the following attrs:
+            #"config", "paretn_config", and "values['messages']"
+        for i, snapshot in enumerate(variable):
+            print(f"Snapshot {i}")
+            self.analyze_snapshot(snapshot, display_fields)
+            print('\n' + '=' * 30 + '\n')
         return
 
     def analyze_attributes(
